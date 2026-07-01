@@ -1,0 +1,187 @@
+/* BASE STYLES */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden; /* Prevent scrolling during intro */
+  background-color: #000;
+}
+
+/* MAIN BACKGROUND (Hidden behind intro initially) */
+.main-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('84374.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+/* Sky-blue tint over the background image to match the theme */
+.main-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(135, 206, 235, 0.4); /* Sky blue tint */
+  z-index: 2;
+}
+
+/* Sample content over the background */
+.content-overlay {
+  position: relative;
+  z-index: 3;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  opacity: 0; /* Hidden initially */
+  animation: fadeInContent 1.5s ease-out forwards 6.5s; /* Appears smoothly after intro transition */
+}
+
+.content-overlay h1 {
+  font-size: 4rem;
+  margin: 0;
+}
+
+.content-overlay p {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+@keyframes fadeInContent {
+  to { opacity: 1; }
+}
+
+
+/* ---------------- INTRO SCREEN SEQUENCE ---------------- */
+
+/* The Full Screen Overlay */
+.intro-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #87CEEB; /* Sky blue solid background */
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
+  /* A cinematic transition out at the end of the sequence */
+  animation: hideIntro 1.2s cubic-bezier(0.8, 0, 0.2, 1) forwards 5.5s;
+}
+
+@keyframes hideIntro {
+  0% { 
+    opacity: 1; 
+    transform: scale(1); 
+    filter: blur(0px); 
+  }
+  40% { 
+    opacity: 1; 
+    transform: scale(1.05); 
+    filter: blur(2px);
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(1.2); 
+    filter: blur(15px);
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+/* Step 1: Loading Text */
+.loading-text {
+  position: absolute;
+  font-size: 4rem; /* Increased size */
+  color: white; /* Reverted to white */
+  font-weight: bold;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  
+  /* Blinks in, pulses, then disappears */
+  animation: 
+    fadeInOut 2s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: scale(0.9); }
+  20% { opacity: 1; transform: scale(1); }
+  80% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.1); }
+}
+
+/* Step 2 & 3 Container */
+.circle-container {
+  position: relative;
+  width: 250px; /* Increased size */
+  height: 250px; /* Increased size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Step 2: Rotating Circle */
+.rotating-circle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 15px solid transparent; /* Increased thickness */
+  border-top-color: white; /* Reverted to white */
+  border-right-color: white; /* Reverted to white */
+  border-radius: 50%;
+  opacity: 0; /* Hidden initially */
+  
+  /* Wait 2s (while loading text plays), then appear and rotate */
+  animation: 
+    appearCircle 0.5s ease forwards 2s,
+    spinCircle 1.5s linear infinite 2s;
+}
+
+@keyframes appearCircle {
+  to { opacity: 1; }
+}
+
+@keyframes spinCircle {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Step 3: Fade in Triangle (Play Icon) and Zoom */
+.play-icon {
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent; /* Increased size */
+  border-bottom: 50px solid transparent; /* Increased size */
+  border-left: 80px solid white; /* Reverted to white, Increased size */
+  margin-left: 25px; /* Adjust visual center */
+  opacity: 0; /* Hidden initially */
+  transform-origin: center;
+  
+  /* Fade in at 3.5s, then fade out at 5s */
+  animation: 
+    fadeInIcon 0.5s ease forwards 3.5s,
+    fadeOutIcon 0.5s ease forwards 5s;
+}
+
+@keyframes fadeInIcon {
+  to { opacity: 1; }
+}
+
+@keyframes fadeOutIcon {
+  to { opacity: 0; }
+}
