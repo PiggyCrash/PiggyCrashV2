@@ -1,0 +1,168 @@
+/* Custom styles for Home Section */
+
+/* Start Section Styles */
+.start-section {
+  position: absolute;
+  left: 0;
+  width: 100vw;
+}
+
+#canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.start-content-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#start-prompt {
+  color: white;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-top: 15rem;
+  transition: opacity 0.3s ease;
+}
+
+.home-page-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-title-block {
+  z-index: 3;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.home-subtitle-welcome {
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: normal;
+  margin-top: 0;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+.home-title-main {
+  font-size: 3.1rem;
+  color: #ff0055;
+  margin: 0;
+  line-height: 2.0;
+}
+
+.home-subtitle-dev {
+  margin-top: 1rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.home-subtitle-exp {
+  margin-top: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.0rem;
+  letter-spacing: 1px;
+  font-weight: normal;
+}
+
+.know-me-further {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.85rem;
+  margin-top: 35px;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+.home-layout-container {
+  position: relative;
+  z-index: 2;
+  height: auto;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.home-buttons-container {
+  margin-top: 0;
+}
+
+.info-cards-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0px;
+  z-index: 2;
+  position: relative;
+  max-width: 580px;
+}
+
+.info-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.2rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  max-height: 130px;
+  overflow: hidden;
+}
+
+.info-card h4 {
+  color: #ff0055;
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+  font-size: 1.0rem;
+  letter-spacing: 1px;
+}
+
+.info-card p {
+  color: #ccc;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.cv-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 0, 85, 0.1);
+  border: 1px solid #ff0055;
+  color: #fff;
+  padding: 0.5rem 1.0rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.65rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.cv-download-btn:hover {
+  background: #ff0055;
+  box-shadow: 0 0 12px rgba(255, 0, 85, 0.4);
+  transform: translateY(-2px);
+}
+
+.cv-download-btn svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2.5;
+}

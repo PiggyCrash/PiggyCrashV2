@@ -1,37 +1,814 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dating Sim Portfolio</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home.css">
+  <!-- Include Three.js via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
+
 <body>
 
-  <!-- The Main Background (Revealed after intro) -->
-  <div class="main-background">
-    <div class="content-overlay">
-      <!-- Future portfolio content will go here -->
-      <h1>Welcome to the Game</h1>
-      <p>Select your route...</p>
+  <!-- Left Sidebar Navigation -->
+  <nav class="sidebar fade-in delay-200">
+    <div class="indicator"></div>
+    <ul>
+      <li data-index="1">
+        <a href="#home">
+          <span class="icon"><i data-feather="home"></i></span>
+        </a>
+      </li>
+      <li data-index="2">
+        <a href="#about">
+          <span class="icon"><i data-feather="info"></i></span>
+        </a>
+      </li>
+      <li data-index="3">
+        <a href="#experience">
+          <span class="icon"><i data-feather="briefcase"></i></span>
+        </a>
+      </li>
+      <li data-index="4">
+        <a href="#portfolio">
+          <span class="icon"><i data-feather="folder"></i></span>
+        </a>
+      </li>
+      <li data-index="5">
+        <a href="#contact">
+          <span class="icon"><i data-feather="mail"></i></span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- Scrollable Content Overlay -->
+  <div class="content-overlay">
+
+    <!-- Container for Portfolio Content -->
+    <div class="portfolio-container">
+
+      <!-- Section 0: Start -->
+      <section class="page-section active start-section" data-index="0">
+        <div id="canvas-container"></div>
+        <div class="start-content-container">
+          <p id="start-prompt" class="blink-text">
+            Press any key or click to start</p>
+        </div>
+      </section>
+
+      <!-- Section 1: Home -->
+      <section class="page-section" data-index="1">
+        <div class="page-card home-page-card">
+
+          <!-- Top Left Title Block -->
+          <div class="home-title-block">
+            <h2 class="subtitle-box home-subtitle-welcome">
+              Welcome to</h2>
+            <h1 class="title-box font-valorant home-title-main">
+              dgashandy Website</h1>
+            <h3 class="subtitle-box font-valorant home-subtitle-dev">
+              Full-Stack Software Developer & AI Data Engineer</h3>
+            <h3 class="subtitle-box home-subtitle-exp">
+              3+ years of experience delivering scalable end-to-end apps.</h3>
+          </div>
+
+          <!-- Subtitle for Cards Section -->
+          <h3 class="subtitle-box font-valorant know-me-further">
+            KNOW ME FURTHER</h3>
+
+          <!-- Text Layer (Foreground) -->
+          <div class="home-layout home-layout-container">
+            <div class="home-left">
+              <div class="home-buttons home-buttons-container">
+                <div class="btn-box font-valorant"><i data-feather="info"></i>About</div>
+                <div class="btn-box font-valorant"><i data-feather="briefcase"></i>Experience</div>
+                <div class="btn-box font-valorant"><i data-feather="folder"></i>Portfolio</div>
+                <div class="btn-box font-valorant"><i data-feather="mail"></i>Contact</div>
+              </div>
+            </div>
+
+            <!-- Empty right spacer to keep text constrained -->
+            <div class="home-right"></div>
+          </div>
+
+          <!-- Row of 2 Info Cards -->
+          <div class="info-cards-row">
+            <div class="info-card">
+              <h4 class="font-valorant">
+                Development</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod.</p>
+            </div>
+            <div class="info-card">
+              <h4 class="font-valorant">
+                Data & AI Engineering</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod.</p>
+            </div>
+          </div>
+
+          <!-- 3D Model Layer (Background) -->
+          <div class="home-circle" id="home-circle"></div>
+
+        </div>
+      </section>
+
+      <!-- Section 2: About -->
+      <section class="page-section" data-index="2">
+        <div class="page-card about-page-card">
+          <h2 class="card-title">About Me</h2>
+          
+          <div class="bento-grid">
+            <!-- ROW 1 -->
+            <!-- Item 1: Row 1 Left (3x1) -->
+            <div class="bento-item bento-row1-left">
+              <div class="bento-header">
+                <span class="bento-tag font-valorant">SYS.INIT</span>
+                <span class="bento-num">01 // INIT</span>
+              </div>
+              <div class="bento-content">
+                <p class="bento-desc">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+              </div>
+            </div>
+
+            <!-- Item 2: Row 1 Mid (6x1) -->
+            <div class="bento-item bento-row1-mid">
+              <div class="bento-header">
+                <span class="bento-tag font-valorant">DATA.NODE</span>
+                <span class="bento-num">02 // INFO</span>
+              </div>
+              <div class="bento-content" style="flex-direction: row; justify-content: space-between; align-items: center; gap: 2rem;">
+                <p class="bento-desc" style="margin: 0;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="bento-icon-row" style="margin-top: 0;">
+                  <a href="https://github.com/dgashandy" target="_blank" class="bento-icon-wrapper" title="GitHub">
+                    <i data-feather="github"></i>
+                  </a>
+                  <a href="https://linkedin.com/in/daffagashandy" target="_blank" class="bento-icon-wrapper" title="LinkedIn">
+                    <i data-feather="linkedin"></i>
+                  </a>
+                  <a href="mailto:daffagashandy@gmail.com" class="bento-icon-wrapper" title="Email">
+                    <i data-feather="mail"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3: Row 1 Right (3x1) -->
+            <div class="bento-item bento-row1-right">
+              <div class="bento-header">
+                <span class="bento-tag font-valorant">LOG.FEED</span>
+                <span class="bento-num">03 // STRM</span>
+              </div>
+              <div class="bento-content">
+                <div class="bento-glitch-text" style="margin-top: 0; font-size: 0.6rem; line-height: 1.1;">
+[10:00:23] INIT_PROCESS<br>
+[10:00:24] LOAD_SUCCESSFUL
+                </div>
+              </div>
+            </div>
+
+            <!-- ROW 2 & 3 -->
+            <!-- Item 4: Row 2 Left (3x2) -->
+            <div class="bento-item bento-row2-left">
+              <div class="bento-header">
+                <span class="bento-tag font-valorant">ENV.VAR</span>
+                <span class="bento-num">04 // CONF</span>
+              </div>
+              <div class="bento-content">
+                <div class="hobbies-list" style="gap: 0.4rem; margin-bottom: 0.5rem;">
+                  <div class="hobby-item" style="font-size: 0.75rem;"><i data-feather="code"></i>SYS_01 // OK</div>
+                  <div class="hobby-item" style="font-size: 0.75rem;"><i data-feather="globe"></i>LOC // 16</div>
+                  <div class="hobby-item" style="font-size: 0.75rem;"><i data-feather="activity"></i>FREQ // 8.8</div>
+                </div>
+                <div class="bento-deco-box" style="margin-top: 0.5rem; padding: 0.5rem; font-size: 0.65rem;">
+                  MEM_USE: 22%
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 5: Center Square (6x2) -->
+            <div class="bento-item bento-center-square">
+              <div class="bento-bg-grid"></div>
+              <div class="bento-header" style="width: 100%;">
+                <span class="bento-tag font-valorant">CORE.SQR</span>
+                <span class="bento-num">05 // CENTER</span>
+              </div>
+              <div class="bento-content">
+                <div class="bento-centerpiece">
+                  <div class="centerpiece-circle">
+                    <div class="centerpiece-inner">CORE_OS</div>
+                  </div>
+                  <div class="bento-title-large" style="text-align: center; margin-bottom: 0.2rem;">LOREM <span>IPSUM</span></div>
+                  <p class="bento-desc" style="text-align: center; font-size: 0.75rem;">SYSTEM ROOT // OPERATIONAL STATE: 100%</p>
+                </div>
+              </div>
+              <div class="bento-bg-cross"></div>
+            </div>
+
+            <!-- Item 6: Row 2 Right (3x2) -->
+            <div class="bento-item bento-row2-right">
+              <div class="bento-header">
+                <span class="bento-tag font-valorant">SYS.STAT</span>
+                <span class="bento-num">06 // STAT</span>
+              </div>
+              <div class="bento-content">
+                <p class="bento-desc" style="font-size: 0.8rem; margin-bottom: 0.5rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="bento-deco-box" style="margin-top: 0; padding: 0.5rem; font-size: 0.65rem;">
+                  IPSUM // ONLINE<br>
+                  SECURE_CONN_TRUE
+                </div>
+              </div>
+            </div>
+
+            <!-- ROW 4 -->
+            <!-- Item 7: Row 4 Left (3x1) -->
+            <div class="bento-item bento-row4-left">
+              <div class="bento-header">
+                <span class="bento-tag font-valorant">INT.CONN</span>
+                <span class="bento-num">07 // LOC</span>
+              </div>
+              <div class="bento-content">
+                <p class="bento-desc" style="font-size: 0.75rem;">Lorem ipsum dolor sit amet.</p>
+              </div>
+              <div class="bento-footer-info" style="margin-top: 0.2rem; font-size: 0.55rem;">
+                <span>LAT: -6.20</span>
+                <span>LON: 106.84</span>
+              </div>
+            </div>
+
+            <!-- Item 8: Row 4 Mid (6x1) -->
+            <div class="bento-item bento-row4-mid">
+              <div class="bento-header">
+                <span class="bento-tag font-valorant">METRICS.CTRL</span>
+                <span class="bento-num">08 // ANALYZE</span>
+              </div>
+              <div class="bento-content" style="flex-direction: row; justify-content: space-between; align-items: center; gap: 2rem;">
+                <p class="bento-desc" style="font-size: 0.75rem; margin: 0;">LOREM_STATE: RUNNING // LOAD: NORMAL</p>
+                <div class="bento-graph-container" style="margin-top: 0; flex-grow: 1; max-width: 250px;">
+                  <div class="bento-bar"></div>
+                  <div class="bento-bar"></div>
+                  <div class="bento-bar"></div>
+                  <div class="bento-bar"></div>
+                  <div class="bento-bar"></div>
+                  <div class="bento-bar"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 9: Row 4 Right (3x1) -->
+            <div class="bento-item bento-row4-right">
+              <div class="bento-header">
+                <span class="bento-tag font-valorant">TERM.IO</span>
+                <span class="bento-num">09 // LOG</span>
+              </div>
+              <div class="bento-content">
+                <div class="bento-glitch-text" style="margin-top: 0; font-size: 0.55rem; line-height: 1.1;">
+[SYS] STABLE // OK<br>
+[NET] SYNC // OK
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section 3: Experience -->
+      <section class="page-section" data-index="3">
+        <div class="page-card">
+          <h2 class="card-title">Experience</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod vehicula interdum. Aenean in tincidunt
+            massa. Nam dapibus nulla sem, elementum vulputate est dapibus eget.</p>
+          <p>Cras vel ligula condimentum, porta ipsum non, vehicula ipsum. Ut at quam efficitur, dictum erat id,
+            fermentum ante. Nulla vel interdum libero.</p>
+        </div>
+      </section>
+
+      <!-- Section 4: Portfolio -->
+      <section class="page-section" data-index="4">
+        <div class="page-card">
+          <h2 class="card-title">Portfolio</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tristique odio vitae justo ultrices, sed
+            dapibus massa pellentesque. Suspendisse potenti.</p>
+          <p>Aenean et felis eget erat elementum tristique. Nullam in viverra elit, non bibendum urna. Mauris malesuada
+            accumsan nulla at volutpat.</p>
+        </div>
+      </section>
+
+      <!-- Section 5: Contact -->
+      <section class="page-section" data-index="5">
+        <div class="page-card">
+          <h2 class="card-title">Contact</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec mauris ut nulla commodo convallis non in
+            ex. Cras tempor accumsan est, ac dictum ipsum elementum at.</p>
+          <p>Praesent lacinia nisi ut magna commodo, vitae vehicula neque vulputate. Morbi in urna aliquet, placerat
+            dolor in, pharetra nisl.</p>
+        </div>
+      </section>
+
     </div>
   </div>
 
   <!-- The Intro Sequence Overlay -->
   <div class="intro-screen">
-    
-    <!-- Step 1: Loading Text -->
-    <div class="loading-text">Loading...</div>
-    
-    <!-- Step 2: Rotating Circle & Step 3: Play Icon -->
-    <div class="circle-container">
-      <div class="rotating-circle"></div>
-      
-      <!-- The Triangle (Play Icon) -->
-      <div class="play-icon"></div>
-    </div>
-    
+    <div class="intro-line"></div>
   </div>
 
+
+
+  <!-- Feather Icons CDN -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <script>
+    // Initialize Feather Icons
+    feather.replace();
+
+    // Sidebar Indicator Logic
+    const sidebarItems = document.querySelectorAll('.sidebar ul li');
+    const indicator = document.querySelector('.indicator');
+    const pageSections = document.querySelectorAll('.page-section');
+
+    function moveIndicator(liElement) {
+      if (!liElement) return;
+      const ul = document.querySelector('.sidebar ul');
+      const topPos = ul.offsetTop + liElement.offsetTop + (liElement.offsetHeight - 45) / 2;
+      indicator.style.top = `${topPos}px`;
+    }
+
+    // Hide indicator on Start page
+    indicator.style.opacity = '0';
+
+    function navigateToSection(index) {
+      let prevIndex = 0;
+      pageSections.forEach((sec, idx) => {
+        if (sec.classList.contains('active')) prevIndex = idx;
+      });
+
+      // Update sidebar active class & move indicator
+      let foundActiveLi = null;
+      sidebarItems.forEach(li => {
+        const liIdx = parseInt(li.getAttribute('data-index'));
+        if (liIdx === index) {
+          li.classList.add('active');
+          foundActiveLi = li;
+        } else {
+          li.classList.remove('active');
+        }
+      });
+
+      if (foundActiveLi && index > 0) {
+        indicator.style.opacity = '1';
+        moveIndicator(foundActiveLi);
+      } else {
+        indicator.style.opacity = '0';
+      }
+
+      // Ensure 3D canvas is teleported to Home circle if leaving Start screen
+      const homeCircle = document.getElementById('home-circle');
+      if (index > 0 && homeCircle && typeof renderer !== 'undefined') {
+        if (renderer.domElement.parentNode !== homeCircle) {
+          homeCircle.appendChild(renderer.domElement);
+        }
+        const w = homeCircle.clientWidth;
+        const h = homeCircle.clientHeight;
+        if (typeof camera !== 'undefined' && w > 0 && h > 0) {
+          camera.aspect = w / h;
+          camera.position.z = 110;
+          camera.updateProjectionMatrix();
+          renderer.setSize(w, h);
+        }
+      } else if (index === 0) {
+        const canvasContainer = document.getElementById('canvas-container');
+        if (canvasContainer && typeof renderer !== 'undefined' && renderer.domElement.parentNode !== canvasContainer) {
+          canvasContainer.appendChild(renderer.domElement);
+          const w = canvasContainer.clientWidth;
+          const h = canvasContainer.clientHeight;
+          if (typeof camera !== 'undefined' && w > 0 && h > 0) {
+            camera.aspect = w / h;
+            camera.position.z = 58;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
+          }
+        }
+      }
+
+      // Update page sections with smooth entry & exit fade/slide transition
+      pageSections.forEach(sec => {
+        const secIdx = parseInt(sec.getAttribute('data-index'));
+
+        if (secIdx === index) {
+          // Prepare entry transition
+          sec.classList.add('active');
+
+          if (prevIndex === 0 && index === 1) {
+            // Pure deep fade-in with gentle upward lift when transitioning from start screen
+            sec.style.transition = 'none';
+            sec.style.transform = 'translateY(25px)';
+            sec.style.opacity = '0';
+            sec.offsetHeight; // Force reflow
+            sec.style.transition = 'opacity 1.8s cubic-bezier(0.25, 1, 0.5, 1), transform 1.8s cubic-bezier(0.25, 1, 0.5, 1)';
+            sec.style.transform = 'translateY(0)';
+            sec.style.opacity = '1';
+          } else if (index > prevIndex) {
+            // Slide in from right with fade
+            sec.style.transition = 'none';
+            sec.style.transform = 'translateX(5vw)';
+            sec.style.opacity = '0';
+            sec.offsetHeight; // Force reflow
+            sec.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+            sec.style.transform = 'translateX(0)';
+            sec.style.opacity = '1';
+          } else if (index < prevIndex) {
+            // Slide in from left with fade
+            sec.style.transition = 'none';
+            sec.style.transform = 'translateX(-5vw)';
+            sec.style.opacity = '0';
+            sec.offsetHeight; // Force reflow
+            sec.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+            sec.style.transform = 'translateX(0)';
+            sec.style.opacity = '1';
+          } else {
+            sec.style.transform = 'translateX(0)';
+            sec.style.opacity = '1';
+          }
+        } else if (sec.classList.contains('active')) {
+          // Prepare exit transition
+          sec.classList.remove('active');
+
+          sec.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+          if (index > prevIndex) {
+            // Slide out to left
+            sec.style.transform = 'translateX(-5vw)';
+          } else {
+            // Slide out to right
+            sec.style.transform = 'translateX(5vw)';
+          }
+          sec.style.opacity = '0';
+        }
+      });
+    }
+
+    sidebarItems.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        const index = parseInt(item.getAttribute('data-index'));
+        navigateToSection(index);
+      });
+    });
+
+    // Home Section Button Navigation
+    const homeButtons = document.querySelectorAll('.home-buttons .btn-box');
+    homeButtons.forEach((btn, idx) => {
+      btn.addEventListener('click', () => {
+        // Map: About (2), Experience (3), Portfolio (4), Contact (5)
+        navigateToSection(idx + 2);
+      });
+    });
+
+    // Full-page Scroll Navigation
+    let isScrolling = false;
+
+    window.addEventListener('wheel', (e) => {
+      if (isScrolling) return;
+
+      const activeSection = document.querySelector('.page-section.active');
+      if (!activeSection) return;
+
+      const currentIndex = parseInt(activeSection.getAttribute('data-index'));
+      if (currentIndex === 0) return; // Disable scroll navigation on start page
+
+      const direction = Math.sign(e.deltaY);
+
+      if (direction > 0 && currentIndex < 5) {
+        navigateToSection(currentIndex + 1);
+        throttleScroll();
+      } else if (direction < 0 && currentIndex > 1) {
+        navigateToSection(currentIndex - 1);
+        throttleScroll();
+      }
+    });
+
+    function throttleScroll() {
+      isScrolling = true;
+      setTimeout(() => {
+        isScrolling = false;
+      }, 800);
+    }
+
+    // Start Screen Logic with Disperse Animation Transition
+    let startTransitionInProgress = false;
+
+    function triggerStartTransition() {
+      if (startTransitionInProgress) return;
+      startTransitionInProgress = true;
+
+      const prompt = document.getElementById('start-prompt');
+      if (prompt) {
+        prompt.style.opacity = '0';
+      }
+
+      outroActive = true;
+      outroProgress = 0;
+    }
+
+    function finishOutroTransition() {
+      // Actually navigate to Home
+      navigateToSection(1);
+
+      // Restore 3D mesh scales and opacities
+      primaryMesh.scale.set(1.0, 1.0, 1.0);
+      outerMesh.scale.set(1.032, 1.032, 1.032);
+      primaryMaterial.opacity = 0.32;
+      outerMaterial.opacity = 0.11;
+
+      // Reset positions to shapes[0] or whatever shape we want
+      const positions = activeGeometry.attributes.position.array;
+      for (let i = 0; i < positions.length; i++) {
+        positions[i] = shapes[0][i];
+      }
+      activeGeometry.attributes.position.needsUpdate = true;
+
+      // Restore prompt opacity if ever reset
+      const prompt = document.getElementById('start-prompt');
+      if (prompt) {
+        prompt.style.opacity = '1';
+      }
+
+      startTransitionInProgress = false;
+    }
+
+    document.addEventListener('keydown', (e) => {
+      const activeSection = document.querySelector('.page-section.active');
+      if (activeSection && activeSection.getAttribute('data-index') === '0') {
+        triggerStartTransition();
+      }
+    });
+
+    const startSection = document.querySelector('.page-section[data-index="0"]');
+    if (startSection) {
+      startSection.style.cursor = 'pointer';
+      startSection.addEventListener('click', () => {
+        const activeSection = document.querySelector('.page-section.active');
+        if (activeSection && activeSection.getAttribute('data-index') === '0') {
+          triggerStartTransition();
+        }
+      });
+    }
+
+    // --- 3D Element Logic ---
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+
+    let containerW = container.clientWidth;
+    let containerH = container.clientHeight;
+
+    const camera = new THREE.PerspectiveCamera(45, containerW / containerH, 0.1, 1000);
+    camera.position.z = 58;
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(containerW, containerH);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    const baseGeometry = new THREE.IcosahedronGeometry(12, 5);
+    const vertexCount = baseGeometry.attributes.position.count;
+
+    const shapes = {};
+    for (let s = 0; s < 7; s++) {
+      shapes[s] = new Float32Array(vertexCount * 3);
+    }
+    const chaosPositions = new Float32Array(vertexCount * 3);
+    const outroExplodePositions = new Float32Array(vertexCount * 3);
+
+    const posAttr = baseGeometry.attributes.position;
+    for (let i = 0; i < vertexCount; i++) {
+      const i3 = i * 3;
+      const x = posAttr.getX(i);
+      const y = posAttr.getY(i);
+      const z = posAttr.getZ(i);
+
+      const r = Math.sqrt(x * x + y * y + z * z);
+      const theta = Math.atan2(y, x);
+      const phi = Math.acos(z / r);
+
+      // --- INTRO STATE: Shattered Screen-Covering Chaos ---
+      const explodeDistance = 75 + Math.random() * 95;
+      chaosPositions[i3] = (x / r) * explodeDistance;
+      chaosPositions[i3 + 1] = (y / r) * explodeDistance;
+      chaosPositions[i3 + 2] = (z / r) * explodeDistance;
+
+      // --- OUTRO STATE: Exploding 3D Splatter Lines ---
+      const splatterDistance = 300 + Math.random() * 400;
+      outroExplodePositions[i3] = (x / r) * splatterDistance;
+      outroExplodePositions[i3 + 1] = (y / r) * splatterDistance;
+      outroExplodePositions[i3 + 2] = (z / r) * splatterDistance;
+
+      const r0 = 13 + Math.sin(theta * 6) * Math.cos(phi * 6) * 5.5;
+      shapes[0][i3] = (x / r) * r0;
+      shapes[0][i3 + 1] = (y / r) * r0;
+      shapes[0][i3 + 2] = (z / r) * r0;
+
+      const geodeMap = Math.sin(theta * 5) * Math.cos(phi * 5);
+      const r1 = 12 + (geodeMap > 0.15 ? 7 : (geodeMap < -0.15 ? -5.5 : 0));
+      shapes[1][i3] = (x / r) * r1;
+      shapes[1][i3 + 1] = (y / r) * r1;
+      shapes[1][i3 + 2] = (z / r) * r1;
+
+      const spindleTwist = y * 0.35;
+      const r2 = 8.5 + Math.sin(phi * 10) * 4;
+      shapes[2][i3] = Math.cos(theta + spindleTwist) * r2;
+      shapes[2][i3 + 1] = y * 1.35;
+      shapes[2][i3 + 2] = Math.sin(theta + spindleTwist) * r2;
+
+      const r3 = 11.5 + Math.sin(x * 0.6) * 3.5 + Math.cos(y * 0.6) * 3.5 + Math.sin(z * 0.6) * 3.5;
+      shapes[3][i3] = (x / r) * r3;
+      shapes[3][i3 + 1] = (y / r) * r3;
+      shapes[3][i3 + 2] = (z / r) * r3;
+
+      const loopTime = theta * 2;
+      const r4 = 12 + Math.sin(phi * 4) * 6.5;
+      shapes[4][i3] = Math.cos(loopTime) * r4;
+      shapes[4][i3 + 1] = Math.sin(loopTime) * Math.cos(phi) * 9.5;
+      shapes[4][i3 + 2] = Math.sin(loopTime) * Math.sin(phi) * r4;
+
+      const supernovaBurst = Math.pow(Math.max(0, Math.sin(theta * 3) * Math.cos(phi * 3)), 5.5);
+      const r5 = 7.5 + supernovaBurst * 38;
+      shapes[5][i3] = (x / r) * r5;
+      shapes[5][i3 + 1] = (y / r) * r5;
+      shapes[5][i3 + 2] = (z / r) * r5;
+
+      const cogsCount = 12;
+      const innerEquatorZone = Math.abs(y) < 4.8;
+      const r6 = innerEquatorZone ? (14.5 + Math.sign(Math.sin(theta * cogsCount)) * 3.8) : (8.5 - Math.abs(y) * 0.45);
+      shapes[6][i3] = (x / r) * r6;
+      shapes[6][i3 + 1] = innerEquatorZone ? y * 0.45 : y * 1.35;
+      shapes[6][i3 + 2] = (z / r) * r6;
+    }
+
+    const activeGeometry = baseGeometry.clone();
+    const activePositions = activeGeometry.attributes.position.array;
+    for (let i = 0; i < activePositions.length; i++) {
+      activePositions[i] = chaosPositions[i];
+    }
+    activeGeometry.attributes.position.needsUpdate = true;
+
+    const primaryMaterial = new THREE.MeshBasicMaterial({
+      color: 0x00f0ff,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.32,
+      blending: THREE.AdditiveBlending
+    });
+    const primaryMesh = new THREE.Mesh(activeGeometry, primaryMaterial);
+    scene.add(primaryMesh);
+
+    const outerMaterial = new THREE.MeshBasicMaterial({
+      color: 0xff2a74,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.11,
+      blending: THREE.AdditiveBlending
+    });
+    const outerMesh = new THREE.Mesh(activeGeometry, outerMaterial);
+    scene.add(outerMesh);
+
+    let introActive = true;
+    let introProgress = 0;
+    const introSpeed = 0.0009;
+
+    let outroActive = false;
+    let outroProgress = 0;
+    const outroSpeed = 0.0055; // Speed of the 3D disperse outro animation (approx. 3.0s at 60fps)
+
+    let currentShapeIdx = 0;
+    let nextShapeIdx = 1;
+    let transitionProgress = 0;
+
+    const morphSpeed = 0.0018;
+    let holdTimer = 0;
+    const holdDurationFrames = 230;
+
+    let mouseX = 0, mouseY = 0;
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(e.clientY / window.innerHeight) * 2 - 1;
+    });
+
+    function lerp(start, end, amt) {
+      return (1 - amt) * start + amt * end;
+    }
+
+    const animate = () => {
+      requestAnimationFrame(animate);
+
+      const positions = activeGeometry.attributes.position.array;
+
+      if (outroActive) {
+        outroProgress += outroSpeed;
+
+        if (outroProgress >= 1) {
+          outroProgress = 1;
+          outroActive = false;
+          finishOutroTransition();
+        }
+
+        // easeOutSine curve for smooth sustained dispersion
+        let easeOutro = Math.sin(outroProgress * Math.PI / 2);
+        let currentScale = lerp(1.0, 4.5, easeOutro);
+        primaryMesh.scale.set(currentScale, currentScale, currentScale);
+        outerMesh.scale.set(currentScale * 1.032, currentScale * 1.032, currentScale * 1.032);
+
+        // Delay opacity fade-out: start fading only in the second half of the transition
+        let fadeProgress = Math.max(0, (outroProgress - 0.5) / 0.5);
+        primaryMaterial.opacity = lerp(0.32, 0.0, fadeProgress);
+        outerMaterial.opacity = lerp(0.11, 0.0, fadeProgress);
+
+        for (let i = 0; i < positions.length; i++) {
+          positions[i] = lerp(shapes[currentShapeIdx][i], outroExplodePositions[i], easeOutro);
+        }
+        activeGeometry.attributes.position.needsUpdate = true;
+
+      } else if (introActive) {
+        introProgress += introSpeed;
+
+        if (introProgress >= 1) {
+          introProgress = 1;
+          introActive = false;
+          holdTimer = 0;
+        }
+
+        let easeIntro = 1 - Math.pow(1 - introProgress, 3);
+        let currentScale = lerp(4.2, 1.0, easeIntro);
+        primaryMesh.scale.set(currentScale, currentScale, currentScale);
+        outerMesh.scale.set(currentScale * 1.032, currentScale * 1.032, currentScale * 1.032);
+
+        for (let i = 0; i < positions.length; i++) {
+          positions[i] = lerp(chaosPositions[i], shapes[0][i], easeIntro);
+        }
+        activeGeometry.attributes.position.needsUpdate = true;
+
+      } else {
+        if (holdTimer < holdDurationFrames) {
+          holdTimer++;
+        } else {
+          transitionProgress += morphSpeed;
+
+          let easedProgress = transitionProgress < 0.5
+            ? 4 * transitionProgress * transitionProgress * transitionProgress
+            : 1 - Math.pow(-2 * transitionProgress + 2, 3) / 2;
+
+          for (let i = 0; i < positions.length; i++) {
+            positions[i] = lerp(shapes[currentShapeIdx][i], shapes[nextShapeIdx][i], easedProgress);
+          }
+          activeGeometry.attributes.position.needsUpdate = true;
+
+          if (nextShapeIdx % 2 === 0) {
+            primaryMaterial.color.setHSL(0.54 + (transitionProgress * 0.32), 1.0, 0.5);
+          } else {
+            primaryMaterial.color.setHSL(0.86 - (transitionProgress * 0.32), 1.0, 0.5);
+          }
+
+          if (transitionProgress >= 1) {
+            currentShapeIdx = nextShapeIdx;
+            nextShapeIdx = (nextShapeIdx + 1) % 7;
+            transitionProgress = 0;
+            holdTimer = 0;
+          }
+        }
+      }
+
+      primaryMesh.rotation.y += 0.0014;
+      primaryMesh.rotation.x += 0.0005;
+      primaryMesh.rotation.z += 0.0003;
+
+      outerMesh.rotation.y -= 0.0007;
+      outerMesh.rotation.x -= 0.0002;
+      outerMesh.rotation.z -= 0.0001;
+
+      primaryMesh.rotation.y += (mouseX * 0.18 - primaryMesh.rotation.y) * 0.025;
+      primaryMesh.rotation.x += (-mouseY * 0.18 - primaryMesh.rotation.x) * 0.025;
+      outerMesh.rotation.y += (mouseX * 0.18 - outerMesh.rotation.y) * 0.025;
+      outerMesh.rotation.x += (-mouseY * 0.18 - outerMesh.rotation.x) * 0.025;
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+
+    window.addEventListener('resize', () => {
+      const currentContainer = renderer.domElement.parentElement;
+      if (currentContainer) {
+        containerW = currentContainer.clientWidth;
+        containerH = currentContainer.clientHeight;
+        camera.aspect = containerW / containerH;
+        camera.updateProjectionMatrix();
+        renderer.setSize(containerW, containerH);
+      }
+    });
+
+  </script>
 </body>
+
 </html>
