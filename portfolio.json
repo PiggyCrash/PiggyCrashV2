@@ -1,0 +1,69 @@
+[
+  {
+    "id": "1",
+    "name": "Portfolio Website",
+    "categories": ["WebApp"],
+    "stacks": ["Three.js"],
+    "pictures": [
+      "assets/project/piggycrash_home.png",
+      "assets/project/piggycrash_gameplay.png"
+    ],
+    "description": "A high-fidelity holographic portfolio site featuring an interactive 3D Earth wireframe and responsive interactive layouts.",
+    "organization": "Portfolio",
+    "status": "public",
+    "link": "https://github.com/dgashandy/piggycrash"
+  },
+  {
+    "id": "2",
+    "name": "Drugs Recommendation System",
+    "categories": ["ML/AI", "WebApp"],
+    "stacks": ["Python", "Scikit-Learn (Sklearn)", "Flask", "Jinja2", "Pandas", "NumPy"],
+    "pictures": [
+      "assets/project/recommendation_system_dexa.jpg"
+    ],
+    "description": "An intuitive web application that groups similar patient data through machine learning clustering to provide smarter, automated drug recommendations",
+    "organization": "Hackathon",
+    "status": "public",
+    "link": "https://github.com/PiggyCrash/dexa-analisis"
+  },
+  {
+    "id": "project-03",
+    "name": "Enterprise IoT Data Pipeline",
+    "categories": ["Data Engineering"],
+    "stacks": ["PySpark", "Apache Airflow", "PostgreSQL", "Docker"],
+    "pictures": [
+      "assets/project/iot_pipeline_architecture.png"
+    ],
+    "description": "High-throughput data ingestion framework handling real-time telemetry from manufacturing plant floor sensors.",
+    "organization": "PCI Elektronik Internasional",
+    "status": "private project",
+    "link": ""
+  },
+  {
+    "id": "project-04",
+    "name": "Smart Class Scheduler Mobile App",
+    "categories": ["MobileApps", "WebApp"],
+    "stacks": ["Flutter", "Dart", "Firebase", "Node.js"],
+    "pictures": [
+      "assets/project/digitalent_app_home.png",
+      "assets/project/digitalent_app_schedule.png"
+    ],
+    "description": "Cross-platform mobile application for class registration, automatic notifications, and talent analytics dashboards.",
+    "organization": "Digitalent",
+    "status": "public project",
+    "link": "https://github.com/dgashandy/smart-scheduler"
+  },
+  {
+    "id": "project-05",
+    "name": "Automated Dating Sim AI Agent",
+    "categories": ["AIAgent", "ML/AI"],
+    "stacks": ["Python", "OpenAI API", "LangChain", "Next.js"],
+    "pictures": [
+      "assets/project/dating_sim_agent_flow.png"
+    ],
+    "description": "Autonomous AI agent leveraging LLMs to evaluate conversational decision branches in game simulations.",
+    "organization": "Freelance / Self-Employed",
+    "status": "public project",
+    "link": "https://github.com/dgashandy/dating-sim-agent"
+  }
+]

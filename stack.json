@@ -1,0 +1,78 @@
+[
+  {
+    "name": "HTML5",
+    "icon": "assets/stack/html5.svg"
+  },
+  {
+    "name": "CSS3",
+    "icon": "assets/stack/css3.svg"
+  },
+  {
+    "name": "JavaScript",
+    "icon": "assets/stack/javascript.svg"
+  },
+  {
+    "name": "Three.js",
+    "icon": "assets/stack/threejs.svg"
+  },
+  {
+    "name": "Python",
+    "icon": "assets/stack/python.svg"
+  },
+  {
+    "name": "TensorFlow",
+    "icon": "assets/stack/tensorflow.svg"
+  },
+  {
+    "name": "FastAPI",
+    "icon": "assets/stack/fastapi.svg"
+  },
+  {
+    "name": "React",
+    "icon": "assets/stack/react.svg"
+  },
+  {
+    "name": "PySpark",
+    "icon": "assets/stack/pyspark.svg"
+  },
+  {
+    "name": "Apache Airflow",
+    "icon": "assets/stack/airflow.svg"
+  },
+  {
+    "name": "PostgreSQL",
+    "icon": "assets/stack/postgresql.svg"
+  },
+  {
+    "name": "Docker",
+    "icon": "assets/stack/docker.svg"
+  },
+  {
+    "name": "Flutter",
+    "icon": "assets/stack/flutter.svg"
+  },
+  {
+    "name": "Dart",
+    "icon": "assets/stack/dart.svg"
+  },
+  {
+    "name": "Firebase",
+    "icon": "assets/stack/firebase.svg"
+  },
+  {
+    "name": "Node.js",
+    "icon": "assets/stack/nodejs.svg"
+  },
+  {
+    "name": "OpenAI API",
+    "icon": "assets/stack/openai.svg"
+  },
+  {
+    "name": "LangChain",
+    "icon": "assets/stack/langchain.svg"
+  },
+  {
+    "name": "Next.js",
+    "icon": "assets/stack/nextjs.svg"
+  }
+]

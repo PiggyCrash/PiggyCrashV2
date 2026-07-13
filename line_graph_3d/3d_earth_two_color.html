@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holographic Floating Continents Grid</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #040408;
+            overflow: hidden;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+        #hud-display {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #ff005a;
+            background: rgba(4, 4, 8, 0.9);
+            padding: 15px 20px;
+            border-radius: 6px;
+            border: 1px dashed #ff005a;
+            pointer-events: none;
+            box-shadow: 0 0 20px rgba(255, 0, 90, 0.1);
+        }
+        h1 { 
+            font-size: 1.1rem; 
+            margin-bottom: 4px; 
+            letter-spacing: 0.5px;
+            color: #ff005a;
+            text-transform: uppercase;
+        }
+        p { 
+            font-size: 0.8rem; 
+            color: #8899a6; 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="hud-display">
+        <h1>Matrix Orbit Control</h1>
+        <p>Islands/Land: Pinkish-Red | Sea: Void Black</p>
+    </div>
+
+    <!-- Include Three.js Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        // 1. Scene & Camera Viewport Setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 10;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.body.appendChild(renderer.domElement);
+
+        // Global group to manage rotation axis smoothly
+        const globeGroup = new THREE.Group();
+        globeGroup.rotation.z = 0.41; // Earth's natural axial tilt
+        scene.add(globeGroup);
+
+        // 2. Load Geographic Texture Map
+        const textureLoader = new THREE.TextureLoader();
+        textureLoader.setCrossOrigin('anonymous');
+        const earthMap = textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_2048.jpg');
+
+        // 3. Custom WebGL Shaders for Color-Isolation
+        const customVertexShader = `
+            varying vec2 vUv;
+            void main() {
+                vUv = uv;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+        `;
+
+        const customFragmentShader = `
+            uniform sampler2D uEarthMap;
+            varying vec2 vUv;
+            void main() {
+                vec4 mapColor = texture2D(uEarthMap, vUv);
+                
+                // Extract land configurations from the texture colors
+                float landMask = smoothstep(0.12, 0.18, mapColor.r + mapColor.g * 0.2);
+                
+                // Color Assignments
+                vec3 landColor = vec3(255.0 / 255.0, 0.0 / 255.0, 90.0 / 255.0); // Vibrant Pinkish-Red
+                vec3 seaColor  = vec3(0.0, 0.0, 0.0);                             // Pure Masked Black
+                
+                vec3 finalColor = mix(seaColor, landColor, landMask);
+                
+                // If it's pure black ocean, drop the opacity slightly to perfectly blend into the background void
+                float alpha = landMask > 0.01 ? 0.95 : 0.0;
+                
+                gl_FragColor = vec4(finalColor, alpha);
+            }
+        `;
+
+        // 4. Mesh Creation
+        // Dense geometry guarantees smooth edges for intricate island vectors and coastlines
+        const globeGeometry = new THREE.SphereGeometry(4, 150, 100);
+        
+        const shaderMaterial = new THREE.ShaderMaterial({
+            vertexShader: customVertexShader,
+            fragmentShader: customFragmentShader,
+            uniforms: {
+                uEarthMap: { value: earthMap }
+            },
+            wireframe: true,
+            transparent: true
+        });
+
+        const vectorGlobe = new THREE.Mesh(globeGeometry, shaderMaterial);
+        globeGroup.add(vectorGlobe);
+
+        // 5. User Interaction Setup (Mouse Drag & Orbit)
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+
+        window.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            previousMousePosition = { x: e.clientX, y: e.clientY };
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+
+            const deltaX = e.clientX - previousMousePosition.x;
+            const deltaY = e.clientY - previousMousePosition.y;
+
+            globeGroup.rotation.y += deltaX * 0.004;
+            globeGroup.rotation.x += deltaY * 0.004;
+
+            previousMousePosition = { x: e.clientX, y: e.clientY };
+        });
+
+        window.addEventListener('mouseup', () => { isDragging = false; });
+        window.addEventListener('mouseleave', () => { isDragging = false; });
+
+        // Scroll wheel magnification control
+        window.addEventListener('wheel', (e) => {
+            camera.position.z += e.deltaY * 0.01;
+            camera.position.z = Math.max(5.5, Math.min(camera.position.z, 15));
+        });
+
+        // 6. Viewport Responsive Scaling
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // 7. Core System Engine Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Constant automatic rotation occurs when mouse is idle
+            if (!isDragging) {
+                globeGroup.rotation.y += 0.0012;
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
