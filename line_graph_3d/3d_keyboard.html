@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volumetric Glow 3D Keyboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #030306;
+            color: #eceff4;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        #ui-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            background: rgba(5, 5, 10, 0.92);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 180, 255, 0.2);
+            pointer-events: none;
+            max-width: 320px;
+        }
+        #ui-overlay * {
+            pointer-events: auto;
+        }
+        h1 {
+            font-size: 1.2rem;
+            margin: 0 0 5px 0;
+            color: rgb(0, 180, 255);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        p {
+            font-size: 0.85rem;
+            margin: 0 0 15px 0;
+            color: #8892b0;
+            line-height: 1.4;
+        }
+        .control-group {
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: #a8b2d1;
+            letter-spacing: 0.5px;
+        }
+        input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 6px;
+            background: #0d0d1a;
+            border-radius: 4px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 5px;
+            background: rgb(255, 0, 90);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ui-overlay">
+        <h1>Volumetric Glow</h1>
+        <p><strong>Hover</strong> over keys to fill their background with a vivid pink neon glow. <br><strong>Click</strong> to depress switches completely.</p>
+        
+        <div class="control-group">
+            <label for="height-slider">Key Switch Travel</label>
+            <input type="range" id="height-slider" min="0.2" max="0.8" step="0.05" value="0.45">
+        </div>
+    </div>
+
+    <!-- Include Three.js and OrbitControls via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        // Precision Color Tokens
+        const COLOR_PINK = 0xff005a; // rgb(255, 0, 90)
+        const COLOR_CYAN = 0x00b4ff; // rgb(0, 180, 255)
+
+        // --- Core WebGL Scene Hierarchy ---
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x030306, 0.02);
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 7.5, 10.5);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.06;
+        controls.maxPolarAngle = Math.PI / 2 - 0.05;
+        controls.minDistance = 4;
+        controls.maxDistance = 18;
+
+        const keyboardGroup = new THREE.Group();
+        const keysGroup = new THREE.Group();
+        keyboardGroup.add(keysGroup);
+        scene.add(keyboardGroup);
+
+        // --- Staggered Matrix Layout Configuration ---
+        const gap = 0.08;
+        const rowsData = [
+            { widths: [0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 1.9] }, 
+            { widths: [1.3, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 1.5] }, 
+            { widths: [1.6, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 2.2] },      
+            { widths: [2.1, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 3.2] },           
+            { widths: [1.25, 1.25, 1.25, 6.25, 1.25, 1.25, 1.25, 1.25] }                        
+        ];
+
+        let raycastTargets = [];
+        let geometriesPool = [];
+
+        function buildKeyboard(keyHeight) {
+            // Memory Management: Clear prior scene instances
+            while(keysGroup.children.length > 0) { 
+                keysGroup.remove(keysGroup.children[0]); 
+            }
+            geometriesPool.forEach(geo => geo.dispose());
+            geometriesPool = [];
+            raycastTargets = [];
+
+            const rowSpacing = 1.05;
+            const totalRows = rowsData.length;
+            
+            rowsData.forEach((row, rowIndex) => {
+                const z = -((totalRows - 1) * rowSpacing) / 2 + (rowIndex * rowSpacing);
+                const totalRowWidth = row.widths.reduce((a, b) => a + b, 0) + (row.widths.length - 1) * gap;
+                let currentX = -totalRowWidth / 2;
+
+                row.widths.forEach(width => {
+                    const x = currentX + width / 2;
+                    
+                    const boxGeo = new THREE.BoxGeometry(width, keyHeight, 0.95);
+                    geometriesPool.push(boxGeo);
+                    
+                    // UNIQUE solid mesh material instance per keycap to isolate independent glowing states
+                    const faceMaterial = new THREE.MeshBasicMaterial({ 
+                        color: COLOR_CYAN, 
+                        transparent: true, 
+                        opacity: 0.06,      // Subtle background resting visibility
+                        depthWrite: false   // Eradicates transparent alpha-sorting artifacts
+                    });
+                    
+                    const keyMesh = new THREE.Mesh(boxGeo, faceMaterial);
+                    keyMesh.position.set(x, keyHeight / 2, z);
+
+                    // Outlines matching initial matrix styling
+                    const edges = new THREE.EdgesGeometry(boxGeo);
+                    const lineMaterial = new THREE.LineBasicMaterial({ color: COLOR_CYAN, linewidth: 1 });
+                    const wireframeLines = new THREE.LineSegments(edges, lineMaterial);
+                    
+                    // Nest lines within the solid volumetric bounding parent mesh
+                    keyMesh.add(wireframeLines);
+                    
+                    // Cache operational resting states inside metadata handles
+                    keyMesh.userData = {
+                        wireframe: wireframeLines,
+                        originalY: keyHeight / 2
+                    };
+
+                    keysGroup.add(keyMesh);
+                    raycastTargets.push(keyMesh);
+
+                    currentX += width + gap;
+                });
+            });
+        }
+
+        // --- Build Structural External Housing Chassis ---
+        const chassisGeo = new THREE.BoxGeometry(15.8, 0.7, 5.6);
+        const chassisEdges = new THREE.EdgesGeometry(chassisGeo);
+        const chassisMaterial = new THREE.LineBasicMaterial({ color: COLOR_PINK, linewidth: 2 });
+        const chassisWireframe = new THREE.LineSegments(chassisEdges, chassisMaterial);
+        chassisWireframe.position.set(0, -0.35, 0);
+        keyboardGroup.add(chassisWireframe);
+
+        // Initial Layout Initialization
+        let currentKeyHeight = 0.45;
+        buildKeyboard(currentKeyHeight);
+
+        // Micro orientation adjustments
+        keyboardGroup.rotation.y = -0.12;
+        keyboardGroup.rotation.x = 0.04;
+
+        // --- Core Interactivity / Raycasting Architecture ---
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        let currentlyHovered = null;
+        let currentlyClicked = null;
+
+        function checkIntersections(e) {
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            return raycaster.intersectObjects(raycastTargets);
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            const intersects = checkIntersections(e);
+
+            if (intersects.length > 0) {
+                const targetedKey = intersects[0].object;
+                
+                if (currentlyHovered !== targetedKey) {
+                    // Reset properties of previous active elements
+                    if (currentlyHovered && currentlyHovered !== currentlyClicked) {
+                        currentlyHovered.material.color.setHex(COLOR_CYAN);
+                        currentlyHovered.material.opacity = 0.06;
+                        currentlyHovered.userData.wireframe.material.color.setHex(COLOR_CYAN);
+                    }
+                    
+                    currentlyHovered = targetedKey;
+                    
+                    // Inject rich pinkish-red background volume glow properties
+                    currentlyHovered.material.color.setHex(COLOR_PINK);
+                    currentlyHovered.material.opacity = 0.45; // Semi-transparent solid face fill
+                    currentlyHovered.userData.wireframe.material.color.setHex(COLOR_PINK);
+                    
+                    document.body.style.cursor = 'pointer';
+                }
+            } else {
+                if (currentlyHovered) {
+                    if (currentlyHovered !== currentlyClicked) {
+                        currentlyHovered.material.color.setHex(COLOR_CYAN);
+                        currentlyHovered.material.opacity = 0.06;
+                        currentlyHovered.userData.wireframe.material.color.setHex(COLOR_CYAN);
+                    }
+                    currentlyHovered = null;
+                    document.body.style.cursor = 'default';
+                }
+            }
+        });
+
+        window.addEventListener('mousedown', (e) => {
+            if (e.button !== 0) return; // Disregard right/middle clicks
+            
+            const intersects = checkIntersections(e);
+
+            if (intersects.length > 0) {
+                currentlyClicked = intersects[0].object;
+                
+                // Displace positions downward and increase volumetric face density
+                currentlyClicked.position.y = currentlyClicked.userData.originalY - 0.16;
+                currentlyClicked.material.color.setHex(COLOR_PINK);
+                currentlyClicked.material.opacity = 0.75; // Heavy fill illumination
+                currentlyClicked.userData.wireframe.material.color.setHex(COLOR_PINK);
+                
+                controls.enableRotate = false; // Freeze viewport rotations during mechanical actions
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (currentlyClicked) {
+                // Restore baseline structural vectors
+                currentlyClicked.position.y = currentlyClicked.userData.originalY;
+                
+                if (currentlyClicked !== currentlyHovered) {
+                    currentlyClicked.material.color.setHex(COLOR_CYAN);
+                    currentlyClicked.material.opacity = 0.06;
+                    currentlyClicked.userData.wireframe.material.color.setHex(COLOR_CYAN);
+                } else {
+                    // Retain simple hover highlight variables if cursor remains bound inside target
+                    currentlyClicked.material.opacity = 0.45;
+                }
+                
+                currentlyClicked = null;
+                controls.enableRotate = true;
+            }
+        });
+
+        // --- Layout Event Triggers ---
+        const heightSlider = document.getElementById('height-slider');
+        heightSlider.addEventListener('input', (e) => {
+            currentKeyHeight = parseFloat(e.target.value);
+            buildKeyboard(currentKeyHeight);
+        });
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // --- Continuous Engine Loop ---
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update(); 
+            renderer.render(scene, camera);
+        }
+        
+        animate();
+    </script>
+</body>
+</html>

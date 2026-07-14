@@ -1,4 +1,4 @@
-[
+const portfolioData = [
   {
     "id": "1",
     "name": "Portfolio Website",
@@ -91,7 +91,7 @@
     "status": "public",
     "link": "https://github.com/PiggyCrash/SchReminder"
   },
-   {
+  {
     "id": "8",
     "name": "FinTrack (Financial Tracker System)",
     "categories": ["AIAgent", "MobileApp"],
@@ -106,7 +106,7 @@
     "status": "public",
     "link": "https://github.com/PiggyCrash/FinTrack"
   },
-    {
+  {
     "id": "9",
     "name": "PathDFinder (SmartMap AI Agents)",
     "categories": ["AIAgent", "WebApp"],
@@ -133,7 +133,7 @@
     "status": "private",
     "link": ""
   },
-    {
+  {
     "id": "11",
     "name": "E-Commerce Shopify",
     "categories": ["WebApp"],
@@ -225,4 +225,4 @@
     "status": "public",
     "link": "https://etd.repository.ugm.ac.id/penelitian/detail/232899"
   }
-]
+];

@@ -4,11 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dating Sim Portfolio</title>
+  <title>Dating Sim Projects</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="home.css">
   <!-- Include Three.js via CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- Load local portfolio data to prevent local file protocol CORS errors -->
+  <script src="portfolio.js"></script>
 </head>
 
 <body>
@@ -33,7 +36,7 @@
         </a>
       </li>
       <li data-index="4">
-        <a href="#portfolio">
+        <a href="#projects">
           <span class="icon"><i data-feather="folder"></i></span>
         </a>
       </li>
@@ -87,7 +90,7 @@
                 <div class="home-buttons home-buttons-container">
                   <div class="btn-box font-valorant"><i data-feather="info"></i>About</div>
                   <div class="btn-box font-valorant"><i data-feather="briefcase"></i>Experience</div>
-                  <div class="btn-box font-valorant"><i data-feather="folder"></i>Portfolio</div>
+                  <div class="btn-box font-valorant"><i data-feather="folder"></i>Projects</div>
                   <div class="btn-box font-valorant"><i data-feather="mail"></i>Contact</div>
                 </div>
               </div>
@@ -121,7 +124,7 @@
       <section class="page-section" data-index="2">
         <div class="page-card about-page-card">
           <h2 class="card-title">About Me</h2>
-          
+
           <div class="bento-grid">
             <!-- ROW 1 -->
             <!-- Item 1: Row 1 Left (3x1) -->
@@ -141,13 +144,15 @@
                 <span class="bento-tag font-valorant">DATA.NODE</span>
                 <span class="bento-num">02 // INFO</span>
               </div>
-              <div class="bento-content" style="flex-direction: row; justify-content: space-between; align-items: center; gap: 2rem;">
+              <div class="bento-content"
+                style="flex-direction: row; justify-content: space-between; align-items: center; gap: 2rem;">
                 <p class="bento-desc" style="margin: 0;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <div class="bento-icon-row" style="margin-top: 0;">
                   <a href="https://github.com/dgashandy" target="_blank" class="bento-icon-wrapper" title="GitHub">
                     <i data-feather="github"></i>
                   </a>
-                  <a href="https://linkedin.com/in/daffagashandy" target="_blank" class="bento-icon-wrapper" title="LinkedIn">
+                  <a href="https://linkedin.com/in/daffagashandy" target="_blank" class="bento-icon-wrapper"
+                    title="LinkedIn">
                     <i data-feather="linkedin"></i>
                   </a>
                   <a href="mailto:daffagashandy@gmail.com" class="bento-icon-wrapper" title="Email">
@@ -165,8 +170,8 @@
               </div>
               <div class="bento-content">
                 <div class="bento-glitch-text" style="margin-top: 0; font-size: 0.6rem; line-height: 1.1;">
-[10:00:23] INIT_PROCESS<br>
-[10:00:24] LOAD_SUCCESSFUL
+                  [10:00:23] INIT_PROCESS<br>
+                  [10:00:24] LOAD_SUCCESSFUL
                 </div>
               </div>
             </div>
@@ -202,8 +207,10 @@
                   <div class="centerpiece-circle">
                     <div class="centerpiece-inner">CORE_OS</div>
                   </div>
-                  <div class="bento-title-large" style="text-align: center; margin-bottom: 0.2rem;">LOREM <span>IPSUM</span></div>
-                  <p class="bento-desc" style="text-align: center; font-size: 0.75rem;">SYSTEM ROOT // OPERATIONAL STATE: 100%</p>
+                  <div class="bento-title-large" style="text-align: center; margin-bottom: 0.2rem;">LOREM
+                    <span>IPSUM</span></div>
+                  <p class="bento-desc" style="text-align: center; font-size: 0.75rem;">SYSTEM ROOT // OPERATIONAL
+                    STATE: 100%</p>
                 </div>
               </div>
               <div class="bento-bg-cross"></div>
@@ -216,7 +223,8 @@
                 <span class="bento-num">06 // STAT</span>
               </div>
               <div class="bento-content">
-                <p class="bento-desc" style="font-size: 0.8rem; margin-bottom: 0.5rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p class="bento-desc" style="font-size: 0.8rem; margin-bottom: 0.5rem;">Lorem ipsum dolor sit amet,
+                  consectetur adipiscing elit.</p>
                 <div class="bento-deco-box" style="margin-top: 0; padding: 0.5rem; font-size: 0.65rem;">
                   IPSUM // ONLINE<br>
                   SECURE_CONN_TRUE
@@ -246,7 +254,8 @@
                 <span class="bento-tag font-valorant">METRICS.CTRL</span>
                 <span class="bento-num">08 // ANALYZE</span>
               </div>
-              <div class="bento-content" style="flex-direction: row; justify-content: space-between; align-items: center; gap: 2rem;">
+              <div class="bento-content"
+                style="flex-direction: row; justify-content: space-between; align-items: center; gap: 2rem;">
                 <p class="bento-desc" style="font-size: 0.75rem; margin: 0;">LOREM_STATE: RUNNING // LOAD: NORMAL</p>
                 <div class="bento-graph-container" style="margin-top: 0; flex-grow: 1; max-width: 250px;">
                   <div class="bento-bar"></div>
@@ -267,8 +276,8 @@
               </div>
               <div class="bento-content">
                 <div class="bento-glitch-text" style="margin-top: 0; font-size: 0.55rem; line-height: 1.1;">
-[SYS] STABLE // OK<br>
-[NET] SYNC // OK
+                  [SYS] STABLE // OK<br>
+                  [NET] SYNC // OK
                 </div>
               </div>
             </div>
@@ -280,16 +289,17 @@
       <!-- Section 3: Experience -->
       <section class="page-section" data-index="3">
         <div class="page-card experience-page-card">
-          
+
           <div class="experience-content-wrapper">
             <div class="orbit-container">
               <svg class="orbit-path-svg" viewBox="-460 -130 920 260">
-                <ellipse cx="0" cy="0" rx="410" ry="100" fill="none" stroke="rgba(255, 0, 85, 0.55)" stroke-width="2.2" stroke-dasharray="6 6" />
+                <ellipse cx="0" cy="0" rx="410" ry="100" fill="none" stroke="rgba(255, 0, 85, 0.55)" stroke-width="2.2"
+                  stroke-dasharray="6 6" />
               </svg>
               <div class="orbit-center">
                 <canvas id="orbitCenterCanvas"></canvas>
               </div>
-              
+
               <div class="orbit-item">
                 <div class="orbit-icon"><i data-feather="code"></i></div>
                 <div class="orbit-details">
@@ -338,23 +348,54 @@
 
             <div class="experience-right-panel" style="gap: 0; align-items: flex-start;">
               <div class="home-subtitle-welcome" style="margin-bottom: 2.8rem; font-size: 1.3rem;">WITH TOTAL</div>
-              <div style="font-family: 'Valorant', sans-serif !important; font-size: 5.5rem; color: #ff0055; line-height: 0.95; margin: 0; font-weight: bold;">3+</div>
-              <div style="font-family: 'Valorant', sans-serif !important; font-size: 2.2rem; color: #ff0055; line-height: 1.1; margin-bottom: 3.8rem; font-weight: bold; letter-spacing: 1px;">YEARS OF EXPERIENCE</div>
-              <div class="home-subtitle-dev" style="margin-top: 0; color: rgba(255, 255, 255, 0.45); font-size: 1.4rem; letter-spacing: 1px; font-weight: normal;">FROM</div>
-              <div class="home-subtitle-dev" style="margin-top: 1.0rem; color: #fff; font-size: 1.4rem; letter-spacing: 1px; font-weight: bold;">2023 - NOW</div>
+              <div
+                style="font-family: 'Valorant', sans-serif !important; font-size: 5.5rem; color: #ff0055; line-height: 0.95; margin: 0; font-weight: bold;">
+                3+</div>
+              <div
+                style="font-family: 'Valorant', sans-serif !important; font-size: 2.2rem; color: #ff0055; line-height: 1.1; margin-bottom: 3.8rem; font-weight: bold; letter-spacing: 1px;">
+                YEARS OF EXPERIENCE</div>
+              <div class="home-subtitle-dev"
+                style="margin-top: 0; color: rgba(255, 255, 255, 0.45); font-size: 1.4rem; letter-spacing: 1px; font-weight: normal;">
+                FROM</div>
+              <div class="home-subtitle-dev"
+                style="margin-top: 1.0rem; color: #fff; font-size: 1.4rem; letter-spacing: 1px; font-weight: bold;">2023
+                - NOW</div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Section 4: Portfolio -->
+      <!-- Section 4: Projects -->
       <section class="page-section" data-index="4">
-        <div class="page-card">
-          <h2 class="card-title">Portfolio</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tristique odio vitae justo ultrices, sed
-            dapibus massa pellentesque. Suspendisse potenti.</p>
-          <p>Aenean et felis eget erat elementum tristique. Nullam in viverra elit, non bibendum urna. Mauris malesuada
-            accumsan nulla at volutpat.</p>
+        <div class="page-card portfolio-page-card">
+          <div class="projects-dashboard-grid">
+            <div class="dashboard-col-left">
+              <div class="label-box-top">WITH TOTAL</div>
+              <div class="count-box" id="projects-total-count">0</div>
+              <div class="label-box-bottom">PROJECTS SOLVED</div>
+            </div>
+
+            <!-- Middle Column: 3D Keyboard Model -->
+            <div class="dashboard-col-middle">
+              <div class="keyboard-canvas-container" id="keyboard-canvas-container"></div>
+            </div>
+
+            <!-- Right Column: Category Chart Filter -->
+            <div class="dashboard-col-right">
+              <div class="dashboard-box chart-box">
+                <div class="category-chart-container" id="category-chart-container">
+                  <!-- Dynamically populated via JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Infinite Sliding Cards (Bottom) -->
+          <div class="portfolio-slider-container">
+            <div class="portfolio-track" id="portfolio-track">
+              <!-- Cards will be dynamically inserted here -->
+            </div>
+          </div>
         </div>
       </section>
 
@@ -402,6 +443,18 @@
     indicator.style.opacity = '0';
 
     function navigateToSection(index) {
+      if (index === 4) {
+        const fills = document.querySelectorAll('.chart-bar-fill');
+        fills.forEach(fill => fill.style.width = '0%');
+        setTimeout(() => {
+          fills.forEach((fill, idx) => {
+            setTimeout(() => {
+              fill.style.width = fill.getAttribute('data-width');
+            }, idx * 100);
+          });
+        }, 300);
+      }
+
       let prevIndex = 0;
       pageSections.forEach((sec, idx) => {
         if (sec.classList.contains('active')) prevIndex = idx;
@@ -865,17 +918,17 @@
 
       let width = canvas.width = container.clientWidth || 300;
       let height = canvas.height = container.clientHeight || 300;
-      
+
       let yaw = 16.1340;
       let pitch = -0.2511;
       let lidAngle = (100 * Math.PI) / 180;
-      let cameraDistance = 4.7; 
-      
+      let cameraDistance = 4.7;
+
       function getFov() {
-        return Math.min(width, height) * 1.2; 
+        return Math.min(width, height) * 1.2;
       }
       let fov = getFov();
-      
+
       let isDragging = false;
       let prevMouse = { x: 0, y: 0 };
       let waveTime = 0;
@@ -901,7 +954,7 @@
       window.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
         yaw += (e.clientX - prevMouse.x) * 0.007;
-        pitch = Math.max(-Math.PI/2.3, Math.min(Math.PI/2.3, pitch + (e.clientY - prevMouse.y) * 0.007));
+        pitch = Math.max(-Math.PI / 2.3, Math.min(Math.PI / 2.3, pitch + (e.clientY - prevMouse.y) * 0.007));
         prevMouse = { x: e.clientX, y: e.clientY };
         autoOrbit = false;
       });
@@ -919,7 +972,7 @@
       window.addEventListener('touchmove', (e) => {
         if (!isDragging || e.touches.length !== 1) return;
         yaw += (e.touches[0].clientX - prevMouse.x) * 0.007;
-        pitch = Math.max(-Math.PI/2.3, Math.min(Math.PI/2.3, pitch + (e.touches[0].clientY - prevMouse.y) * 0.007));
+        pitch = Math.max(-Math.PI / 2.3, Math.min(Math.PI / 2.3, pitch + (e.touches[0].clientY - prevMouse.y) * 0.007));
         prevMouse = { x: e.touches[0].clientX, y: e.touches[0].clientY };
         autoOrbit = false;
       });
@@ -952,7 +1005,7 @@
 
       function drawDepthCueLine(p1, p2) {
         let avgDepth = (p1.zDepth + p2.zDepth) / 2;
-        
+
         let minD = cameraDistance - 1.5;
         let maxD = cameraDistance + 1.5;
         let t = (avgDepth - minD) / (maxD - minD);
@@ -972,14 +1025,14 @@
       }
 
       const baseW = 1.2;
-      const baseD = 0.85; 
-      const baseH = 0.14;   
+      const baseD = 0.85;
+      const baseH = 0.14;
 
       const screenW = 1.2;
-      const screenH = 1.70; 
-      const screenT = 0.12; 
+      const screenH = 1.70;
+      const screenT = 0.12;
 
-      const hY = 0; 
+      const hY = 0;
       const hZ = -baseD;
 
       function transformLid(lx, ly, lz) {
@@ -997,14 +1050,14 @@
         const chassisColor = 'rgba(255, 51, 102, 0.8)';
         const chassisMuted = 'rgba(180, 0, 60, 0.25)';
 
-        let bTLF = project(-baseW, 0,  baseD);
-        let bTRF = project( baseW, 0,  baseD);
-        let bTRB = project( baseW, 0, -baseD);
+        let bTLF = project(-baseW, 0, baseD);
+        let bTRF = project(baseW, 0, baseD);
+        let bTRB = project(baseW, 0, -baseD);
         let bTLB = project(-baseW, 0, -baseD);
 
-        let bBLF = project(-baseW, -baseH,  baseD);
-        let bBRF = project( baseW, -baseH,  baseD);
-        let bBRB = project( baseW, -baseH, -baseD);
+        let bBLF = project(-baseW, -baseH, baseD);
+        let bBRF = project(baseW, -baseH, baseD);
+        let bBRB = project(baseW, -baseH, -baseD);
         let bBLB = project(-baseW, -baseH, -baseD);
 
         drawUniformLine(bTLF, bTRF, chassisColor, 1.5);
@@ -1030,19 +1083,19 @@
         drawUniformLine(bTRB, bBRF, chassisMuted, 0.5);
 
         let tp = [project(-0.22, 0, 0.70), project(0.22, 0, 0.70), project(0.22, 0, 0.45), project(-0.22, 0, 0.45)];
-        for(let i=0; i<4; i++) drawUniformLine(tp[i], tp[(i+1)%4], chassisMuted, 1);
+        for (let i = 0; i < 4; i++) drawUniformLine(tp[i], tp[(i + 1) % 4], chassisMuted, 1);
 
         let keyRows = [
           { s: -0.65, e: -0.53 }, { s: -0.48, e: -0.36 },
-          { s: -0.31, e: -0.19 }, { s: -0.14, e:  0.03 },
-          { s:  0.08, e:  0.25 }
+          { s: -0.31, e: -0.19 }, { s: -0.14, e: 0.03 },
+          { s: 0.08, e: 0.25 }
         ];
         keyRows.forEach(row => {
           let tFL = project(-0.98, -0.025, row.e);
-          let tFR = project( 0.98, -0.025, row.e);
-          let tBR = project( 0.98, -0.025, row.s);
+          let tFR = project(0.98, -0.025, row.e);
+          let tBR = project(0.98, -0.025, row.s);
           let tBL = project(-0.98, -0.025, row.s);
-          
+
           drawDepthCueLine(tFL, tFR);
           drawDepthCueLine(tFR, tBR);
           drawDepthCueLine(tBR, tBL);
@@ -1050,14 +1103,14 @@
         });
 
         let lTLF = transformLid(-screenW, screenH, 0);
-        let lTRF = transformLid( screenW, screenH, 0);
-        let lTRB = transformLid( screenW, 0,       0);
-        let lTLB = transformLid(-screenW, 0,       0);
+        let lTRF = transformLid(screenW, screenH, 0);
+        let lTRB = transformLid(screenW, 0, 0);
+        let lTLB = transformLid(-screenW, 0, 0);
 
         let lTLF_B = transformLid(-screenW, screenH, -screenT);
-        let lTRF_B = transformLid( screenW, screenH, -screenT);
-        let lTRB_B = transformLid( screenW, 0,       -screenT);
-        let lTLB_B = transformLid(-screenW, 0,       -screenT);
+        let lTRF_B = transformLid(screenW, screenH, -screenT);
+        let lTRB_B = transformLid(screenW, 0, -screenT);
+        let lTLB_B = transformLid(-screenW, 0, -screenT);
 
         drawUniformLine(lTLF, lTRF, chassisColor, 1.5);
         drawUniformLine(lTRF, lTRB, chassisColor, 1.5);
@@ -1074,22 +1127,22 @@
         drawUniformLine(lTRB, lTRB_B, chassisMuted, 1);
         drawUniformLine(lTLB, lTLB_B, chassisMuted, 1);
 
-        drawUniformLine(lTLF, lTRF_B, chassisMuted, 0.5); 
+        drawUniformLine(lTLF, lTRF_B, chassisMuted, 0.5);
         drawUniformLine(lTRF, lTLF_B, chassisMuted, 0.5);
-        drawUniformLine(lTLF, lTLB_B, chassisMuted, 0.5); 
+        drawUniformLine(lTLF, lTLB_B, chassisMuted, 0.5);
         drawUniformLine(lTLB, lTLF_B, chassisMuted, 0.5);
-        drawUniformLine(lTRF, lTRB_B, chassisMuted, 0.5); 
+        drawUniformLine(lTRF, lTRB_B, chassisMuted, 0.5);
         drawUniformLine(lTRB, lTRF_B, chassisMuted, 0.5);
 
         let bzInsetX = 0.06;
-        let bzInsetY = 0.09; 
+        let bzInsetY = 0.09;
         let bzActiveW = screenW - bzInsetX;
         let bzActiveH = screenH - bzInsetY;
 
         let bzTL = transformLid(-bzActiveW, bzActiveH, 0);
-        let bzTR = transformLid( bzActiveW, bzActiveH, 0);
-        let bzBR = transformLid( bzActiveW, 0.06,       0);
-        let bzBL = transformLid(-bzActiveW, 0.06,       0);
+        let bzTR = transformLid(bzActiveW, bzActiveH, 0);
+        let bzBR = transformLid(bzActiveW, 0.06, 0);
+        let bzBL = transformLid(-bzActiveW, 0.06, 0);
 
         drawUniformLine(bzTL, bzTR, chassisColor, 1);
         drawUniformLine(bzTR, bzBR, chassisColor, 1);
@@ -1109,11 +1162,11 @@
             let locX = -bzActiveW + pctX * (bzActiveW * 2);
 
             let wX = locX * 3.8;
-            let wY = (locY - (screenH/2)) * 3.8;
+            let wY = (locY - (screenH / 2)) * 3.8;
             let zDisplacement = 0.22 * Math.sin(wX + waveTime) * Math.cos(wY - waveTime * 0.7);
 
             if (r === 0 || r === steps || c === 0 || c === steps) {
-              zDisplacement = 0; 
+              zDisplacement = 0;
             }
 
             gridPoints[r][c] = transformLid(locX, locY, zDisplacement);
@@ -1186,15 +1239,15 @@
       `;
 
       const globeGeometry = new THREE.SphereGeometry(3.5, 90, 60);
-      
+
       const shaderMaterial = new THREE.ShaderMaterial({
-          vertexShader: customVertexShader,
-          fragmentShader: customFragmentShader,
-          uniforms: {
-              uEarthMap: { value: earthMap }
-          },
-          wireframe: true,
-          transparent: true
+        vertexShader: customVertexShader,
+        fragmentShader: customFragmentShader,
+        uniforms: {
+          uEarthMap: { value: earthMap }
+        },
+        wireframe: true,
+        transparent: true
       });
 
       const vectorGlobe = new THREE.Mesh(globeGeometry, shaderMaterial);
@@ -1214,14 +1267,14 @@
       let transitioning = false;
       let transitionStartTime = 0;
       let transitionStartAngle = 0;
-      const transitionDuration = 700; 
+      const transitionDuration = 700;
 
       let isHovered = false;
       let isDraggingOrbit = false;
       let prevOrbitMouseX = 0;
       let lastInteractionTime = Date.now();
-      const radiusX = 410; 
-      const radiusZ = 200; 
+      const radiusX = 410;
+      const radiusZ = 200;
       const radiusY = 100;
 
       const container = document.querySelector('.orbit-container');
@@ -1236,7 +1289,7 @@
           isDraggingOrbit = true;
           prevOrbitMouseX = e.clientX;
           lastInteractionTime = Date.now();
-          transitioning = false; 
+          transitioning = false;
         });
 
         window.addEventListener('mousemove', (e) => {
@@ -1326,11 +1379,11 @@
             const x = Math.cos(itemAngle) * radiusX;
             const z = Math.sin(itemAngle) * radiusZ;
             const y = Math.sin(itemAngle) * radiusY;
-            
-            const scale = 0.82 + ((z + radiusZ) / (2 * radiusZ)) * 0.36; 
-            const opacity = 0.35 + ((z + radiusZ) / (2 * radiusZ)) * 0.65; 
+
+            const scale = 0.82 + ((z + radiusZ) / (2 * radiusZ)) * 0.36;
+            const opacity = 0.35 + ((z + radiusZ) / (2 * radiusZ)) * 0.65;
             const zIndex = Math.round((z + radiusZ) * 10) + 10;
-            
+
             item.style.transform = `translate3d(${x}px, ${y}px, ${z}px) scale(${scale})`;
             item.style.opacity = opacity;
             item.style.zIndex = zIndex;
@@ -1354,6 +1407,377 @@
       }
     });
 
+    // --- Categorical Chart Logic (Serves as Filters) ---
+    function initCategoryChart() {
+      const container = document.getElementById('category-chart-container');
+      if (!container) return;
+
+      const data = typeof portfolioData !== 'undefined' ? portfolioData : [];
+
+      // Update total projects count
+      const totalCountElement = document.getElementById('projects-total-count');
+      if (totalCountElement) {
+        totalCountElement.textContent = data.length;
+      }
+
+      // Count project occurrences by their first category
+      const counts = {};
+      data.forEach(project => {
+        if (project.categories && project.categories.length > 0) {
+          const mainCat = project.categories[0];
+          counts[mainCat] = (counts[mainCat] || 0) + 1;
+        }
+      });
+
+      // Sort categories by count (descending)
+      const sortedCategories = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+      // Build HTML starting with the "ALL" filter row
+      let html = `<div class="chart-title-sub">PROJECTS BY CATEGORY</div>`;
+      html += `
+        <div class="chart-row active" data-category="ALL">
+          <div class="chart-row-header">
+            <div class="chart-label">ALL</div>
+            <div class="chart-count">${data.length}</div>
+          </div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar-fill" style="width: 0%;" data-width="100%"></div>
+          </div>
+        </div>
+      `;
+
+      sortedCategories.forEach(([category, count]) => {
+        const percentage = (count / data.length) * 100;
+        html += `
+          <div class="chart-row" data-category="${category}">
+            <div class="chart-row-header">
+              <div class="chart-label">${category}</div>
+              <div class="chart-count">${count}</div>
+            </div>
+            <div class="chart-bar-wrapper">
+              <div class="chart-bar-fill" style="width: 0%;" data-width="${percentage}%"></div>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+
+      // Add click filtering listeners
+      const rows = container.querySelectorAll('.chart-row');
+      rows.forEach(row => {
+        row.addEventListener('click', () => {
+          rows.forEach(r => r.classList.remove('active'));
+          row.classList.add('active');
+          const cat = row.getAttribute('data-category');
+          initPortfolioSlider(cat);
+        });
+      });
+
+      // Initial animation
+      setTimeout(() => {
+        const fills = container.querySelectorAll('.chart-bar-fill');
+        fills.forEach((fill, index) => {
+          setTimeout(() => {
+            fill.style.width = fill.getAttribute('data-width');
+          }, index * 80);
+        });
+      }, 300);
+    }
+
+    // --- Dynamic Portfolio Slider Logic ---
+    function initPortfolioSlider(categoryFilter = 'ALL') {
+      const track = document.getElementById('portfolio-track');
+      if (!track) return;
+
+      // Clear previous track contents
+      track.innerHTML = '';
+
+      let data = typeof portfolioData !== 'undefined' ? portfolioData : [];
+
+      // Filter by category if one is specified (not 'ALL')
+      if (categoryFilter && categoryFilter !== 'ALL') {
+        data = data.filter(project => project.categories && project.categories[0] === categoryFilter);
+      }
+
+      // Clone the array to double it for a seamless infinite marquee scrolling animation
+      const items = [...data, ...data];
+
+      items.forEach((project, idx) => {
+        const card = document.createElement('div');
+        card.className = 'portfolio-card';
+
+        const isPrivate = project.status === 'private';
+        const privateClass = isPrivate ? ' private-project' : '';
+
+        const isMobile = project.categories && project.categories.some(c => c.toLowerCase().includes('mobile'));
+        let imgContent = '';
+
+        if (isMobile && project.pictures && project.pictures.length > 0) {
+          imgContent = `<div class="portfolio-mobile-imgs-container" style="display: flex; width: 100%; height: 100%;">`;
+          project.pictures.forEach(pic => {
+            imgContent += `<img class="portfolio-card-img${privateClass}" src="${pic}" alt="${project.name}" style="flex: 1; min-width: 0; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='assets/project/project_template.png';">`;
+          });
+          imgContent += `</div>`;
+        } else {
+          const imgSrc = (project.pictures && project.pictures.length > 0)
+            ? project.pictures[0]
+            : 'assets/project/project_template.png';
+          imgContent = `<img class="portfolio-card-img${privateClass}" src="${imgSrc}" alt="${project.name}" onerror="this.onerror=null; this.src='assets/project/project_template.png';">`;
+        }
+
+        const cardContent = `
+          <div class="portfolio-card-img-container">
+            ${imgContent}
+            ${isPrivate ? `
+              <div class="private-badge">
+                <i data-feather="lock"></i>
+                <span>PRIVATE</span>
+              </div>
+            ` : ''}
+          </div>
+        `;
+
+        card.innerHTML = cardContent;
+
+        // Wrap card in a link if a project link exists
+        if (project.link) {
+          const wrapper = document.createElement('a');
+          wrapper.href = project.link;
+          wrapper.target = '_blank';
+          wrapper.style.textDecoration = 'none';
+          wrapper.style.display = 'block';
+          wrapper.appendChild(card);
+          track.appendChild(wrapper);
+        } else {
+          track.appendChild(card);
+        }
+      });
+
+      if (typeof feather !== 'undefined') {
+        feather.replace();
+      }
+    }
+
+
+
+    // --- 3D Keyboard Model Logic ---
+    function initKeyboard3D() {
+      const container = document.getElementById('keyboard-canvas-container');
+      if (!container) return;
+
+      const COLOR_PINK = 0xff005a;
+      const COLOR_CYAN = 0x00b4ff;
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x1c1b1a, 0.05);
+
+      const width = container.clientWidth || 300;
+      const height = container.clientHeight || 300;
+
+      const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+      // Low-angle perspective looking straight at the front of the keyboard (zoomed out more)
+      camera.position.set(0, 3.2, 16.0);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(width, height);
+      container.appendChild(renderer.domElement);
+
+      const controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.06;
+      controls.enablePan = false; // Lock position
+      controls.enableRotate = true; // Enable standard camera rotation
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 1.5;
+
+      // Lock polar angle to keep the horizontal rotation at a constant low viewpoint pitch
+      const targetPolarAngle = Math.acos(camera.position.y / camera.position.length());
+      controls.minPolarAngle = targetPolarAngle;
+      controls.maxPolarAngle = targetPolarAngle;
+
+      controls.minDistance = 4;
+      controls.maxDistance = 30;
+
+      controls.addEventListener('end', () => {
+        console.log(`%c[3D Keyboard Viewpoint]`, 'color: #ff005a; font-weight: bold;');
+        console.log(`Camera Position: x: ${camera.position.x.toFixed(3)}, y: ${camera.position.y.toFixed(3)}, z: ${camera.position.z.toFixed(3)}`);
+        console.log(`Controls Target: x: ${controls.target.x.toFixed(3)}, y: ${controls.target.y.toFixed(3)}, z: ${controls.target.z.toFixed(3)}`);
+        console.log(`Keyboard Rotation: x: ${keyboardGroup.rotation.x.toFixed(3)}, y: ${keyboardGroup.rotation.y.toFixed(3)}, z: ${keyboardGroup.rotation.z.toFixed(3)}`);
+      });
+
+      const keyboardGroup = new THREE.Group();
+      const keysGroup = new THREE.Group();
+      keyboardGroup.add(keysGroup);
+      scene.add(keyboardGroup);
+
+      const gap = 0.08;
+      const rowsData = [
+        { widths: [0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 1.9] },
+        { widths: [1.3, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 1.5] },
+        { widths: [1.6, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 2.2] },
+        { widths: [2.1, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 3.2] },
+        { widths: [1.25, 1.25, 1.25, 6.25, 1.25, 1.25, 1.25, 1.25] }
+      ];
+
+      let raycastTargets = [];
+      let geometriesPool = [];
+
+      function buildKeyboard(keyHeight) {
+        while (keysGroup.children.length > 0) {
+          keysGroup.remove(keysGroup.children[0]);
+        }
+        geometriesPool.forEach(geo => geo.dispose());
+        geometriesPool = [];
+        raycastTargets = [];
+
+        const rowSpacing = 1.05;
+        const totalRows = rowsData.length;
+
+        rowsData.forEach((row, rowIndex) => {
+          const z = -((totalRows - 1) * rowSpacing) / 2 + (rowIndex * rowSpacing);
+          const totalRowWidth = row.widths.reduce((a, b) => a + b, 0) + (row.widths.length - 1) * gap;
+          let currentX = -totalRowWidth / 2;
+
+          row.widths.forEach(width => {
+            const x = currentX + width / 2;
+            const boxGeo = new THREE.BoxGeometry(width, keyHeight, 0.95);
+            geometriesPool.push(boxGeo);
+
+            const faceMaterial = new THREE.MeshBasicMaterial({
+              color: COLOR_CYAN,
+              transparent: true,
+              opacity: 0.06,
+              depthWrite: false
+            });
+
+            const keyMesh = new THREE.Mesh(boxGeo, faceMaterial);
+            keyMesh.position.set(x, keyHeight / 2, z);
+
+            const edges = new THREE.EdgesGeometry(boxGeo);
+            const lineMaterial = new THREE.LineBasicMaterial({ color: COLOR_CYAN, linewidth: 1 });
+            const wireframeLines = new THREE.LineSegments(edges, lineMaterial);
+
+            keyMesh.add(wireframeLines);
+            keyMesh.userData = {
+              wireframe: wireframeLines,
+              originalY: keyHeight / 2
+            };
+
+            keysGroup.add(keyMesh);
+            raycastTargets.push(keyMesh);
+
+            currentX += width + gap;
+          });
+        });
+      }
+
+      const chassisGeo = new THREE.BoxGeometry(15.8, 0.7, 5.6);
+      const chassisEdges = new THREE.EdgesGeometry(chassisGeo);
+      const chassisMaterial = new THREE.LineBasicMaterial({ color: COLOR_PINK, linewidth: 2 });
+      const chassisWireframe = new THREE.LineSegments(chassisEdges, chassisMaterial);
+      chassisWireframe.position.set(0, -0.35, 0);
+      keyboardGroup.add(chassisWireframe);
+
+      buildKeyboard(0.4);
+
+      keyboardGroup.rotation.x = 0.04;
+      keyboardGroup.rotation.y = -0.12;
+      keyboardGroup.rotation.z = 0;
+
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+      let currentlyHovered = null;
+      let currentlyClicked = null;
+
+      function checkIntersections(e) {
+        const rect = container.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+        raycaster.setFromCamera(mouse, camera);
+        return raycaster.intersectObjects(raycastTargets);
+      }
+
+      container.addEventListener('mousemove', (e) => {
+        const intersects = checkIntersections(e);
+
+        if (intersects.length > 0) {
+          const targetedKey = intersects[0].object;
+          if (currentlyHovered !== targetedKey) {
+            if (currentlyHovered && currentlyHovered !== currentlyClicked) {
+              currentlyHovered.material.color.setHex(COLOR_CYAN);
+              currentlyHovered.material.opacity = 0.06;
+              currentlyHovered.userData.wireframe.material.color.setHex(COLOR_CYAN);
+            }
+
+            currentlyHovered = targetedKey;
+            currentlyHovered.material.color.setHex(COLOR_PINK);
+            currentlyHovered.material.opacity = 0.45;
+            currentlyHovered.userData.wireframe.material.color.setHex(COLOR_PINK);
+          }
+        } else {
+          if (currentlyHovered) {
+            if (currentlyHovered !== currentlyClicked) {
+              currentlyHovered.material.color.setHex(COLOR_CYAN);
+              currentlyHovered.material.opacity = 0.06;
+              currentlyHovered.userData.wireframe.material.color.setHex(COLOR_CYAN);
+            }
+            currentlyHovered = null;
+          }
+        }
+      });
+
+      container.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return;
+        const intersects = checkIntersections(e);
+
+        if (intersects.length > 0) {
+          currentlyClicked = intersects[0].object;
+          currentlyClicked.position.y = currentlyClicked.userData.originalY - 0.16;
+          currentlyClicked.material.color.setHex(COLOR_PINK);
+          currentlyClicked.material.opacity = 0.75;
+          currentlyClicked.userData.wireframe.material.color.setHex(COLOR_PINK);
+          controls.enableRotate = false;
+        }
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (currentlyClicked) {
+          currentlyClicked.position.y = currentlyClicked.userData.originalY;
+          if (currentlyClicked !== currentlyHovered) {
+            currentlyClicked.material.color.setHex(COLOR_CYAN);
+            currentlyClicked.material.opacity = 0.06;
+            currentlyClicked.userData.wireframe.material.color.setHex(COLOR_CYAN);
+          } else {
+            currentlyClicked.material.opacity = 0.45;
+          }
+          currentlyClicked = null;
+          controls.enableRotate = true;
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      });
+
+      function animateKb() {
+        requestAnimationFrame(animateKb);
+        controls.update();
+        renderer.render(scene, camera);
+      }
+
+      animateKb();
+    }
+
+    initCategoryChart();
+    initPortfolioSlider();
+    initKeyboard3D();
   </script>
 </body>
 
