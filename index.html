@@ -373,11 +373,7 @@
               <div class="label-box-top">WITH TOTAL</div>
               <div class="count-box" id="projects-total-count">0</div>
               <div class="label-box-bottom">PROJECTS SOLVED</div>
-            </div>
-
-            <!-- Middle Column: 3D Keyboard Model -->
-            <div class="dashboard-col-middle">
-              <div class="keyboard-canvas-container" id="keyboard-canvas-container"></div>
+              <div class="dashboard-subtext">Adaptable across diverse technology stacks to build robust software solutions.</div>
             </div>
 
             <!-- Right Column: Category Chart Filter -->
@@ -387,6 +383,13 @@
                   <!-- Dynamically populated via JS -->
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Segmented Control / Button Group Filter -->
+          <div class="portfolio-filter-container">
+            <div class="portfolio-segmented-control" id="portfolio-segmented-control">
+              <!-- Dynamically populated via JS -->
             </div>
           </div>
 
@@ -1420,34 +1423,25 @@
         totalCountElement.textContent = data.length;
       }
 
-      // Count project occurrences by their first category
+      // Count project occurrences by all their categories
       const counts = {};
       data.forEach(project => {
         if (project.categories && project.categories.length > 0) {
-          const mainCat = project.categories[0];
-          counts[mainCat] = (counts[mainCat] || 0) + 1;
+          project.categories.forEach(cat => {
+            counts[cat] = (counts[cat] || 0) + 1;
+          });
         }
       });
 
       // Sort categories by count (descending)
       const sortedCategories = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      const maxCount = sortedCategories.length > 0 ? sortedCategories[0][1] : 1;
 
-      // Build HTML starting with the "ALL" filter row
+      // Build HTML for Category Chart Filter
       let html = `<div class="chart-title-sub">PROJECTS BY CATEGORY</div>`;
-      html += `
-        <div class="chart-row active" data-category="ALL">
-          <div class="chart-row-header">
-            <div class="chart-label">ALL</div>
-            <div class="chart-count">${data.length}</div>
-          </div>
-          <div class="chart-bar-wrapper">
-            <div class="chart-bar-fill" style="width: 0%;" data-width="100%"></div>
-          </div>
-        </div>
-      `;
 
       sortedCategories.forEach(([category, count]) => {
-        const percentage = (count / data.length) * 100;
+        const percentage = (count / maxCount) * 100;
         html += `
           <div class="chart-row" data-category="${category}">
             <div class="chart-row-header">
@@ -1463,14 +1457,64 @@
 
       container.innerHTML = html;
 
-      // Add click filtering listeners
+      // Build Segmented Control buttons dynamically
+      const segmentedControl = document.getElementById('portfolio-segmented-control');
+      if (segmentedControl) {
+        let segHtml = `<button class="filter-btn active" data-category="ALL">ALL</button>`;
+        sortedCategories.forEach(([category]) => {
+          segHtml += `<button class="filter-btn" data-category="${category}">${category}</button>`;
+        });
+        segmentedControl.innerHTML = segHtml;
+
+        // Click filtering for segmented control
+        const segButtons = segmentedControl.querySelectorAll('.filter-btn');
+        segButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            segButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const cat = btn.getAttribute('data-category');
+
+            // Synchronize with the category chart
+            const rows = container.querySelectorAll('.chart-row');
+            rows.forEach(r => {
+              r.classList.remove('active');
+              if (r.getAttribute('data-category') === cat) {
+                r.classList.add('active');
+              }
+            });
+
+            initPortfolioSlider(cat);
+          });
+        });
+      }
+
+      // Add click filtering listeners with toggle/deactivate behavior and segmented control synchronization
       const rows = container.querySelectorAll('.chart-row');
       rows.forEach(row => {
         row.addEventListener('click', () => {
+          const wasActive = row.classList.contains('active');
           rows.forEach(r => r.classList.remove('active'));
-          row.classList.add('active');
-          const cat = row.getAttribute('data-category');
-          initPortfolioSlider(cat);
+          
+          let targetCat = 'ALL';
+          if (wasActive) {
+            initPortfolioSlider('ALL');
+          } else {
+            row.classList.add('active');
+            targetCat = row.getAttribute('data-category');
+            initPortfolioSlider(targetCat);
+          }
+
+          // Synchronize segmented control buttons
+          if (segmentedControl) {
+            const segButtons = segmentedControl.querySelectorAll('.filter-btn');
+            segButtons.forEach(btn => {
+              btn.classList.remove('active');
+              if (btn.getAttribute('data-category') === targetCat) {
+                btn.classList.add('active');
+              }
+            });
+          }
         });
       });
 
@@ -1497,7 +1541,7 @@
 
       // Filter by category if one is specified (not 'ALL')
       if (categoryFilter && categoryFilter !== 'ALL') {
-        data = data.filter(project => project.categories && project.categories[0] === categoryFilter);
+        data = data.filter(project => project.categories && project.categories.includes(categoryFilter));
       }
 
       // Clone the array to double it for a seamless infinite marquee scrolling animation
@@ -1514,9 +1558,9 @@
         let imgContent = '';
 
         if (isMobile && project.pictures && project.pictures.length > 0) {
-          imgContent = `<div class="portfolio-mobile-imgs-container" style="display: flex; width: 100%; height: 100%;">`;
+          imgContent = `<div class="portfolio-mobile-imgs-container" style="display: flex; width: 100%; height: 100%; gap: 10px; padding: 10px; box-sizing: border-box; background: rgba(0, 0, 0, 0.25);">`;
           project.pictures.forEach(pic => {
-            imgContent += `<img class="portfolio-card-img${privateClass}" src="${pic}" alt="${project.name}" style="flex: 1; min-width: 0; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='assets/project/project_template.png';">`;
+            imgContent += `<img class="portfolio-card-img${privateClass}" src="${pic}" alt="${project.name}" style="flex: 1; min-width: 0; height: 100%; object-fit: cover; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);" onerror="this.onerror=null; this.src='assets/project/project_template.png';">`;
           });
           imgContent += `</div>`;
         } else {
@@ -1558,226 +1602,8 @@
         feather.replace();
       }
     }
-
-
-
-    // --- 3D Keyboard Model Logic ---
-    function initKeyboard3D() {
-      const container = document.getElementById('keyboard-canvas-container');
-      if (!container) return;
-
-      const COLOR_PINK = 0xff005a;
-      const COLOR_CYAN = 0x00b4ff;
-
-      const scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0x1c1b1a, 0.05);
-
-      const width = container.clientWidth || 300;
-      const height = container.clientHeight || 300;
-
-      const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-      // Low-angle perspective looking straight at the front of the keyboard (zoomed out more)
-      camera.position.set(0, 3.2, 16.0);
-
-      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(width, height);
-      container.appendChild(renderer.domElement);
-
-      const controls = new THREE.OrbitControls(camera, renderer.domElement);
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.06;
-      controls.enablePan = false; // Lock position
-      controls.enableRotate = true; // Enable standard camera rotation
-      controls.autoRotate = true;
-      controls.autoRotateSpeed = 1.5;
-
-      // Lock polar angle to keep the horizontal rotation at a constant low viewpoint pitch
-      const targetPolarAngle = Math.acos(camera.position.y / camera.position.length());
-      controls.minPolarAngle = targetPolarAngle;
-      controls.maxPolarAngle = targetPolarAngle;
-
-      controls.minDistance = 4;
-      controls.maxDistance = 30;
-
-      controls.addEventListener('end', () => {
-        console.log(`%c[3D Keyboard Viewpoint]`, 'color: #ff005a; font-weight: bold;');
-        console.log(`Camera Position: x: ${camera.position.x.toFixed(3)}, y: ${camera.position.y.toFixed(3)}, z: ${camera.position.z.toFixed(3)}`);
-        console.log(`Controls Target: x: ${controls.target.x.toFixed(3)}, y: ${controls.target.y.toFixed(3)}, z: ${controls.target.z.toFixed(3)}`);
-        console.log(`Keyboard Rotation: x: ${keyboardGroup.rotation.x.toFixed(3)}, y: ${keyboardGroup.rotation.y.toFixed(3)}, z: ${keyboardGroup.rotation.z.toFixed(3)}`);
-      });
-
-      const keyboardGroup = new THREE.Group();
-      const keysGroup = new THREE.Group();
-      keyboardGroup.add(keysGroup);
-      scene.add(keyboardGroup);
-
-      const gap = 0.08;
-      const rowsData = [
-        { widths: [0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 1.9] },
-        { widths: [1.3, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 1.5] },
-        { widths: [1.6, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 2.2] },
-        { widths: [2.1, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 3.2] },
-        { widths: [1.25, 1.25, 1.25, 6.25, 1.25, 1.25, 1.25, 1.25] }
-      ];
-
-      let raycastTargets = [];
-      let geometriesPool = [];
-
-      function buildKeyboard(keyHeight) {
-        while (keysGroup.children.length > 0) {
-          keysGroup.remove(keysGroup.children[0]);
-        }
-        geometriesPool.forEach(geo => geo.dispose());
-        geometriesPool = [];
-        raycastTargets = [];
-
-        const rowSpacing = 1.05;
-        const totalRows = rowsData.length;
-
-        rowsData.forEach((row, rowIndex) => {
-          const z = -((totalRows - 1) * rowSpacing) / 2 + (rowIndex * rowSpacing);
-          const totalRowWidth = row.widths.reduce((a, b) => a + b, 0) + (row.widths.length - 1) * gap;
-          let currentX = -totalRowWidth / 2;
-
-          row.widths.forEach(width => {
-            const x = currentX + width / 2;
-            const boxGeo = new THREE.BoxGeometry(width, keyHeight, 0.95);
-            geometriesPool.push(boxGeo);
-
-            const faceMaterial = new THREE.MeshBasicMaterial({
-              color: COLOR_CYAN,
-              transparent: true,
-              opacity: 0.06,
-              depthWrite: false
-            });
-
-            const keyMesh = new THREE.Mesh(boxGeo, faceMaterial);
-            keyMesh.position.set(x, keyHeight / 2, z);
-
-            const edges = new THREE.EdgesGeometry(boxGeo);
-            const lineMaterial = new THREE.LineBasicMaterial({ color: COLOR_CYAN, linewidth: 1 });
-            const wireframeLines = new THREE.LineSegments(edges, lineMaterial);
-
-            keyMesh.add(wireframeLines);
-            keyMesh.userData = {
-              wireframe: wireframeLines,
-              originalY: keyHeight / 2
-            };
-
-            keysGroup.add(keyMesh);
-            raycastTargets.push(keyMesh);
-
-            currentX += width + gap;
-          });
-        });
-      }
-
-      const chassisGeo = new THREE.BoxGeometry(15.8, 0.7, 5.6);
-      const chassisEdges = new THREE.EdgesGeometry(chassisGeo);
-      const chassisMaterial = new THREE.LineBasicMaterial({ color: COLOR_PINK, linewidth: 2 });
-      const chassisWireframe = new THREE.LineSegments(chassisEdges, chassisMaterial);
-      chassisWireframe.position.set(0, -0.35, 0);
-      keyboardGroup.add(chassisWireframe);
-
-      buildKeyboard(0.4);
-
-      keyboardGroup.rotation.x = 0.04;
-      keyboardGroup.rotation.y = -0.12;
-      keyboardGroup.rotation.z = 0;
-
-      const raycaster = new THREE.Raycaster();
-      const mouse = new THREE.Vector2();
-      let currentlyHovered = null;
-      let currentlyClicked = null;
-
-      function checkIntersections(e) {
-        const rect = container.getBoundingClientRect();
-        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-
-        raycaster.setFromCamera(mouse, camera);
-        return raycaster.intersectObjects(raycastTargets);
-      }
-
-      container.addEventListener('mousemove', (e) => {
-        const intersects = checkIntersections(e);
-
-        if (intersects.length > 0) {
-          const targetedKey = intersects[0].object;
-          if (currentlyHovered !== targetedKey) {
-            if (currentlyHovered && currentlyHovered !== currentlyClicked) {
-              currentlyHovered.material.color.setHex(COLOR_CYAN);
-              currentlyHovered.material.opacity = 0.06;
-              currentlyHovered.userData.wireframe.material.color.setHex(COLOR_CYAN);
-            }
-
-            currentlyHovered = targetedKey;
-            currentlyHovered.material.color.setHex(COLOR_PINK);
-            currentlyHovered.material.opacity = 0.45;
-            currentlyHovered.userData.wireframe.material.color.setHex(COLOR_PINK);
-          }
-        } else {
-          if (currentlyHovered) {
-            if (currentlyHovered !== currentlyClicked) {
-              currentlyHovered.material.color.setHex(COLOR_CYAN);
-              currentlyHovered.material.opacity = 0.06;
-              currentlyHovered.userData.wireframe.material.color.setHex(COLOR_CYAN);
-            }
-            currentlyHovered = null;
-          }
-        }
-      });
-
-      container.addEventListener('mousedown', (e) => {
-        if (e.button !== 0) return;
-        const intersects = checkIntersections(e);
-
-        if (intersects.length > 0) {
-          currentlyClicked = intersects[0].object;
-          currentlyClicked.position.y = currentlyClicked.userData.originalY - 0.16;
-          currentlyClicked.material.color.setHex(COLOR_PINK);
-          currentlyClicked.material.opacity = 0.75;
-          currentlyClicked.userData.wireframe.material.color.setHex(COLOR_PINK);
-          controls.enableRotate = false;
-        }
-      });
-
-      window.addEventListener('mouseup', () => {
-        if (currentlyClicked) {
-          currentlyClicked.position.y = currentlyClicked.userData.originalY;
-          if (currentlyClicked !== currentlyHovered) {
-            currentlyClicked.material.color.setHex(COLOR_CYAN);
-            currentlyClicked.material.opacity = 0.06;
-            currentlyClicked.userData.wireframe.material.color.setHex(COLOR_CYAN);
-          } else {
-            currentlyClicked.material.opacity = 0.45;
-          }
-          currentlyClicked = null;
-          controls.enableRotate = true;
-        }
-      });
-
-      window.addEventListener('resize', () => {
-        const w = container.clientWidth;
-        const h = container.clientHeight;
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-        renderer.setSize(w, h);
-      });
-
-      function animateKb() {
-        requestAnimationFrame(animateKb);
-        controls.update();
-        renderer.render(scene, camera);
-      }
-
-      animateKb();
-    }
-
     initCategoryChart();
     initPortfolioSlider();
-    initKeyboard3D();
   </script>
 </body>
 
