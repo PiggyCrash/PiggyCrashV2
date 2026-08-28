@@ -224,5 +224,109 @@ const portfolioData = [
     "organization": "Universitas Gadjah Mada",
     "status": "public",
     "link": "https://etd.repository.ugm.ac.id/penelitian/detail/232899"
+  },
+  {
+    "id": "18",
+    "name": "Combined Facility Dashboard",
+    "categories": ["Data Engineering", "WebApp"],
+    "stacks": ["Node-RED", ".NET", "Bootstrap", "MongoDB", "Azure Data Factory", "PowerBI", "MariaDB"],
+    "pictures": [
+      "assets/project/project_template.png"
+    ],
+    "description": "A web application dashboard that combines multiple data sources to provide a comprehensive view of facility operations.",
+    "organization": "PT.PCI Elektronik Internasional",
+    "status": "private",
+    "link": ""
+  },
+  {
+    "id": "19",
+    "name": "LuckyDraw",
+    "categories": ["WebApp"],
+    "stacks": ["HTML", "CSS", "JavaScript"],
+    "pictures": [
+      "assets/project/project_template.png"
+    ],
+    "description": "Simple gacha app",
+    "organization": "Portfolio",
+    "status": "public",
+    "link": "http://github.com/PiggyCrash/luckydraw"
+  },
+  {
+    "id": "20",
+    "name": "Certificate Renewal",
+    "categories": ["Data Engineering"],
+    "stacks": ["PowerBI, PowerApps", "PowerAutomate"],
+    "pictures": [
+      "assets/project/project_template.png"
+    ],
+    "description": "Automated certificate renewal using PowerApps, PowerAutomate, and PowerBI to streamline the certificate renewal process for company.",
+    "organization": "PT.PCI Elektronik Internasional",
+    "status": "private",
+    "link": ""
+  },
+  {
+    "id": "21",
+    "name": "Kitting Dashboard",
+    "categories": ["WebApp", "Data Engineering"],
+    "stacks": ["Node-RED", ".NET", "Bootstrap", "MariaDB", "PowerBI"],
+    "pictures": [
+      "assets/project/project_template.png"
+    ],
+    "description": "A web application dashboard for kitting operations.",
+    "organization": "PT.PCI Elektronik Internasional",
+    "status": "private",
+    "link": ""
+  },
+  {
+    "id": "22",
+    "name": "HRSys (CMS)",
+    "categories": ["WebApp", "Data Engineering"],
+    "stacks": ["Node-RED", ".NET", "Bootstrap", "MariaDB", "PowerBI"],
+    "pictures": [
+      "assets/project/project_template.png"
+    ],
+    "description": "A web application dashboard for HR system to create survey and manage customer feedback.",
+    "organization": "PT.PCI Elektronik Internasional",
+    "status": "private",
+    "link": ""
+  },
+  {
+    "id": "23",
+    "name": "ProdHelpDesk",
+    "categories": ["WebApp"],
+    "stacks": ["Node-RED", ".NET", "Bootstrap", "MariaDB", "PowerBI"],
+    "pictures": [
+      "assets/project/project_template.png"
+    ],
+    "description": "A web application dashboard for production helpdesk, help maintaining and repairing production machine.",
+    "organization": "PT.PCI Elektronik Internasional",
+    "status": "private",
+    "link": ""
+  },
+  {
+    "id": "24",
+    "name": "3DModel",
+    "categories": ["WebApp"],
+    "stacks": ["Three.js", "HTML", "CSS", "JavaScript"],
+    "pictures": [
+      "assets/project/3d.png"
+    ],
+    "description": "A 3D models example of wireframe.",
+    "organization": "Portfolio",
+    "status": "public",
+    "link": "https://github.com/PiggyCrash/3d_keyboard"
+  },
+  {
+    "id": "25",
+    "name": "DiKlikIn (E-Commerce)",
+    "categories": ["WebApp"],
+    "stacks": ["NodeJS", "ReactJS", "Express.js", "MySQL", "Midtrans"],
+    "pictures": [
+      "assets/project/project_template.png"
+    ],
+    "description": "E-commerce application with payment gateway integration.",
+    "organization": "Portfolio",
+    "status": "public",
+    "link": ""
   }
 ];
