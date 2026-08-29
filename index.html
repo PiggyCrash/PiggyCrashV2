@@ -297,7 +297,7 @@
               </div>
               -->
 
-              <div class="social-channels-header font-valorant fly-in-item fly-in-delay-3">CONTACT ME</div>
+              <div class="social-channels-header font-valorant fly-in-item fly-in-delay-3">SOCIAL MEDIA</div>
               <div class="social-grid fly-in-item fly-in-delay-4">
                 <!-- GitHub -->
                 <a href="https://github.com/dgashandy" target="_blank" class="social-card">
@@ -548,7 +548,7 @@
           const h = canvasContainer.clientHeight;
           if (typeof camera !== 'undefined' && w > 0 && h > 0) {
             camera.aspect = w / h;
-            camera.position.z = window.innerWidth <= 600 ? 100 : 58;
+            camera.position.z = window.innerWidth <= 1023 ? 100 : 58;
             camera.updateProjectionMatrix();
             renderer.setSize(w, h);
           }
@@ -661,7 +661,7 @@
     }
 
     window.addEventListener('wheel', (e) => {
-      if (window.innerWidth > 600 || scrollNavLock) return;
+      if (window.innerWidth > 1023 || scrollNavLock) return;
       const activeSection = document.querySelector('.page-section.active');
       const idx = activeSection ? parseInt(activeSection.getAttribute('data-index')) : -1;
       if (idx === 0) { scrollNavTo(e.deltaY > 0 ? 1 : -1); return; }
@@ -677,7 +677,7 @@
     let touchStartAtBottom = false;
     let touchStartAtTop = false;
     window.addEventListener('touchstart', (e) => {
-      if (window.innerWidth > 600) return;
+      if (window.innerWidth > 1023) return;
       touchStartY = e.touches[0].clientY;
       const card = getActiveCard();
       if (card) {
@@ -690,7 +690,7 @@
     }, { passive: true });
 
     window.addEventListener('touchend', (e) => {
-      if (window.innerWidth > 600) return;
+      if (window.innerWidth > 1023) return;
       const endY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : touchStartY;
       const dy = touchStartY - endY; // positive => swiped up (i.e. scrolling down)
       if (Math.abs(dy) < 60) return;
@@ -771,7 +771,7 @@
     let containerH = container.clientHeight;
 
     const camera = new THREE.PerspectiveCamera(45, containerW / containerH, 0.1, 1000);
-    camera.position.z = window.innerWidth <= 600 ? 100 : 58;
+    camera.position.z = window.innerWidth <= 1023 ? 100 : 58;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(containerW, containerH);
@@ -870,7 +870,8 @@
     const primaryMesh = new THREE.Mesh(activeGeometry, primaryMaterial);
     // Wrap meshes in a group so we can uniformly shrink the intro model on mobile
     const modelGroup = new THREE.Group();
-    modelGroup.scale.setScalar(window.innerWidth <= 600 ? 0.72 : 1.0);
+    const _w = window.innerWidth;
+    modelGroup.scale.setScalar(_w <= 600 ? 0.72 : _w >= 1024 ? 1.0 : 0.72 + (_w - 641) / 382 * 0.18);
     scene.add(modelGroup);
     modelGroup.add(primaryMesh);
 
@@ -1396,8 +1397,11 @@
       let lastInteractionTime = Date.now();
 
       function getOrbitRadii() {
-        if (window.innerWidth <= 600) {
+        const w = window.innerWidth;
+        if (w <= 600) {
           return { rx: 165, rz: 75, ry: 85 };
+        } else if (w <= 1023) {
+          return { rx: 210, rz: 90, ry: 105 };
         }
         return { rx: 410, rz: 200, ry: 100 };
       }
@@ -1474,7 +1478,7 @@
       }
 
       function updateOrbit() {
-        const isMobile = window.innerWidth <= 600;
+        const isMobile = window.innerWidth <= 1023;
         const radii = getOrbitRadii();
         radiusX = radii.rx;
         radiusZ = radii.rz;
@@ -1597,23 +1601,65 @@
       // Build Segmented Control buttons dynamically
       const segmentedControl = document.getElementById('portfolio-segmented-control');
       if (segmentedControl) {
-        const isMobile = window.innerWidth <= 600;
-
-        if (isMobile) {
-          // Mobile: custom dropdown matching the red theme (native <select> can't be styled)
-          let ddHtml = `<div class="portfolio-custom-dropdown" id="portfolio-custom-dropdown">`;
-          ddHtml += `<button class="portfolio-custom-dropdown-toggle" type="button"><span class="pcd-label">ALL</span><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>`;
-          ddHtml += `<ul class="portfolio-custom-dropdown-menu">`;
-          ddHtml += `<li class="active" data-category="ALL">ALL</li>`;
-          sortedCategories.forEach(([category]) => {
-            ddHtml += `<li data-category="${category}">${category}</li>`;
+        // Shared filter handler used by both the desktop buttons and mobile dropdown
+        function applyCategoryFilter(cat) {
+          // Synchronize with the category chart
+          const rows = container.querySelectorAll('.chart-row');
+          rows.forEach(r => {
+            r.classList.remove('active');
+            if (r.getAttribute('data-category') === cat) {
+              r.classList.add('active');
+            }
           });
-          ddHtml += `</ul></div>`;
-          segmentedControl.innerHTML = ddHtml;
 
-          const dd = document.getElementById('portfolio-custom-dropdown');
+          // Sync desktop buttons
+          const segButtons = segmentedControl.querySelectorAll('.filter-btn');
+          segButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-category') === cat);
+          });
+
+          // Sync mobile dropdown
+          const ddItems = segmentedControl.querySelectorAll('.portfolio-custom-dropdown-menu li');
+          const ddLabel = segmentedControl.querySelector('.pcd-label');
+          ddItems.forEach(i => {
+            const match = i.getAttribute('data-category') === cat;
+            i.classList.toggle('active', match);
+            if (match && ddLabel) ddLabel.textContent = i.textContent;
+          });
+
+          initPortfolioSlider(cat);
+        }
+
+        // Always build BOTH controls; CSS shows/hides based on breakpoint
+        let html = '';
+        // Desktop: horizontal buttons
+        html += `<div class="portfolio-segmented-desktop">`;
+        html += `<button class="filter-btn active" data-category="ALL">ALL</button>`;
+        sortedCategories.forEach(([category]) => {
+          html += `<button class="filter-btn" data-category="${category}">${category}</button>`;
+        });
+        html += `</div>`;
+        // Mobile: custom dropdown
+        html += `<div class="portfolio-custom-dropdown" id="portfolio-custom-dropdown">`;
+        html += `<button class="portfolio-custom-dropdown-toggle" type="button"><span class="pcd-label">ALL</span><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>`;
+        html += `<ul class="portfolio-custom-dropdown-menu">`;
+        html += `<li class="active" data-category="ALL">ALL</li>`;
+        sortedCategories.forEach(([category]) => {
+          html += `<li data-category="${category}">${category}</li>`;
+        });
+        html += `</ul></div>`;
+        segmentedControl.innerHTML = html;
+
+        // Desktop button listeners
+        const segButtons = segmentedControl.querySelectorAll('.portfolio-segmented-desktop .filter-btn');
+        segButtons.forEach(btn => {
+          btn.addEventListener('click', () => applyCategoryFilter(btn.getAttribute('data-category')));
+        });
+
+        // Mobile dropdown listeners
+        const dd = document.getElementById('portfolio-custom-dropdown');
+        if (dd) {
           const ddToggle = dd.querySelector('.portfolio-custom-dropdown-toggle');
-          const ddLabel = dd.querySelector('.pcd-label');
           const ddItems = dd.querySelectorAll('.portfolio-custom-dropdown-menu li');
 
           ddToggle.addEventListener('click', (e) => {
@@ -1623,57 +1669,13 @@
 
           ddItems.forEach(item => {
             item.addEventListener('click', () => {
-              ddItems.forEach(i => i.classList.remove('active'));
-              item.classList.add('active');
-              ddLabel.textContent = item.textContent;
               dd.classList.remove('open');
-
-              const cat = item.getAttribute('data-category');
-
-              // Synchronize with the category chart
-              const rows = container.querySelectorAll('.chart-row');
-              rows.forEach(r => {
-                r.classList.remove('active');
-                if (r.getAttribute('data-category') === cat) {
-                  r.classList.add('active');
-                }
-              });
-
-              initPortfolioSlider(cat);
+              applyCategoryFilter(item.getAttribute('data-category'));
             });
           });
 
           // Close dropdown when clicking outside
           document.addEventListener('click', () => dd.classList.remove('open'));
-        } else {
-          // Desktop: horizontal buttons
-          let segHtml = `<button class="filter-btn active" data-category="ALL">ALL</button>`;
-          sortedCategories.forEach(([category]) => {
-            segHtml += `<button class="filter-btn" data-category="${category}">${category}</button>`;
-          });
-          segmentedControl.innerHTML = segHtml;
-
-          // Click filtering for segmented control
-          const segButtons = segmentedControl.querySelectorAll('.filter-btn');
-          segButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-              segButtons.forEach(b => b.classList.remove('active'));
-              btn.classList.add('active');
-
-              const cat = btn.getAttribute('data-category');
-
-              // Synchronize with the category chart
-              const rows = container.querySelectorAll('.chart-row');
-              rows.forEach(r => {
-                r.classList.remove('active');
-                if (r.getAttribute('data-category') === cat) {
-                  r.classList.add('active');
-                }
-              });
-
-              initPortfolioSlider(cat);
-            });
-          });
         }
       }
 
@@ -1682,40 +1684,8 @@
       rows.forEach(row => {
         row.addEventListener('click', () => {
           const wasActive = row.classList.contains('active');
-          rows.forEach(r => r.classList.remove('active'));
-
-          let targetCat = 'ALL';
-          if (wasActive) {
-            initPortfolioSlider('ALL');
-          } else {
-            row.classList.add('active');
-            targetCat = row.getAttribute('data-category');
-            initPortfolioSlider(targetCat);
-          }
-
-          // Synchronize segmented control buttons / dropdown
-          if (segmentedControl) {
-            const segButtons = segmentedControl.querySelectorAll('.filter-btn');
-            segButtons.forEach(btn => {
-              btn.classList.remove('active');
-              if (btn.getAttribute('data-category') === targetCat) {
-                btn.classList.add('active');
-              }
-            });
-            const selectEl = document.getElementById('portfolio-filter-select');
-            if (selectEl) selectEl.value = targetCat;
-
-            // Sync custom mobile dropdown
-            const ddItems = segmentedControl.querySelectorAll('.portfolio-custom-dropdown-menu li');
-            const ddLabel = segmentedControl.querySelector('.pcd-label');
-            ddItems.forEach(i => {
-              i.classList.remove('active');
-              if (i.getAttribute('data-category') === targetCat) {
-                i.classList.add('active');
-                if (ddLabel) ddLabel.textContent = i.textContent;
-              }
-            });
-          }
+          const targetCat = wasActive ? 'ALL' : row.getAttribute('data-category');
+          applyCategoryFilter(targetCat);
         });
       });
 

@@ -1142,31 +1142,8 @@ html {
 }
 
 /* Tablet (601-768px): stacked cards separate from globe */
-@media (min-width: 601px) and (max-width: 768px) {
-  .orbit-container {
-    height: auto;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .orbit-center {
-    position: relative;
-    margin: 1.5rem auto;
-  }
-
-  .orbit-item {
-    position: relative;
-    width: 100%;
-    max-width: 450px;
-    opacity: 1 !important;
-    transform: none !important;
-    z-index: 1 !important;
-  }
-}
-
-/* Mobile orbit: boxes orbit around the globe (JS-driven) */
-@media (max-width: 600px) {
+/* Mobile/small orbit: boxes orbit around the globe (JS-driven) */
+@media (max-width: 1023px) {
   .orbit-container {
     height: 290px;
     flex-direction: row;
@@ -1540,7 +1517,7 @@ html {
   text-shadow: 0 0 8px rgba(255, 0, 85, 0.6);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .portfolio-card {
     flex: 0 0 240px;
     height: 135px;
@@ -1835,6 +1812,10 @@ html {
   border-radius: 30px;
   gap: 4px;
 }
+
+/* By default (desktop) show horizontal buttons, hide mobile dropdown */
+.portfolio-segmented-desktop { display: flex; gap: 4px; }
+.portfolio-custom-dropdown { display: none; }
 
 .portfolio-segmented-control .filter-btn {
   height: 36px;
@@ -2974,7 +2955,7 @@ textarea.cyber-input {
 }
 
 /* ==================================================================
-   MOBILE VIEW (<= 600px) - Top Navbar + Responsive Cards
+   MOBILE VIEW (<= 600px) - Bottom Navbar + full-width sections
    ================================================================== */
 @media (max-width: 600px) {
 
@@ -3039,9 +3020,110 @@ textarea.cyber-input {
     text-align: center;
   }
 
-  /* ---- Generic card sizing ---- */
   .page-card {
     width: 92vw;
+  }
+}
+
+/* ==================================================================
+   SMALL WINDOW (601px - 640px) - Left sidebar (smaller) + gaps
+   ================================================================== */
+@media (min-width: 601px) and (max-width: 640px) {
+  /* Keep the navbar on the left, but shrink it a little */
+  .sidebar {
+    width: 56px;
+    border-radius: 0 28px 28px 0;
+  }
+
+  .sidebar ul li {
+    height: 54px;
+  }
+
+  .indicator {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Offset content from the left navbar and leave a gap at the right edge */
+  .page-section {
+    left: 56px;
+    width: calc(100vw - 56px);
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .page-card {
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+  }
+
+  /* Home: give the 3D laptop more room than the narrow mobile layout */
+  .home-card-right {
+    height: 320px !important;
+  }
+}
+
+/* ==================================================================
+   SMALL WINDOW (641px - 1023px) - Left navbar + gaps + mobile content
+   ================================================================== */
+@media (min-width: 641px) and (max-width: 1023px) {
+  /* Navbar stays on the left at default size */
+  .sidebar {
+    width: 70px;
+  }
+
+  /* Offset content from the left navbar and leave a gap at the right edge */
+  .page-section {
+    left: 70px;
+    width: calc(100vw - 70px);
+    padding-right: 1.5rem;
+    padding-left: 1rem;
+  }
+
+  .page-card {
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+  }
+
+  /* Home: 3D laptop scales up progressively with the wider window */
+  .home-card-right {
+    height: clamp(320px, calc(152px + 26vw), 420px) !important;
+    flex-shrink: 0;
+  }
+
+  /* Experience: scale the orbit up a bit for the wider window */
+  .orbit-container {
+    height: 360px !important;
+  }
+
+  .orbit-center,
+  #orbitCenterCanvas {
+    width: 240px !important;
+    height: 240px !important;
+  }
+
+  .orbit-item {
+    width: 160px !important;
+    max-width: 160px !important;
+    height: 74px !important;
+  }
+
+  .orbit-path-svg {
+    width: 460px !important;
+    height: 240px !important;
+  }
+}
+
+/* ==================================================================
+   CONTENT VIEW (<= 1023px) - Mobile-style card content
+   (navbar itself is handled above per breakpoint)
+   ================================================================== */
+@media (max-width: 1023px) {
+
+  /* ---- Generic card sizing ---- */
+  .page-card {
     height: 90%;
     padding: 1.5rem 1.25rem;
     border-radius: 14px;
@@ -3174,6 +3256,10 @@ textarea.cyber-input {
     border-radius: 0;
     gap: 0;
   }
+
+  /* At <=1023px show mobile dropdown, hide desktop buttons */
+  .portfolio-segmented-desktop { display: none; }
+  .portfolio-custom-dropdown { display: block; }
 
   .portfolio-filter-select {
     display: none;
