@@ -68,6 +68,10 @@
       <!-- Section 1: Home -->
       <section class="page-section" data-index="1">
         <div class="page-card home-page-card">
+          <div class="home-card-right">
+            <canvas id="laptopCanvas"></canvas>
+          </div>
+
           <div class="home-card-left">
             <!-- Top Left Title Block -->
             <div class="home-title-block">
@@ -104,14 +108,10 @@
               <div class="fly-in-item fly-in-delay-7">
                 <a href="CV of Mohammad Daffa Gashandy 3.1.pdf" download class="cv-download-btn font-valorant"
                   style="padding: 0.75rem 1.5rem; font-size: 0.8rem; margin-top: 0;">
-                  <i data-feather="download"></i> RESUME
+                  <i data-feather="download"></i> DOWNLOAD RESUME
                 </a>
               </div>
             </div>
-          </div>
-
-          <div class="home-card-right">
-            <canvas id="laptopCanvas"></canvas>
           </div>
 
           <!-- 3D Model Layer (Background) -->
@@ -126,7 +126,7 @@
         <div class="page-card experience-page-card">
 
           <div class="experience-content-wrapper">
-            <div class="orbit-container">
+            <div class="orbit-container fly-in-item fly-in-delay-4">
               <svg class="orbit-path-svg" viewBox="-460 -130 920 260">
                 <ellipse cx="0" cy="0" rx="410" ry="100" fill="none" stroke="rgba(255, 0, 85, 0.55)" stroke-width="2.2"
                   stroke-dasharray="6 6" />
@@ -182,17 +182,18 @@
             </div>
 
             <div class="experience-right-panel" style="gap: 0; align-items: flex-start;">
-              <div class="home-subtitle-welcome" style="margin-bottom: 2.8rem; font-size: 1.3rem;">WITH TOTAL</div>
-              <div
+              <div class="home-subtitle-welcome exp-stat-with-total fly-in-item fly-in-delay-1"
+                style="margin-bottom: 2.8rem; font-size: 1.3rem;">WITH TOTAL</div>
+              <div class="exp-stat-number fly-in-item fly-in-delay-2"
                 style="font-family: 'Valorant', sans-serif !important; font-size: 5.5rem; color: #ff0055; line-height: 0.95; margin: 0; font-weight: bold;">
                 3+</div>
-              <div
+              <div class="exp-stat-years fly-in-item fly-in-delay-3"
                 style="font-family: 'Valorant', sans-serif !important; font-size: 2.2rem; color: #ff0055; line-height: 1.1; margin-bottom: 3.8rem; font-weight: bold; letter-spacing: 1px;">
                 YEARS OF EXPERIENCE</div>
-              <div class="home-subtitle-dev"
+              <div class="exp-stat-from home-subtitle-dev fly-in-item fly-in-delay-5"
                 style="margin-top: 0; color: rgba(255, 255, 255, 0.45); font-size: 1.4rem; letter-spacing: 1px; font-weight: normal;">
                 FROM</div>
-              <div class="home-subtitle-dev"
+              <div class="exp-stat-range home-subtitle-dev fly-in-item fly-in-delay-6"
                 style="margin-top: 1.0rem; color: #fff; font-size: 1.4rem; letter-spacing: 1px; font-weight: bold;">2023
                 - NOW</div>
             </div>
@@ -204,8 +205,8 @@
       <section class="page-section" data-index="3">
         <div class="page-card portfolio-page-card">
           <div class="projects-dashboard-grid">
-            <div class="dashboard-col-left">
-              <div class="label-box-top">WITH TOTAL</div>
+            <div class="dashboard-col-left fly-in-item fly-in-delay-1">
+              <div class="label-box-top">COUNTING TO</div>
               <div class="count-box" id="projects-total-count">0</div>
               <div class="label-box-bottom">PROJECTS SOLVED</div>
               <div class="dashboard-subtext">Adaptable across diverse technology stacks to build robust software
@@ -213,7 +214,7 @@
             </div>
 
             <!-- Right Column: Category Chart Filter -->
-            <div class="dashboard-col-right">
+            <div class="dashboard-col-right fly-in-item fly-in-delay-2">
               <div class="dashboard-box chart-box">
                 <div class="category-chart-container" id="category-chart-container">
                   <!-- Dynamically populated via JS -->
@@ -223,14 +224,14 @@
           </div>
 
           <!-- Segmented Control / Button Group Filter -->
-          <div class="portfolio-filter-container">
+          <div class="portfolio-filter-container fly-in-item fly-in-delay-3">
             <div class="portfolio-segmented-control" id="portfolio-segmented-control">
               <!-- Dynamically populated via JS -->
             </div>
           </div>
 
           <!-- Infinite Sliding Cards (Bottom) -->
-          <div class="portfolio-slider-container">
+          <div class="portfolio-slider-container fly-in-item fly-in-delay-4">
             <div class="portfolio-track" id="portfolio-track">
               <!-- Cards will be dynamically inserted here -->
             </div>
@@ -241,42 +242,42 @@
       <!-- Section 5: Contact -->
       <section class="page-section" data-index="4">
         <div class="page-card contact-page-card">
-          <h2 class="card-title">Contact</h2>
+          <h2 class="card-title fly-in-item fly-in-delay-1">Contact</h2>
 
           <div class="contact-container">
             <!-- Left Side: Terminal Form -->
-            <div class="contact-form-wrapper">
+            <div class="contact-form-wrapper fly-in-item fly-in-delay-2">
               <div class="terminal-header">
                 <span class="terminal-dot red"></span>
                 <span class="terminal-dot yellow"></span>
                 <span class="terminal-dot green"></span>
-                <span class="terminal-title font-valorant">COMMS.UPLINK // SECURE_LINE</span>
+                <span class="terminal-title font-valorant">MESSAGE ME</span>
               </div>
               <form id="contact-form" class="cyber-form">
                 <div class="form-group">
-                  <label for="user_name" class="font-valorant">SNDR.NAME // IDENTIFIER</label>
+                  <label for="user_name" class="font-valorant">YOUR NAME</label>
                   <input type="text" id="user_name" name="user_name" placeholder="Enter your name..." required
                     class="cyber-input">
                 </div>
                 <div class="form-group">
-                  <label for="user_email" class="font-valorant">COMMS.ADDR // ROUTING</label>
+                  <label for="user_email" class="font-valorant">EMAIL ADDRESS</label>
                   <input type="email" id="user_email" name="user_email" placeholder="Enter your email address..."
                     required class="cyber-input">
                 </div>
                 <div class="form-group">
-                  <label for="message" class="font-valorant">MSG.PAYLOAD // CONTENT</label>
-                  <textarea id="message" name="message" rows="5" placeholder="Write your transmission payload here..."
-                    required class="cyber-input"></textarea>
+                  <label for="message" class="font-valorant">YOUR MESSAGE</label>
+                  <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required
+                    class="cyber-input"></textarea>
                 </div>
                 <button type="submit" id="submit-btn" class="cyber-btn font-valorant">
-                  <span class="btn-text">TRANSMIT SECURELY</span>
+                  <span class="btn-text">SEND</span>
                   <span class="btn-glitch"></span>
                 </button>
               </form>
             </div>
 
-            <!-- Right Side: Social Uplink -->
             <div class="contact-social-wrapper">
+              <!--
               <div class="dashboard-panel">
                 <div class="panel-header font-valorant">UPLINK_STATUS // ONLINE</div>
                 <div class="status-metrics">
@@ -294,9 +295,10 @@
                   </div>
                 </div>
               </div>
+              -->
 
-              <div class="social-channels-header font-valorant">ESTABLISH CONNECTION // DIRECT</div>
-              <div class="social-grid">
+              <div class="social-channels-header font-valorant fly-in-item fly-in-delay-3">CONTACT ME</div>
+              <div class="social-grid fly-in-item fly-in-delay-4">
                 <!-- GitHub -->
                 <a href="https://github.com/dgashandy" target="_blank" class="social-card">
                   <div class="social-icon"><i data-feather="github"></i></div>
@@ -307,11 +309,11 @@
                 </a>
 
                 <!-- LinkedIn -->
-                <a href="https://linkedin.com/in/daffagashandy" target="_blank" class="social-card">
+                <a href="https://id.linkedin.com/in/dgashandy" target="_blank" class="social-card">
                   <div class="social-icon"><i data-feather="linkedin"></i></div>
                   <div class="social-info">
                     <span class="social-platform font-valorant">LINKEDIN</span>
-                    <span class="social-handle">daffagashandy</span>
+                    <span class="social-handle">Daffa Gashandy</span>
                   </div>
                 </a>
 
@@ -344,6 +346,31 @@
         </div>
       </section>
 
+    </div>
+  </div>
+
+  <!-- Contact Feature Notification Modal -->
+  <div class="project-modal" id="contact-notification-modal">
+    <div class="project-modal-backdrop" id="contact-notification-backdrop"></div>
+    <div class="project-modal-content contact-notification-content">
+      <div class="project-modal-header">
+        <button class="project-modal-close" id="contact-notification-close">
+          <i data-feather="x"></i>
+        </button>
+      </div>
+      <div class="contact-notification-body">
+        <div class="contact-notification-icon">
+          <i data-feather="alert-triangle"></i>
+        </div>
+        <h3 class="contact-notification-title font-valorant">Feature Unavailable</h3>
+        <p class="contact-notification-text">
+          The contact form is currently under maintenance. This feature isn't working yet.
+          Please reach out via the social links below for now.
+        </p>
+        <button class="contact-notification-ok-btn font-valorant" id="contact-notification-ok">
+          <span>GOT IT</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -423,8 +450,20 @@
     function moveIndicator(liElement) {
       if (!liElement) return;
       const ul = document.querySelector('.sidebar ul');
-      const topPos = ul.offsetTop + liElement.offsetTop + (liElement.offsetHeight - 45) / 2;
-      indicator.style.top = `${topPos}px`;
+      const isMobile = window.innerWidth <= 600;
+      if (isMobile) {
+        // Top navbar: slide horizontally, keep vertically centered
+        const leftPos = ul.offsetLeft + liElement.offsetLeft + (liElement.offsetWidth - 45) / 2;
+        indicator.style.left = `${leftPos}px`;
+        indicator.style.top = '50%';
+        indicator.style.transform = 'translateY(-50%)';
+      } else {
+        // Left sidebar: slide vertically
+        const topPos = ul.offsetTop + liElement.offsetTop + (liElement.offsetHeight - 45) / 2;
+        indicator.style.top = `${topPos}px`;
+        indicator.style.left = '50%';
+        indicator.style.transform = 'translateX(-50%)';
+      }
     }
 
     // Hide indicator on Start page
@@ -509,7 +548,7 @@
           const h = canvasContainer.clientHeight;
           if (typeof camera !== 'undefined' && w > 0 && h > 0) {
             camera.aspect = w / h;
-            camera.position.z = 58;
+            camera.position.z = window.innerWidth <= 600 ? 100 : 58;
             camera.updateProjectionMatrix();
             renderer.setSize(w, h);
           }
@@ -588,39 +627,81 @@
       });
     });
 
-    // Full-page Scroll Navigation
-    let isScrolling = false;
+    // Full-page Scroll Navigation is disabled on desktop to allow scrolling within cards.
+    // On mobile: reaching the bottom of a card scrolls to the next page (top -> previous).
+    let scrollNavLock = false;
+    function lockScrollNav() {
+      scrollNavLock = true;
+      setTimeout(() => { scrollNavLock = false; }, 900);
+    }
 
-    window.addEventListener('wheel', (e) => {
-      if (isScrolling) return;
+    function getActiveCard() {
+      const activeSection = document.querySelector('.page-section.active');
+      if (!activeSection) return null;
+      return activeSection.querySelector('.page-card');
+    }
 
-      // Disable scroll section transition when project modal is open
-      const modal = document.getElementById('project-modal');
-      if (modal && modal.classList.contains('active')) return;
-
+    function scrollNavTo(direction) {
+      if (scrollNavLock) return;
       const activeSection = document.querySelector('.page-section.active');
       if (!activeSection) return;
+      const idx = parseInt(activeSection.getAttribute('data-index'));
 
-      const currentIndex = parseInt(activeSection.getAttribute('data-index'));
-      if (currentIndex === 0) return; // Disable scroll navigation on start page
-
-      const direction = Math.sign(e.deltaY);
-
-      if (direction > 0 && currentIndex < 4) {
-        navigateToSection(currentIndex + 1);
-        throttleScroll();
-      } else if (direction < 0 && currentIndex > 1) {
-        navigateToSection(currentIndex - 1);
-        throttleScroll();
+      if (idx === 0) {
+        if (direction > 0) { lockScrollNav(); triggerStartTransition(); }
+        return;
       }
-    });
 
-    function throttleScroll() {
-      isScrolling = true;
-      setTimeout(() => {
-        isScrolling = false;
-      }, 800);
+      const target = idx + (direction > 0 ? 1 : -1);
+      if (target < 1 || target > 4) return;
+      lockScrollNav();
+      navigateToSection(target);
+      const newCard = getActiveCard();
+      if (newCard) newCard.scrollTop = 0;
     }
+
+    window.addEventListener('wheel', (e) => {
+      if (window.innerWidth > 600 || scrollNavLock) return;
+      const activeSection = document.querySelector('.page-section.active');
+      const idx = activeSection ? parseInt(activeSection.getAttribute('data-index')) : -1;
+      if (idx === 0) { scrollNavTo(e.deltaY > 0 ? 1 : -1); return; }
+      const card = getActiveCard();
+      if (!card) return;
+      const atBottom = Math.ceil(card.scrollTop + card.clientHeight) >= card.scrollHeight - 2;
+      const atTop = card.scrollTop <= 2;
+      if (e.deltaY > 0 && atBottom) scrollNavTo(1);
+      else if (e.deltaY < 0 && atTop) scrollNavTo(-1);
+    }, { passive: true });
+
+    let touchStartY = 0;
+    let touchStartAtBottom = false;
+    let touchStartAtTop = false;
+    window.addEventListener('touchstart', (e) => {
+      if (window.innerWidth > 600) return;
+      touchStartY = e.touches[0].clientY;
+      const card = getActiveCard();
+      if (card) {
+        touchStartAtBottom = Math.ceil(card.scrollTop + card.clientHeight) >= card.scrollHeight - 2;
+        touchStartAtTop = card.scrollTop <= 2;
+      } else {
+        touchStartAtBottom = true;
+        touchStartAtTop = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      if (window.innerWidth > 600) return;
+      const endY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : touchStartY;
+      const dy = touchStartY - endY; // positive => swiped up (i.e. scrolling down)
+      if (Math.abs(dy) < 60) return;
+
+      const activeSection = document.querySelector('.page-section.active');
+      const idx = activeSection ? parseInt(activeSection.getAttribute('data-index')) : -1;
+      if (idx === 0) { if (dy > 0) scrollNavTo(1); return; }
+
+      if (dy > 0 && touchStartAtBottom) scrollNavTo(1);
+      else if (dy < 0 && touchStartAtTop) scrollNavTo(-1);
+    }, { passive: true });
 
     // Start Screen Logic with Disperse Animation Transition
     let startTransitionInProgress = false;
@@ -690,7 +771,7 @@
     let containerH = container.clientHeight;
 
     const camera = new THREE.PerspectiveCamera(45, containerW / containerH, 0.1, 1000);
-    camera.position.z = 58;
+    camera.position.z = window.innerWidth <= 600 ? 100 : 58;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(containerW, containerH);
@@ -787,7 +868,11 @@
       blending: THREE.AdditiveBlending
     });
     const primaryMesh = new THREE.Mesh(activeGeometry, primaryMaterial);
-    scene.add(primaryMesh);
+    // Wrap meshes in a group so we can uniformly shrink the intro model on mobile
+    const modelGroup = new THREE.Group();
+    modelGroup.scale.setScalar(window.innerWidth <= 600 ? 0.72 : 1.0);
+    scene.add(modelGroup);
+    modelGroup.add(primaryMesh);
 
     const outerMaterial = new THREE.MeshBasicMaterial({
       color: 0xff2a74,
@@ -797,7 +882,7 @@
       blending: THREE.AdditiveBlending
     });
     const outerMesh = new THREE.Mesh(activeGeometry, outerMaterial);
-    scene.add(outerMesh);
+    modelGroup.add(outerMesh);
 
     let introActive = true;
     let introProgress = 0;
@@ -1309,9 +1394,16 @@
       let isDraggingOrbit = false;
       let prevOrbitMouseX = 0;
       let lastInteractionTime = Date.now();
-      const radiusX = 410;
-      const radiusZ = 200;
-      const radiusY = 100;
+
+      function getOrbitRadii() {
+        if (window.innerWidth <= 600) {
+          return { rx: 165, rz: 75, ry: 85 };
+        }
+        return { rx: 410, rz: 200, ry: 100 };
+      }
+      let radiusX = getOrbitRadii().rx;
+      let radiusZ = getOrbitRadii().rz;
+      let radiusY = getOrbitRadii().ry;
 
       const container = document.querySelector('.orbit-container');
       const items = document.querySelectorAll('.orbit-item');
@@ -1382,7 +1474,13 @@
       }
 
       function updateOrbit() {
-        if (window.innerWidth > 768 && items.length > 0) {
+        const isMobile = window.innerWidth <= 600;
+        const radii = getOrbitRadii();
+        radiusX = radii.rx;
+        radiusZ = radii.rz;
+        radiusY = radii.ry;
+
+        if (items.length > 0) {
           if (!isHovered && !isDraggingOrbit) {
             if (!transitioning) {
               if (Date.now() - lastStepTime > 3000) {
@@ -1441,6 +1539,12 @@
         camera.updateProjectionMatrix();
         renderer.setSize(containerW, containerH);
       }
+
+      // Reposition the nav indicator when crossing the mobile/desktop breakpoint
+      const activeLi = document.querySelector('.sidebar ul li.active');
+      if (activeLi) {
+        moveIndicator(activeLi);
+      }
     });
 
     // --- Categorical Chart Logic (Serves as Filters) ---
@@ -1493,33 +1597,84 @@
       // Build Segmented Control buttons dynamically
       const segmentedControl = document.getElementById('portfolio-segmented-control');
       if (segmentedControl) {
-        let segHtml = `<button class="filter-btn active" data-category="ALL">ALL</button>`;
-        sortedCategories.forEach(([category]) => {
-          segHtml += `<button class="filter-btn" data-category="${category}">${category}</button>`;
-        });
-        segmentedControl.innerHTML = segHtml;
+        const isMobile = window.innerWidth <= 600;
 
-        // Click filtering for segmented control
-        const segButtons = segmentedControl.querySelectorAll('.filter-btn');
-        segButtons.forEach(btn => {
-          btn.addEventListener('click', () => {
-            segButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const cat = btn.getAttribute('data-category');
-
-            // Synchronize with the category chart
-            const rows = container.querySelectorAll('.chart-row');
-            rows.forEach(r => {
-              r.classList.remove('active');
-              if (r.getAttribute('data-category') === cat) {
-                r.classList.add('active');
-              }
-            });
-
-            initPortfolioSlider(cat);
+        if (isMobile) {
+          // Mobile: custom dropdown matching the red theme (native <select> can't be styled)
+          let ddHtml = `<div class="portfolio-custom-dropdown" id="portfolio-custom-dropdown">`;
+          ddHtml += `<button class="portfolio-custom-dropdown-toggle" type="button"><span class="pcd-label">ALL</span><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>`;
+          ddHtml += `<ul class="portfolio-custom-dropdown-menu">`;
+          ddHtml += `<li class="active" data-category="ALL">ALL</li>`;
+          sortedCategories.forEach(([category]) => {
+            ddHtml += `<li data-category="${category}">${category}</li>`;
           });
-        });
+          ddHtml += `</ul></div>`;
+          segmentedControl.innerHTML = ddHtml;
+
+          const dd = document.getElementById('portfolio-custom-dropdown');
+          const ddToggle = dd.querySelector('.portfolio-custom-dropdown-toggle');
+          const ddLabel = dd.querySelector('.pcd-label');
+          const ddItems = dd.querySelectorAll('.portfolio-custom-dropdown-menu li');
+
+          ddToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dd.classList.toggle('open');
+          });
+
+          ddItems.forEach(item => {
+            item.addEventListener('click', () => {
+              ddItems.forEach(i => i.classList.remove('active'));
+              item.classList.add('active');
+              ddLabel.textContent = item.textContent;
+              dd.classList.remove('open');
+
+              const cat = item.getAttribute('data-category');
+
+              // Synchronize with the category chart
+              const rows = container.querySelectorAll('.chart-row');
+              rows.forEach(r => {
+                r.classList.remove('active');
+                if (r.getAttribute('data-category') === cat) {
+                  r.classList.add('active');
+                }
+              });
+
+              initPortfolioSlider(cat);
+            });
+          });
+
+          // Close dropdown when clicking outside
+          document.addEventListener('click', () => dd.classList.remove('open'));
+        } else {
+          // Desktop: horizontal buttons
+          let segHtml = `<button class="filter-btn active" data-category="ALL">ALL</button>`;
+          sortedCategories.forEach(([category]) => {
+            segHtml += `<button class="filter-btn" data-category="${category}">${category}</button>`;
+          });
+          segmentedControl.innerHTML = segHtml;
+
+          // Click filtering for segmented control
+          const segButtons = segmentedControl.querySelectorAll('.filter-btn');
+          segButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+              segButtons.forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+
+              const cat = btn.getAttribute('data-category');
+
+              // Synchronize with the category chart
+              const rows = container.querySelectorAll('.chart-row');
+              rows.forEach(r => {
+                r.classList.remove('active');
+                if (r.getAttribute('data-category') === cat) {
+                  r.classList.add('active');
+                }
+              });
+
+              initPortfolioSlider(cat);
+            });
+          });
+        }
       }
 
       // Add click filtering listeners with toggle/deactivate behavior and segmented control synchronization
@@ -1538,13 +1693,26 @@
             initPortfolioSlider(targetCat);
           }
 
-          // Synchronize segmented control buttons
+          // Synchronize segmented control buttons / dropdown
           if (segmentedControl) {
             const segButtons = segmentedControl.querySelectorAll('.filter-btn');
             segButtons.forEach(btn => {
               btn.classList.remove('active');
               if (btn.getAttribute('data-category') === targetCat) {
                 btn.classList.add('active');
+              }
+            });
+            const selectEl = document.getElementById('portfolio-filter-select');
+            if (selectEl) selectEl.value = targetCat;
+
+            // Sync custom mobile dropdown
+            const ddItems = segmentedControl.querySelectorAll('.portfolio-custom-dropdown-menu li');
+            const ddLabel = segmentedControl.querySelector('.pcd-label');
+            ddItems.forEach(i => {
+              i.classList.remove('active');
+              if (i.getAttribute('data-category') === targetCat) {
+                i.classList.add('active');
+                if (ddLabel) ddLabel.textContent = i.textContent;
               }
             });
           }
@@ -1916,38 +2084,33 @@
       if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
           e.preventDefault();
-
-          if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY' || EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID' || EMAILJS_TEMPLATE_ID === 'YOUR_TEMPLATE_ID') {
-            // Fallback demo mode if keys are not configured yet
-            if (btnText) btnText.textContent = 'SENDING TRANSMISSION...';
-            if (submitBtn) submitBtn.disabled = true;
-
-            setTimeout(() => {
-              showToast('TEST MODE: Comms established, but EmailJS credentials are not configured yet. Set keys in index.html to enable direct emailing!', false);
-              if (btnText) btnText.textContent = 'TRANSMIT SECURELY';
-              if (submitBtn) submitBtn.disabled = false;
-              contactForm.reset();
-            }, 1500);
-            return;
-          }
-
-          if (btnText) btnText.textContent = 'SENDING TRANSMISSION...';
-          if (submitBtn) submitBtn.disabled = true;
-
-          emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm)
-            .then(() => {
-              showToast('TRANSMISSION SUCCESSFUL: Message sent successfully!', true);
-              if (btnText) btnText.textContent = 'TRANSMIT SECURELY';
-              if (submitBtn) submitBtn.disabled = false;
-              contactForm.reset();
-            })
-            .catch((error) => {
-              console.error('EmailJS Error:', error);
-              showToast('TRANSMISSION FAILED: Could not deliver signal. Please try again.', false);
-              if (btnText) btnText.textContent = 'TRANSMIT SECURELY';
-              if (submitBtn) submitBtn.disabled = false;
-            });
+          openContactNotificationModal();
         });
+      }
+    });
+
+    // --- Contact Feature Notification Modal ---
+    function openContactNotificationModal() {
+      const modal = document.getElementById('contact-notification-modal');
+      if (!modal) return;
+      modal.classList.add('active');
+    }
+
+    function closeContactNotificationModal() {
+      const modal = document.getElementById('contact-notification-modal');
+      if (!modal) return;
+      modal.classList.remove('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const notifModal = document.getElementById('contact-notification-modal');
+      if (notifModal) {
+        const backdrop = document.getElementById('contact-notification-backdrop');
+        const closeBtn = document.getElementById('contact-notification-close');
+        const okBtn = document.getElementById('contact-notification-ok');
+        if (backdrop) backdrop.addEventListener('click', closeContactNotificationModal);
+        if (closeBtn) closeBtn.addEventListener('click', closeContactNotificationModal);
+        if (okBtn) okBtn.addEventListener('click', closeContactNotificationModal);
       }
     });
 
@@ -2014,9 +2177,11 @@
   <div class="project-modal" id="project-modal">
     <div class="project-modal-backdrop" id="project-modal-backdrop"></div>
     <div class="project-modal-content">
-      <button class="project-modal-close" id="project-modal-close">
-        <i data-feather="x"></i>
-      </button>
+      <div class="project-modal-header">
+        <button class="project-modal-close" id="project-modal-close">
+          <i data-feather="x"></i>
+        </button>
+      </div>
 
       <div class="project-modal-body">
         <div class="project-modal-gallery" id="project-modal-gallery">
