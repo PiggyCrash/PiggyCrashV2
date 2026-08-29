@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dating Sim Projects</title>
+  <title>dgashandy | Daffa Gashandy</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="home.css">
   <!-- Include Three.js via CDN -->
@@ -548,7 +548,7 @@
           const h = canvasContainer.clientHeight;
           if (typeof camera !== 'undefined' && w > 0 && h > 0) {
             camera.aspect = w / h;
-            camera.position.z = window.innerWidth <= 1023 ? 100 : 58;
+            camera.position.z = window.innerWidth <= 1023 ? 100 : window.innerWidth <= 1367 ? 72 : 58;
             camera.updateProjectionMatrix();
             renderer.setSize(w, h);
           }
@@ -871,7 +871,7 @@
     // Wrap meshes in a group so we can uniformly shrink the intro model on mobile
     const modelGroup = new THREE.Group();
     const _w = window.innerWidth;
-    modelGroup.scale.setScalar(_w <= 600 ? 0.72 : _w >= 1024 ? 1.0 : 0.72 + (_w - 641) / 382 * 0.18);
+    modelGroup.scale.setScalar(_w <= 600 ? 0.72 : _w >= 1368 ? 1.0 : _w <= 1023 ? (0.72 + (_w - 641) / 382 * 0.18) : (0.82 + (_w - 1024) / 343 * 0.18));
     scene.add(modelGroup);
     modelGroup.add(primaryMesh);
 
@@ -1322,12 +1322,21 @@
       const canvas = document.getElementById('orbitCenterCanvas');
       if (!canvas) return;
 
+      function getOrbitCanvasSize() {
+        const w = window.innerWidth;
+        if (w <= 600) return 200;
+        if (w <= 1023) return 240;
+        if (w <= 1367) return 360;
+        return 720;
+      }
+
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
       camera.position.z = 8;
 
       const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-      renderer.setSize(720, 720);
+      const orbitCanvasSize = getOrbitCanvasSize();
+      renderer.setSize(orbitCanvasSize, orbitCanvasSize);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
       const globeGroup = new THREE.Group();
@@ -1402,6 +1411,8 @@
           return { rx: 165, rz: 75, ry: 85 };
         } else if (w <= 1023) {
           return { rx: 210, rz: 90, ry: 105 };
+        } else if (w <= 1367) {
+          return { rx: 280, rz: 140, ry: 95 };
         }
         return { rx: 410, rz: 200, ry: 100 };
       }
@@ -1530,6 +1541,17 @@
         requestAnimationFrame(updateOrbit);
       }
       updateOrbit();
+
+      // Resize orbit globe canvas when viewport changes
+      window.addEventListener('resize', () => {
+        const newSize = getOrbitCanvasSize();
+        const currentSize = canvas.width || 720;
+        if (newSize !== currentSize) {
+          renderer.setSize(newSize, newSize);
+          camera.aspect = 1;
+          camera.updateProjectionMatrix();
+        }
+      });
     }
 
     initExperienceOrbit();

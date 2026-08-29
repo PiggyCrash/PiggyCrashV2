@@ -1159,14 +1159,9 @@ html {
 
   .orbit-center {
     position: absolute;
-    width: 200px !important;
-    height: 200px !important;
+    width: 200px;
+    height: 200px;
     margin: 0;
-  }
-
-  #orbitCenterCanvas {
-    width: 200px !important;
-    height: 200px !important;
   }
 
   .orbit-item {
@@ -1237,7 +1232,7 @@ html {
   z-index: 20;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .experience-content-wrapper {
     flex-direction: column;
   }
@@ -2407,7 +2402,7 @@ html {
   stroke: #ff0055;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .projects-dashboard-grid {
     flex-direction: column;
     height: auto;
@@ -2713,7 +2708,7 @@ textarea.cyber-input {
 }
 
 /* Responsive adjustment for contact page */
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .contact-container {
     flex-direction: column;
     gap: 2rem;
@@ -3026,6 +3021,170 @@ textarea.cyber-input {
 }
 
 /* ==================================================================
+   TABLET LANDSCAPE (1024px - 1366px) - Scaled-down desktop layout
+   Same positions & styling as desktop, elements shrunk to fit
+   ================================================================== */
+@media (min-width: 1024px) and (max-width: 1367px) {
+  /* ---- Page card: reduce padding ---- */
+  .page-card {
+    padding: 2.5rem;
+  }
+
+  .page-card h2.card-title {
+    font-size: 2rem;
+  }
+
+  /* ---- Home: narrower left column so 3D model doesn't overlap ---- */
+  .home-card-left {
+    width: 40% !important;
+    max-width: 360px !important;
+  }
+
+  .home-card-right {
+    width: 46% !important;
+  }
+
+  .home-title-main {
+    font-size: 2rem !important;
+  }
+
+  .home-subtitle-welcome {
+    font-size: 0.85rem !important;
+  }
+
+  .home-subtitle-dev {
+    font-size: 0.9rem !important;
+  }
+
+  .home-subtitle-exp {
+    font-size: 0.75rem !important;
+  }
+
+  .info-cards-row {
+    max-width: 340px !important;
+  }
+
+  .info-card {
+    padding: 0.9rem;
+    max-height: 140px;
+  }
+
+  .info-card h4 {
+    font-size: 0.85rem;
+  }
+
+  .info-card p {
+    font-size: 0.75rem;
+  }
+
+  /* Smaller buttons to fit the narrower left column */
+  .btn-box {
+    width: 105px;
+    height: 38px;
+  }
+
+  .home-buttons {
+    gap: 0.5rem;
+    width: calc(105px * 3 + 0.5rem * 2) !important;
+  }
+
+  .cv-download-btn {
+    width: calc(105px * 3 + 0.5rem * 2) !important;
+  }
+
+  /* ---- Experience: smaller orbit + tighter gap ---- */
+  .experience-content-wrapper {
+    gap: 2rem;
+  }
+
+  .orbit-container {
+    height: 360px;
+  }
+
+  .orbit-center {
+    width: 360px;
+    height: 360px;
+  }
+
+  .orbit-item {
+    width: 210px;
+    max-width: 230px;
+    height: 78px;
+    padding: 0.6rem;
+    gap: 0.6rem;
+  }
+
+  .exp-stat-with-total {
+    font-size: 1rem !important;
+  }
+
+  .exp-stat-number {
+    font-size: 3.5rem !important;
+  }
+
+  .exp-stat-years {
+    font-size: 1.4rem !important;
+  }
+
+  .exp-stat-from {
+    font-size: 1rem !important;
+  }
+
+  .exp-stat-range {
+    font-size: 1rem !important;
+  }
+
+  /* ---- Projects: smaller dashboard and cards ---- */
+  .projects-dashboard-grid {
+    height: 300px;
+  }
+
+  .dashboard-col-left {
+    padding: 0.8rem;
+  }
+
+  .dashboard-col-right {
+    padding: 0.8rem;
+    gap: 0.8rem;
+  }
+
+  .count-box {
+    font-size: 3.5rem;
+  }
+
+  .label-box-bottom {
+    font-size: 1.6rem;
+  }
+
+  .portfolio-card {
+    flex: 0 0 340px;
+    height: 190px;
+  }
+
+  .portfolio-card-title {
+    font-size: 1rem;
+  }
+
+  .portfolio-card-desc {
+    font-size: 0.7rem;
+  }
+
+  /* ---- Contact: tighter gap ---- */
+  .contact-container {
+    gap: 1.5rem;
+  }
+
+  .cyber-form {
+    padding: 1.2rem;
+    gap: 1rem;
+  }
+
+  .social-grid {
+    gap: 0.7rem;
+  }
+}
+
+/* ==================================================================
    SMALL WINDOW (601px - 640px) - Left sidebar (smaller) + gaps
    ================================================================== */
 @media (min-width: 601px) and (max-width: 640px) {
@@ -3098,10 +3257,9 @@ textarea.cyber-input {
     height: 360px !important;
   }
 
-  .orbit-center,
-  #orbitCenterCanvas {
-    width: 240px !important;
-    height: 240px !important;
+  .orbit-center {
+    width: 240px;
+    height: 240px;
   }
 
   .orbit-item {
