@@ -161,20 +161,20 @@
     <script>
         const canvas = document.getElementById('mainCanvas');
         const ctx = canvas.getContext('2d');
-        
+
         const lidSlider = document.getElementById('lidSlider');
         const fovSlider = document.getElementById('fovSlider');
         const autoCheck = document.getElementById('autoCheck');
 
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
-        
+
         let yaw = 0.65;
         let pitch = 0.38;
         let lidAngle = (100 * Math.PI) / 180;
-        let cameraDistance = 4.7; 
+        let cameraDistance = 4.7;
         let fov = 550;
-        
+
         let isDragging = false;
         let prevMouse = { x: 0, y: 0 };
         let waveTime = 0;
@@ -226,16 +226,16 @@
             ctx.stroke();
         }
 
-        // Dynamic depth cue styling configured for dominant red/pink tones
+
         function drawDepthCueLine(p1, p2) {
             let avgDepth = (p1.zDepth + p2.zDepth) / 2;
-            
+
             let minD = cameraDistance - 1.5;
             let maxD = cameraDistance + 1.5;
             let t = (avgDepth - minD) / (maxD - minD);
             t = Math.max(0, Math.min(1, t));
 
-            // Reversed mapping: Vibrant pink/red close up, shifting to deep purple/cyan far away
+
             let r = Math.round(255 - t * 255);
             let g = Math.round(0 + t * 180);
             let b = Math.round(90 + t * 165);
@@ -249,16 +249,16 @@
             ctx.stroke();
         }
 
-        // --- PHYSICAL GEOMETRIC DIMENSIONS ---
+
         const baseW = 1.2;
-        const baseD = 0.85; 
-        const baseH = 0.14;   
+        const baseD = 0.85;
+        const baseH = 0.14;
 
         const screenW = 1.2;
-        const screenH = 1.70; 
-        const screenT = 0.12; 
+        const screenH = 1.70;
+        const screenT = 0.12;
 
-        const hY = -baseH; 
+        const hY = -baseH;
         const hZ = -baseD;
 
         function transformLid(lx, ly, lz) {
@@ -277,9 +277,9 @@
             const chassisColor = 'rgba(255, 51, 102, 0.8)';
             const chassisMuted = 'rgba(180, 0, 60, 0.25)';
 
-            // -----------------------------------------------------------------
-            // 1. SOLID EXTRUDED CHASSIS BASE
-            // -----------------------------------------------------------------
+
+
+
             let bTLF = project(-baseW, -baseH,  baseD);
             let bTRF = project( baseW, -baseH,  baseD);
             let bTRB = project( baseW, -baseH, -baseD);
@@ -290,25 +290,25 @@
             let bBRB = project( baseW, 0, -baseD);
             let bBLB = project(-baseW, 0, -baseD);
 
-            // Draw Top Plate Perimeter
+
             drawUniformLine(bTLF, bTRF, chassisColor, 1.5);
             drawUniformLine(bTRF, bTRB, chassisColor, 1);
             drawUniformLine(bTRB, bTLB, chassisColor, 1);
             drawUniformLine(bTLB, bTLF, chassisColor, 1);
 
-            // Draw Bottom Face Perimeter
+
             drawUniformLine(bBLF, bBRF, chassisMuted, 1);
             drawUniformLine(bBRF, bBRB, chassisMuted, 1);
             drawUniformLine(bBRB, bBLB, chassisMuted, 1);
             drawUniformLine(bBLB, bBLF, chassisMuted, 1);
 
-            // Side Wall Columns
+
             drawUniformLine(bTLF, bBLF, chassisMuted, 1);
             drawUniformLine(bTRF, bBRF, chassisMuted, 1);
             drawUniformLine(bTRB, bBRB, chassisMuted, 1);
             drawUniformLine(bTLB, bBLB, chassisMuted, 1);
 
-            // Chassis Structural Cross Bracing
+
             drawUniformLine(bTLF, bBRF, chassisMuted, 0.5);
             drawUniformLine(bTRF, bBLF, chassisMuted, 0.5);
             drawUniformLine(bTLF, bBLB, chassisMuted, 0.5);
@@ -316,13 +316,13 @@
             drawUniformLine(bTRF, bBRB, chassisMuted, 0.5);
             drawUniformLine(bTRB, bBRF, chassisMuted, 0.5);
 
-            // Trackpad Outline Frame
+
             let tp = [project(-0.22, -baseH, 0.70), project(0.22, -baseH, 0.70), project(0.22, -baseH, 0.45), project(-0.22, -baseH, 0.45)];
             for(let i=0; i<4; i++) drawUniformLine(tp[i], tp[(i+1)%4], chassisMuted, 1);
 
-            // -----------------------------------------------------------------
-            // 2. KEYBOARD MESH ACCENT WITH SECONDARY DEPTH COLOR
-            // -----------------------------------------------------------------
+
+
+
             let keyRows = [
                 { s: -0.65, e: -0.53 }, { s: -0.48, e: -0.36 },
                 { s: -0.31, e: -0.19 }, { s: -0.14, e:  0.03 },
@@ -333,16 +333,16 @@
                 let tFR = project( 0.98, -baseH - 0.025, row.e);
                 let tBR = project( 0.98, -baseH - 0.025, row.s);
                 let tBL = project(-0.98, -baseH - 0.025, row.s);
-                
+
                 drawDepthCueLine(tFL, tFR);
                 drawDepthCueLine(tFR, tBR);
                 drawDepthCueLine(tBR, tBL);
                 drawDepthCueLine(tBL, tFL);
             });
 
-            // -----------------------------------------------------------------
-            // 3. MONITOR SHELL STRUCTURE
-            // -----------------------------------------------------------------
+
+
+
             let lTLF = transformLid(-screenW, screenH, 0);
             let lTRF = transformLid( screenW, screenH, 0);
             let lTRB = transformLid( screenW, 0,       0);
@@ -353,35 +353,35 @@
             let lTRB_B = transformLid( screenW, 0,       -screenT);
             let lTLB_B = transformLid(-screenW, 0,       -screenT);
 
-            // Front Profile Panel Wires
+
             drawUniformLine(lTLF, lTRF, chassisColor, 1.5);
             drawUniformLine(lTRF, lTRB, chassisColor, 1.5);
             drawUniformLine(lTRB, lTLB, chassisColor, 1.5);
             drawUniformLine(lTLB, lTLF, chassisColor, 1.5);
 
-            // Rear Profile Housing Wires
+
             drawUniformLine(lTLF_B, lTRF_B, chassisMuted, 1);
             drawUniformLine(lTRF_B, lTRB_B, chassisMuted, 1);
             drawUniformLine(lTRB_B, lTLB_B, chassisMuted, 1);
             drawUniformLine(lTLB_B, lTLF_B, chassisMuted, 1);
 
-            // Structural Corner Extrusion Struts
+
             drawUniformLine(lTLF, lTLF_B, chassisMuted, 1);
             drawUniformLine(lTRF, lTRF_B, chassisMuted, 1);
             drawUniformLine(lTRB, lTRB_B, chassisMuted, 1);
             drawUniformLine(lTLB, lTLB_B, chassisMuted, 1);
 
-            // Deep Wall Cross Lattice Struts
-            drawUniformLine(lTLF, lTRF_B, chassisMuted, 0.5); 
+
+            drawUniformLine(lTLF, lTRF_B, chassisMuted, 0.5);
             drawUniformLine(lTRF, lTLF_B, chassisMuted, 0.5);
-            drawUniformLine(lTLF, lTLB_B, chassisMuted, 0.5); 
+            drawUniformLine(lTLF, lTLB_B, chassisMuted, 0.5);
             drawUniformLine(lTLB, lTLF_B, chassisMuted, 0.5);
-            drawUniformLine(lTRF, lTRB_B, chassisMuted, 0.5); 
+            drawUniformLine(lTRF, lTRB_B, chassisMuted, 0.5);
             drawUniformLine(lTRB, lTRF_B, chassisMuted, 0.5);
 
-            // Inner Active Display Frame Bezel Limits
+
             let bzInsetX = 0.06;
-            let bzInsetY = 0.09; 
+            let bzInsetY = 0.09;
             let bzActiveW = screenW - bzInsetX;
             let bzActiveH = screenH - bzInsetY;
 
@@ -395,9 +395,9 @@
             drawUniformLine(bzBR, bzBL, chassisColor, 1);
             drawUniformLine(bzBL, bzTL, chassisColor, 1);
 
-            // -----------------------------------------------------------------
-            // 4. SCREEN WINDOW INTERIOR MESH
-            // -----------------------------------------------------------------
+
+
+
             let steps = 14;
             let gridPoints = [];
 
@@ -415,7 +415,7 @@
                     let zDisplacement = 0.22 * Math.sin(wX + waveTime) * Math.cos(wY - waveTime * 0.7);
 
                     if (r === 0 || r === steps || c === 0 || c === steps) {
-                        zDisplacement = 0; 
+                        zDisplacement = 0;
                     }
 
                     gridPoints[r][c] = transformLid(locX, locY, zDisplacement);

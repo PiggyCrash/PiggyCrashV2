@@ -41,7 +41,7 @@
     <script>
         const container = document.getElementById('canvas-container');
 
-        // 1. Scene & Camera Setup
+
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 58;
@@ -51,18 +51,18 @@
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         container.appendChild(renderer.domElement);
 
-        // 2. High-Poly Base Geometry (Subdivision Level 5 = 10,242 vertices)
+
         const baseGeometry = new THREE.IcosahedronGeometry(12, 5);
         const vertexCount = baseGeometry.attributes.position.count;
 
-        // Dynamic generation architecture for 6 unique states + 1 initial chaotic state
+
         const shapes = {};
         for (let s = 0; s < 6; s++) {
             shapes[s] = new Float32Array(vertexCount * 3);
         }
         const chaosPositions = new Float32Array(vertexCount * 3);
 
-        // Precalculate Alternative Complex Vector Frameworks
+
         const posAttr = baseGeometry.attributes.position;
         for (let i = 0; i < vertexCount; i++) {
             const i3 = i * 3;
@@ -75,46 +75,46 @@
             const theta = Math.atan2(y, x);
             const phi = Math.acos(z / r);
 
-            // --- INTRO STATE: Shattered Screen-Covering Chaos ---
+
             const explodeDistance = 75 + Math.random() * 95;
             chaosPositions[i3] = (x / r) * explodeDistance;
             chaosPositions[i3 + 1] = (y / r) * explodeDistance;
             chaosPositions[i3 + 2] = (z / r) * explodeDistance;
 
-            // --- SHAPE 0: Hyperbolic Super-Toroid ---
+
             const r0 = 13 + Math.sin(theta * 6) * Math.cos(phi * 6) * 5.5;
             shapes[0][i3] = (x / r) * r0;
             shapes[0][i3 + 1] = (y / r) * r0;
             shapes[0][i3 + 2] = (z / r) * r0;
 
-            // --- SHAPE 1: Asymmetric Cleaved Geode ---
+
             const geodeMap = Math.sin(theta * 5) * Math.cos(phi * 5);
             const r1 = 12 + (geodeMap > 0.15 ? 7 : (geodeMap < -0.15 ? -5.5 : 0));
             shapes[1][i3] = (x / r) * r1;
             shapes[1][i3 + 1] = (y / r) * r1;
             shapes[1][i3 + 2] = (z / r) * r1;
 
-            // --- SHAPE 2: Bio-Mechanical Spindle (Twisted Core) ---
+
             const spindleTwist = y * 0.35;
             const r2 = 8.5 + Math.sin(phi * 10) * 4;
             shapes[2][i3] = Math.cos(theta + spindleTwist) * r2;
             shapes[2][i3 + 1] = y * 1.35;
             shapes[2][i3 + 2] = Math.sin(theta + spindleTwist) * r2;
 
-            // --- SHAPE 3: Fractal Asteroid Crust ---
+
             const r3 = 11.5 + Math.sin(x * 0.6) * 3.5 + Math.cos(y * 0.6) * 3.5 + Math.sin(z * 0.6) * 3.5;
             shapes[3][i3] = (x / r) * r3;
             shapes[3][i3 + 1] = (y / r) * r3;
             shapes[3][i3 + 2] = (z / r) * r3;
 
-            // --- SHAPE 4: Quantum Ribbon Loop (Infinity Vector Mesh) ---
+
             const loopTime = theta * 2;
             const r4 = 12 + Math.sin(phi * 4) * 6.5;
             shapes[4][i3] = Math.cos(loopTime) * r4;
             shapes[4][i3 + 1] = Math.sin(loopTime) * Math.cos(phi) * 9.5;
             shapes[4][i3 + 2] = Math.sin(loopTime) * Math.sin(phi) * r4;
 
-            // --- SHAPE 5: Quantum Gear Lattice (Shifted from Shape 6) ---
+
             const cogsCount = 12;
             const innerEquatorZone = Math.abs(y) < 4.8;
             const r5 = innerEquatorZone ? (14.5 + Math.sign(Math.sin(theta * cogsCount)) * 3.8) : (8.5 - Math.abs(y) * 0.45);
@@ -123,7 +123,7 @@
             shapes[5][i3 + 2] = (z / r) * r5;
         }
 
-        // Initialize spatial buffer arrays exactly to the exploded layout bounds
+
         const activeGeometry = baseGeometry.clone();
         const activePositions = activeGeometry.attributes.position.array;
         for (let i = 0; i < activePositions.length; i++) {
@@ -131,9 +131,9 @@
         }
         activeGeometry.attributes.position.needsUpdate = true;
 
-        // 3. Materials System Structure (Dual Layer Configuration)
+
         const primaryMaterial = new THREE.MeshBasicMaterial({
-            color: 0x00f0ff, // Neon Core Cyan
+            color: 0x00f0ff,
             wireframe: true,
             transparent: true,
             opacity: 0.32,
@@ -143,7 +143,7 @@
         scene.add(primaryMesh);
 
         const outerMaterial = new THREE.MeshBasicMaterial({
-            color: 0xff2a74, // High Contrast Cyber Magenta
+            color: 0xff2a74,
             wireframe: true,
             transparent: true,
             opacity: 0.11,
@@ -152,11 +152,11 @@
         const outerMesh = new THREE.Mesh(activeGeometry, outerMaterial);
         scene.add(outerMesh);
 
-        // 4. Lifespan, Intro Timelines & Interpolation Parameters
+
         let introActive = true;
         let introProgress = 0;
 
-        // TUNED PARAMETER: Reduced from 0.0035 to 0.0009 for a much longer, massive gathering intro sequence
+
         const introSpeed = 0.0009;
 
         let currentShapeIdx = 0;
@@ -167,7 +167,7 @@
         let holdTimer = 0;
         const holdDurationFrames = 230;
 
-        // Parallax Vector Tracking Coordinates
+
         let mouseX = 0, mouseY = 0;
         window.addEventListener('mousemove', (e) => {
             mouseX = (e.clientX / window.innerWidth) * 2 - 1;
@@ -178,14 +178,14 @@
             return (1 - amt) * start + amt * end;
         }
 
-        // 5. Core Operational Frame Execution Loop
+
         const animate = () => {
             requestAnimationFrame(animate);
 
             const positions = activeGeometry.attributes.position.array;
 
             if (introActive) {
-                // --- PHASE 1: Fullscreen Cluster Convergence & Scale-Down ---
+
                 introProgress += introSpeed;
 
                 if (introProgress >= 1) {
@@ -194,22 +194,22 @@
                     holdTimer = 0;
                 }
 
-                // Easing curve tuned to feel weighty and gradual over a longer timeline
+
                 let easeIntro = 1 - Math.pow(1 - introProgress, 3);
 
-                // Animate master mesh matrices from 4.2x screenspace scale factor down to crisp 1.0x baseline position
+
                 let currentScale = lerp(4.2, 1.0, easeIntro);
                 primaryMesh.scale.set(currentScale, currentScale, currentScale);
                 outerMesh.scale.set(currentScale * 1.032, currentScale * 1.032, currentScale * 1.032);
 
-                // Morph vectors smoothly out of unformed space scatter positions into Shape 0
+
                 for (let i = 0; i < positions.length; i++) {
                     positions[i] = lerp(chaosPositions[i], shapes[0][i], easeIntro);
                 }
                 activeGeometry.attributes.position.needsUpdate = true;
 
             } else {
-                // --- PHASE 2: Cyclical 6-Form Wireframe Morphing Loop ---
+
                 if (holdTimer < holdDurationFrames) {
                     holdTimer++;
                 } else {
@@ -232,14 +232,14 @@
 
                     if (transitionProgress >= 1) {
                         currentShapeIdx = nextShapeIdx;
-                        nextShapeIdx = (nextShapeIdx + 1) % 6; // Cycled smoothly down to 6 shapes total
+                        nextShapeIdx = (nextShapeIdx + 1) % 6;
                         transitionProgress = 0;
                         holdTimer = 0;
                     }
                 }
             }
 
-            // Continuous complex multi-axis geometric rotation
+
             primaryMesh.rotation.y += 0.0014;
             primaryMesh.rotation.x += 0.0005;
             primaryMesh.rotation.z += 0.0003;
@@ -248,7 +248,7 @@
             outerMesh.rotation.x -= 0.0002;
             outerMesh.rotation.z -= 0.0001;
 
-            // Interactive Parallax Displacement Response
+
             primaryMesh.rotation.y += (mouseX * 0.18 - primaryMesh.rotation.y) * 0.025;
             primaryMesh.rotation.x += (-mouseY * 0.18 - primaryMesh.rotation.x) * 0.025;
             outerMesh.rotation.y += (mouseX * 0.18 - outerMesh.rotation.y) * 0.025;
@@ -259,7 +259,7 @@
 
         animate();
 
-        // 6. Viewport Vector Boundaries Adaptation Handler
+
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();

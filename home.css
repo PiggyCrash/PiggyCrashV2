@@ -1,6 +1,6 @@
-/* Custom styles for Home Section */
 
-/* Start Section Styles */
+
+
 .start-section {
   position: absolute;
   left: 0;
@@ -165,7 +165,7 @@
   transform: translateY(-2px);
 }
 
-/* Desktop: download resume button matches the width of the 3 buttons row */
+
 @media (min-width: 601px) {
   .cv-download-btn {
     display: flex;
@@ -242,7 +242,7 @@
   }
 }
 
-/* ---- Mobile/small view (<= 1023px) ---- */
+
 @media (max-width: 1023px) {
   .home-page-card {
     padding: 0.5rem 1.1rem 1.25rem;
@@ -250,7 +250,7 @@
     justify-content: flex-start;
   }
 
-  /* Center all text from "WELCOME TO" down to "KNOW ME FURTHER" */
+
   .home-card-left {
     gap: 1.6rem;
     align-items: center;
@@ -338,8 +338,7 @@
     height: 36px;
   }
 
-  /* 3D laptop model appears on top, above the text/buttons.
-     Laptop is first in the DOM on mobile, so no order hack is needed. */
+
   .home-card-right {
     height: 240px;
     top: auto;
@@ -347,7 +346,7 @@
     margin-bottom: 0.75rem;
   }
 
-  /* Clear gap so "WELCOME TO" sits clearly below the 3D model */
+
   .home-card-left {
     margin-top: 0.5rem;
   }

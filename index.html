@@ -7,22 +7,22 @@
   <title>dgashandy | Daffa Gashandy</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="home.css">
-  <!-- Include Three.js via CDN -->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-  <!-- Load local portfolio data to prevent local file protocol CORS errors -->
+
   <script src="portfolio.js"></script>
-  <!-- EmailJS Browser SDK -->
+
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 
 <body>
 
-  <!-- Custom Cursor -->
+
   <div class="custom-cursor dot" id="custom-cursor-dot"></div>
   <div class="custom-cursor ring" id="custom-cursor-ring"></div>
 
-  <!-- Left Sidebar Navigation -->
+
   <nav class="sidebar fade-in delay-200">
     <div class="indicator"></div>
     <ul>
@@ -50,13 +50,13 @@
   </nav>
 
 
-  <!-- Scrollable Content Overlay -->
+
   <div class="content-overlay">
 
-    <!-- Container for Portfolio Content -->
+
     <div class="portfolio-container">
 
-      <!-- Section 0: Start -->
+
       <section class="page-section active start-section" data-index="0">
         <div id="canvas-container"></div>
         <div class="start-content-container">
@@ -65,7 +65,7 @@
         </div>
       </section>
 
-      <!-- Section 1: Home -->
+
       <section class="page-section" data-index="1">
         <div class="page-card home-page-card">
           <div class="home-card-right">
@@ -73,7 +73,7 @@
           </div>
 
           <div class="home-card-left">
-            <!-- Top Left Title Block -->
+
             <div class="home-title-block">
               <h2 class="subtitle-box home-subtitle-welcome fly-in-item fly-in-delay-1">
                 Welcome to</h2>
@@ -87,13 +87,13 @@
                 3+ years of experience delivering scalable end-to-end apps.</h3>
             </div>
 
-            <!-- Subtitle for Cards Section -->
+
             <h3 class="subtitle-box font-valorant know-me-further fly-in-item fly-in-delay-5">
               KNOW ME FURTHER</h3>
 
-            <!-- Buttons & Resume Group -->
+
             <div style="display: flex; flex-direction: column; gap: 1.5rem; z-index: 2; position: relative;">
-              <!-- Text Layer (Foreground) -->
+
               <div class="home-layout home-layout-container fly-in-item fly-in-delay-6" style="margin-bottom: 0;">
                 <div class="home-left">
                   <div class="home-buttons home-buttons-container">
@@ -104,7 +104,7 @@
                 </div>
               </div>
 
-              <!-- Resume Download Button -->
+
               <div class="fly-in-item fly-in-delay-7">
                 <a href="CV of Mohammad Daffa Gashandy 3.1.pdf" download class="cv-download-btn font-valorant"
                   style="padding: 0.75rem 1.5rem; font-size: 0.8rem; margin-top: 0;">
@@ -114,14 +114,14 @@
             </div>
           </div>
 
-          <!-- 3D Model Layer (Background) -->
+
           <div class="home-circle" id="home-circle"></div>
         </div>
       </section>
 
 
 
-      <!-- Section 3: Experience -->
+
       <section class="page-section" data-index="2">
         <div class="page-card experience-page-card">
 
@@ -136,7 +136,9 @@
               </div>
 
               <div class="orbit-item">
-                <div class="orbit-icon"><i data-feather="code"></i></div>
+                <div class="orbit-icon">
+                  <img class="orbit-logo" src="assets/project/3d.png" alt="Freelance">
+                </div>
                 <div class="orbit-details">
                   <div class="orbit-role">Full-Stack Software Developer</div>
                   <div class="orbit-company">Freelance / Self-Employed</div>
@@ -145,7 +147,9 @@
               </div>
 
               <div class="orbit-item">
-                <div class="orbit-icon"><i data-feather="database"></i></div>
+                <div class="orbit-icon">
+                  <img class="orbit-logo" src="assets/organization/pci.png" alt="PCI Elektronik Internasional">
+                </div>
                 <div class="orbit-details">
                   <div class="orbit-role">Data Engineer & Full-Stack Developer</div>
                   <div class="orbit-company">PCI Elektronik Internasional</div>
@@ -154,7 +158,9 @@
               </div>
 
               <div class="orbit-item">
-                <div class="orbit-icon"><i data-feather="terminal"></i></div>
+                <div class="orbit-icon">
+                  <img class="orbit-logo" src="assets/organization/qvantage.jpg" alt="Qvantage">
+                </div>
                 <div class="orbit-details">
                   <div class="orbit-role">Full-Stack Software Developer</div>
                   <div class="orbit-company">Qvantage</div>
@@ -163,7 +169,9 @@
               </div>
 
               <div class="orbit-item">
-                <div class="orbit-icon"><i data-feather="cloud"></i></div>
+                <div class="orbit-icon">
+                  <img class="orbit-logo" src="assets/organization/digitalent.png" alt="Digitalent">
+                </div>
                 <div class="orbit-details">
                   <div class="orbit-role">Cloud Apprenticeship</div>
                   <div class="orbit-company">Digitalent</div>
@@ -172,7 +180,9 @@
               </div>
 
               <div class="orbit-item">
-                <div class="orbit-icon"><i data-feather="activity"></i></div>
+                <div class="orbit-icon">
+                  <img class="orbit-logo" src="assets/organization/dexa.png" alt="DEXA Pharmaceutical">
+                </div>
                 <div class="orbit-details">
                   <div class="orbit-role">Data Scientist Intern</div>
                   <div class="orbit-company">DEXA Pharmaceutical</div>
@@ -201,7 +211,7 @@
         </div>
       </section>
 
-      <!-- Section 4: Projects -->
+
       <section class="page-section" data-index="3">
         <div class="page-card portfolio-page-card">
           <div class="projects-dashboard-grid">
@@ -213,39 +223,39 @@
                 solutions.</div>
             </div>
 
-            <!-- Right Column: Category Chart Filter -->
+
             <div class="dashboard-col-right fly-in-item fly-in-delay-2">
               <div class="dashboard-box chart-box">
                 <div class="category-chart-container" id="category-chart-container">
-                  <!-- Dynamically populated via JS -->
+
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Segmented Control / Button Group Filter -->
+
           <div class="portfolio-filter-container fly-in-item fly-in-delay-3">
             <div class="portfolio-segmented-control" id="portfolio-segmented-control">
-              <!-- Dynamically populated via JS -->
+
             </div>
           </div>
 
-          <!-- Infinite Sliding Cards (Bottom) -->
+
           <div class="portfolio-slider-container fly-in-item fly-in-delay-4">
             <div class="portfolio-track" id="portfolio-track">
-              <!-- Cards will be dynamically inserted here -->
+
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Section 5: Contact -->
+
       <section class="page-section" data-index="4">
         <div class="page-card contact-page-card">
           <h2 class="card-title fly-in-item fly-in-delay-1">Contact</h2>
 
           <div class="contact-container">
-            <!-- Left Side: Terminal Form -->
+
             <div class="contact-form-wrapper fly-in-item fly-in-delay-2">
               <div class="terminal-header">
                 <span class="terminal-dot red"></span>
@@ -299,7 +309,7 @@
 
               <div class="social-channels-header font-valorant fly-in-item fly-in-delay-3">SOCIAL MEDIA</div>
               <div class="social-grid fly-in-item fly-in-delay-4">
-                <!-- GitHub -->
+
                 <a href="https://github.com/dgashandy" target="_blank" class="social-card">
                   <div class="social-icon"><i data-feather="github"></i></div>
                   <div class="social-info">
@@ -308,7 +318,7 @@
                   </div>
                 </a>
 
-                <!-- LinkedIn -->
+
                 <a href="https://id.linkedin.com/in/dgashandy" target="_blank" class="social-card">
                   <div class="social-icon"><i data-feather="linkedin"></i></div>
                   <div class="social-info">
@@ -317,7 +327,7 @@
                   </div>
                 </a>
 
-                <!-- Threads -->
+
                 <a href="https://threads.net/@dgashandy" target="_blank" class="social-card">
                   <div class="social-icon">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
@@ -332,7 +342,7 @@
                   </div>
                 </a>
 
-                <!-- Instagram -->
+
                 <a href="https://instagram.com/dgashandy" target="_blank" class="social-card">
                   <div class="social-icon"><i data-feather="instagram"></i></div>
                   <div class="social-info">
@@ -349,7 +359,7 @@
     </div>
   </div>
 
-  <!-- Contact Feature Notification Modal -->
+
   <div class="project-modal" id="contact-notification-modal">
     <div class="project-modal-backdrop" id="contact-notification-backdrop"></div>
     <div class="project-modal-content contact-notification-content">
@@ -374,26 +384,26 @@
     </div>
   </div>
 
-  <!-- The Intro Sequence Overlay -->
+
   <div class="intro-screen">
     <div class="intro-line"></div>
   </div>
 
 
 
-  <!-- Feather Icons CDN -->
+
   <script src="https://unpkg.com/feather-icons"></script>
 
   <script>
-    // Initialize Feather Icons
+
     feather.replace();
 
-    // Sidebar Indicator Logic
+
     const sidebarItems = document.querySelectorAll('.sidebar ul li');
     const indicator = document.querySelector('.indicator');
     const pageSections = document.querySelectorAll('.page-section');
 
-    // Typewriter Animation Variables & Functions
+
     let typewriterTimeout = null;
     let typewriterActive = false;
 
@@ -452,13 +462,13 @@
       const ul = document.querySelector('.sidebar ul');
       const isMobile = window.innerWidth <= 600;
       if (isMobile) {
-        // Top navbar: slide horizontally, keep vertically centered
+
         const leftPos = ul.offsetLeft + liElement.offsetLeft + (liElement.offsetWidth - 45) / 2;
         indicator.style.left = `${leftPos}px`;
         indicator.style.top = '50%';
         indicator.style.transform = 'translateY(-50%)';
       } else {
-        // Left sidebar: slide vertically
+
         const topPos = ul.offsetTop + liElement.offsetTop + (liElement.offsetHeight - 45) / 2;
         indicator.style.top = `${topPos}px`;
         indicator.style.left = '50%';
@@ -466,7 +476,7 @@
       }
     }
 
-    // Hide indicator on Start page
+
     indicator.style.opacity = '0';
 
     function navigateToSection(index) {
@@ -507,7 +517,7 @@
         if (sec.classList.contains('active')) prevIndex = idx;
       });
 
-      // Update sidebar active class & move indicator
+
       let foundActiveLi = null;
       sidebarItems.forEach(li => {
         const liIdx = parseInt(li.getAttribute('data-index'));
@@ -526,7 +536,7 @@
         indicator.style.opacity = '0';
       }
 
-      // Ensure 3D canvas is teleported to Home circle if leaving Start screen
+
       const homeCircle = document.getElementById('home-circle');
       if (index > 0 && homeCircle && typeof renderer !== 'undefined') {
         if (renderer.domElement.parentNode !== homeCircle) {
@@ -555,38 +565,38 @@
         }
       }
 
-      // Update page sections with smooth entry & exit fade/slide transition
+
       pageSections.forEach(sec => {
         const secIdx = parseInt(sec.getAttribute('data-index'));
 
         if (secIdx === index) {
-          // Prepare entry transition
+
           sec.classList.add('active');
 
           if (prevIndex === 0 && index === 1) {
-            // Pure deep fade-in with gentle upward lift when transitioning from start screen
+
             sec.style.transition = 'none';
             sec.style.transform = 'translateY(25px)';
             sec.style.opacity = '0';
-            sec.offsetHeight; // Force reflow
+            sec.offsetHeight;
             sec.style.transition = 'opacity 1.8s cubic-bezier(0.25, 1, 0.5, 1), transform 1.8s cubic-bezier(0.25, 1, 0.5, 1)';
             sec.style.transform = 'translateY(0)';
             sec.style.opacity = '1';
           } else if (index > prevIndex) {
-            // Slide in from right with fade
+
             sec.style.transition = 'none';
             sec.style.transform = 'translateX(5vw)';
             sec.style.opacity = '0';
-            sec.offsetHeight; // Force reflow
+            sec.offsetHeight;
             sec.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
             sec.style.transform = 'translateX(0)';
             sec.style.opacity = '1';
           } else if (index < prevIndex) {
-            // Slide in from left with fade
+
             sec.style.transition = 'none';
             sec.style.transform = 'translateX(-5vw)';
             sec.style.opacity = '0';
-            sec.offsetHeight; // Force reflow
+            sec.offsetHeight;
             sec.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
             sec.style.transform = 'translateX(0)';
             sec.style.opacity = '1';
@@ -595,15 +605,15 @@
             sec.style.opacity = '1';
           }
         } else if (sec.classList.contains('active')) {
-          // Prepare exit transition
+
           sec.classList.remove('active');
 
           sec.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
           if (index > prevIndex) {
-            // Slide out to left
+
             sec.style.transform = 'translateX(-5vw)';
           } else {
-            // Slide out to right
+
             sec.style.transform = 'translateX(5vw)';
           }
           sec.style.opacity = '0';
@@ -618,17 +628,17 @@
       });
     });
 
-    // Home Section Button Navigation
+
     const homeButtons = document.querySelectorAll('.home-buttons .btn-box');
     homeButtons.forEach((btn, idx) => {
       btn.addEventListener('click', () => {
-        // Map: Experience (2), Portfolio/Projects (3), Contact (4)
+
         navigateToSection(idx + 2);
       });
     });
 
-    // Full-page Scroll Navigation is disabled on desktop to allow scrolling within cards.
-    // On mobile: reaching the bottom of a card scrolls to the next page (top -> previous).
+
+
     let scrollNavLock = false;
     function lockScrollNav() {
       scrollNavLock = true;
@@ -692,7 +702,7 @@
     window.addEventListener('touchend', (e) => {
       if (window.innerWidth > 1023) return;
       const endY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : touchStartY;
-      const dy = touchStartY - endY; // positive => swiped up (i.e. scrolling down)
+      const dy = touchStartY - endY;
       if (Math.abs(dy) < 60) return;
 
       const activeSection = document.querySelector('.page-section.active');
@@ -703,7 +713,7 @@
       else if (dy < 0 && touchStartAtTop) scrollNavTo(-1);
     }, { passive: true });
 
-    // Start Screen Logic with Disperse Animation Transition
+
     let startTransitionInProgress = false;
 
     function triggerStartTransition() {
@@ -720,23 +730,23 @@
     }
 
     function finishOutroTransition() {
-      // Actually navigate to Home
+
       navigateToSection(1);
 
-      // Restore 3D mesh scales and opacities
+
       primaryMesh.scale.set(1.0, 1.0, 1.0);
       outerMesh.scale.set(1.032, 1.032, 1.032);
       primaryMaterial.opacity = 0.32;
       outerMaterial.opacity = 0.11;
 
-      // Reset positions to shapes[0] or whatever shape we want
+
       const positions = activeGeometry.attributes.position.array;
       for (let i = 0; i < positions.length; i++) {
         positions[i] = shapes[0][i];
       }
       activeGeometry.attributes.position.needsUpdate = true;
 
-      // Restore prompt opacity if ever reset
+
       const prompt = document.getElementById('start-prompt');
       if (prompt) {
         prompt.style.opacity = '1';
@@ -763,7 +773,7 @@
       });
     }
 
-    // --- 3D Element Logic ---
+
     const container = document.getElementById('canvas-container');
     const scene = new THREE.Scene();
 
@@ -799,13 +809,13 @@
       const theta = Math.atan2(y, x);
       const phi = Math.acos(z / r);
 
-      // --- INTRO STATE: Shattered Screen-Covering Chaos ---
+
       const explodeDistance = 75 + Math.random() * 95;
       chaosPositions[i3] = (x / r) * explodeDistance;
       chaosPositions[i3 + 1] = (y / r) * explodeDistance;
       chaosPositions[i3 + 2] = (z / r) * explodeDistance;
 
-      // --- OUTRO STATE: Exploding 3D Splatter Lines ---
+
       const splatterDistance = 300 + Math.random() * 400;
       outroExplodePositions[i3] = (x / r) * splatterDistance;
       outroExplodePositions[i3 + 1] = (y / r) * splatterDistance;
@@ -868,7 +878,7 @@
       blending: THREE.AdditiveBlending
     });
     const primaryMesh = new THREE.Mesh(activeGeometry, primaryMaterial);
-    // Wrap meshes in a group so we can uniformly shrink the intro model on mobile
+
     const modelGroup = new THREE.Group();
     const _w = window.innerWidth;
     modelGroup.scale.setScalar(_w <= 600 ? 0.72 : _w >= 1368 ? 1.0 : _w <= 1023 ? (0.72 + (_w - 641) / 382 * 0.18) : (0.82 + (_w - 1024) / 343 * 0.18));
@@ -891,7 +901,7 @@
 
     let outroActive = false;
     let outroProgress = 0;
-    const outroSpeed = 0.0055; // Speed of the 3D disperse outro animation (approx. 3.0s at 60fps)
+    const outroSpeed = 0.0055;
 
     let currentShapeIdx = 0;
     let nextShapeIdx = 1;
@@ -925,13 +935,13 @@
           finishOutroTransition();
         }
 
-        // easeOutSine curve for smooth sustained dispersion
+
         let easeOutro = Math.sin(outroProgress * Math.PI / 2);
         let currentScale = lerp(1.0, 4.5, easeOutro);
         primaryMesh.scale.set(currentScale, currentScale, currentScale);
         outerMesh.scale.set(currentScale * 1.032, currentScale * 1.032, currentScale * 1.032);
 
-        // Delay opacity fade-out: start fading only in the second half of the transition
+
         let fadeProgress = Math.max(0, (outroProgress - 0.5) / 0.5);
         primaryMaterial.opacity = lerp(0.32, 0.0, fadeProgress);
         outerMaterial.opacity = lerp(0.11, 0.0, fadeProgress);
@@ -1427,7 +1437,7 @@
         container.addEventListener('mouseenter', () => isHovered = true);
         container.addEventListener('mouseleave', () => isHovered = false);
 
-        // Mouse Drag to Orbit Experience Boxes
+
         container.addEventListener('mousedown', (e) => {
           isDraggingOrbit = true;
           prevOrbitMouseX = e.clientX;
@@ -1456,7 +1466,7 @@
           }
         });
 
-        // Touch Drag to Orbit Experience Boxes
+
         container.addEventListener('touchstart', (e) => {
           if (e.touches.length === 1) {
             isDraggingOrbit = true;
@@ -1542,7 +1552,7 @@
       }
       updateOrbit();
 
-      // Resize orbit globe canvas when viewport changes
+
       window.addEventListener('resize', () => {
         const newSize = getOrbitCanvasSize();
         const currentSize = canvas.width || 720;
@@ -1566,27 +1576,27 @@
         renderer.setSize(containerW, containerH);
       }
 
-      // Reposition the nav indicator when crossing the mobile/desktop breakpoint
+
       const activeLi = document.querySelector('.sidebar ul li.active');
       if (activeLi) {
         moveIndicator(activeLi);
       }
     });
 
-    // --- Categorical Chart Logic (Serves as Filters) ---
+
     function initCategoryChart() {
       const container = document.getElementById('category-chart-container');
       if (!container) return;
 
       const data = typeof portfolioData !== 'undefined' ? portfolioData : [];
 
-      // Update total projects count
+
       const totalCountElement = document.getElementById('projects-total-count');
       if (totalCountElement) {
         totalCountElement.textContent = data.length;
       }
 
-      // Count project occurrences by all their categories
+
       const counts = {};
       data.forEach(project => {
         if (project.categories && project.categories.length > 0) {
@@ -1596,11 +1606,11 @@
         }
       });
 
-      // Sort categories by count (descending)
+
       const sortedCategories = Object.entries(counts).sort((a, b) => b[1] - a[1]);
       const maxCount = sortedCategories.length > 0 ? sortedCategories[0][1] : 1;
 
-      // Build HTML for Category Chart Filter
+
       let html = `<div class="chart-title-sub">PROJECTS BY CATEGORY</div>`;
 
       sortedCategories.forEach(([category, count]) => {
@@ -1620,12 +1630,12 @@
 
       container.innerHTML = html;
 
-      // Build Segmented Control buttons dynamically
+
       const segmentedControl = document.getElementById('portfolio-segmented-control');
       if (segmentedControl) {
-        // Shared filter handler used by both the desktop buttons and mobile dropdown
+
         function applyCategoryFilter(cat) {
-          // Synchronize with the category chart
+
           const rows = container.querySelectorAll('.chart-row');
           rows.forEach(r => {
             r.classList.remove('active');
@@ -1634,13 +1644,13 @@
             }
           });
 
-          // Sync desktop buttons
+
           const segButtons = segmentedControl.querySelectorAll('.filter-btn');
           segButtons.forEach(btn => {
             btn.classList.toggle('active', btn.getAttribute('data-category') === cat);
           });
 
-          // Sync mobile dropdown
+
           const ddItems = segmentedControl.querySelectorAll('.portfolio-custom-dropdown-menu li');
           const ddLabel = segmentedControl.querySelector('.pcd-label');
           ddItems.forEach(i => {
@@ -1652,16 +1662,16 @@
           initPortfolioSlider(cat);
         }
 
-        // Always build BOTH controls; CSS shows/hides based on breakpoint
+
         let html = '';
-        // Desktop: horizontal buttons
+
         html += `<div class="portfolio-segmented-desktop">`;
         html += `<button class="filter-btn active" data-category="ALL">ALL</button>`;
         sortedCategories.forEach(([category]) => {
           html += `<button class="filter-btn" data-category="${category}">${category}</button>`;
         });
         html += `</div>`;
-        // Mobile: custom dropdown
+
         html += `<div class="portfolio-custom-dropdown" id="portfolio-custom-dropdown">`;
         html += `<button class="portfolio-custom-dropdown-toggle" type="button"><span class="pcd-label">ALL</span><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>`;
         html += `<ul class="portfolio-custom-dropdown-menu">`;
@@ -1672,13 +1682,13 @@
         html += `</ul></div>`;
         segmentedControl.innerHTML = html;
 
-        // Desktop button listeners
+
         const segButtons = segmentedControl.querySelectorAll('.portfolio-segmented-desktop .filter-btn');
         segButtons.forEach(btn => {
           btn.addEventListener('click', () => applyCategoryFilter(btn.getAttribute('data-category')));
         });
 
-        // Mobile dropdown listeners
+
         const dd = document.getElementById('portfolio-custom-dropdown');
         if (dd) {
           const ddToggle = dd.querySelector('.portfolio-custom-dropdown-toggle');
@@ -1696,12 +1706,12 @@
             });
           });
 
-          // Close dropdown when clicking outside
+
           document.addEventListener('click', () => dd.classList.remove('open'));
         }
       }
 
-      // Add click filtering listeners with toggle/deactivate behavior and segmented control synchronization
+
       const rows = container.querySelectorAll('.chart-row');
       rows.forEach(row => {
         row.addEventListener('click', () => {
@@ -1711,7 +1721,7 @@
         });
       });
 
-      // Initial animation
+
       setTimeout(() => {
         const fills = container.querySelectorAll('.chart-bar-fill');
         fills.forEach((fill, index) => {
@@ -1722,22 +1732,22 @@
       }, 300);
     }
 
-    // --- Dynamic Portfolio Slider Logic ---
+
     function initPortfolioSlider(categoryFilter = 'ALL') {
       const track = document.getElementById('portfolio-track');
       if (!track) return;
 
-      // Clear previous track contents
+
       track.innerHTML = '';
 
       let data = typeof portfolioData !== 'undefined' ? portfolioData : [];
 
-      // Filter by category if one is specified (not 'ALL')
+
       if (categoryFilter && categoryFilter !== 'ALL') {
         data = data.filter(project => project.categories && project.categories.includes(categoryFilter));
       }
 
-      // Clone the array to double it for a seamless infinite marquee scrolling animation
+
       const items = [...data, ...data];
 
       items.forEach((project, idx) => {
@@ -1780,7 +1790,7 @@
 
         card.innerHTML = cardContent;
 
-        // Open details modal on click
+
         card.addEventListener('click', () => {
           openProjectModal(project);
         });
@@ -1793,7 +1803,7 @@
       }
     }
 
-    // --- Modal Logic ---
+
     let modalSliderIndex = 0;
     let modalSliderPictures = [];
     let modalSliderIsPrivate = false;
@@ -1820,7 +1830,7 @@
 
       document.getElementById('project-modal-desc').textContent = project.description || '';
 
-      // Set categories
+
       const catContainer = document.getElementById('project-modal-categories');
       catContainer.innerHTML = '';
       if (project.categories) {
@@ -1831,7 +1841,7 @@
         });
       }
 
-      // Set tech stack
+
       const techContainer = document.getElementById('project-modal-tech-list');
       techContainer.innerHTML = '';
       if (project.stacks) {
@@ -1842,7 +1852,7 @@
         });
       }
 
-      // Set link
+
       const linkBtn = document.getElementById('project-modal-link-btn');
       if (project.link && project.status !== 'private') {
         linkBtn.href = project.link;
@@ -1851,7 +1861,7 @@
         linkBtn.style.display = 'none';
       }
 
-      // Set slider variables
+
       modalSliderIndex = 0;
       modalSliderPictures = project.pictures && project.pictures.length > 0 ? project.pictures : ['assets/project/project_template.png'];
       modalSliderIsPrivate = project.status === 'private';
@@ -1871,10 +1881,10 @@
       const nextBtn = document.getElementById('modal-slider-next');
       const thumbnailsTray = document.getElementById('project-modal-thumbnails');
 
-      // Update Main image
+
       updateModalMainImage();
 
-      // Setup Thumbnails
+
       thumbnailsTray.innerHTML = '';
       if (modalSliderPictures.length > 1) {
         prevBtn.style.display = 'flex';
@@ -1912,7 +1922,7 @@
       const mainImg = document.getElementById('modal-main-img');
       if (!mainImg) return;
 
-      // Reset any active magnifier glass to prevent floating artifacts
+
       const existingGlass = mainImg.parentElement.querySelector('.img-magnifier-glass');
       if (existingGlass) existingGlass.remove();
 
@@ -1928,7 +1938,7 @@
         mainImg.style.opacity = '1';
       }, 150);
 
-      // Highlight active thumbnail
+
       const thumbs = document.querySelectorAll('#project-modal-thumbnails .modal-thumb');
       thumbs.forEach((t, i) => {
         if (i === modalSliderIndex) {
@@ -1947,9 +1957,9 @@
       }
     }
 
-    // --- Lightbox Modal Logic ---
+
     function openLightbox(src) {
-      if (modalSliderIsPrivate) return; // Prevent zooming private projects
+      if (modalSliderIsPrivate) return;
       const lightbox = document.getElementById('lightbox-modal');
       const lightboxImg = document.getElementById('lightbox-img');
       if (lightbox && lightboxImg) {
@@ -1965,7 +1975,7 @@
       }
     }
 
-    // Modal Slider Navigation Click Handlers
+
     document.addEventListener('DOMContentLoaded', () => {
       const prevBtn = document.getElementById('modal-slider-prev');
       const nextBtn = document.getElementById('modal-slider-next');
@@ -1988,14 +1998,14 @@
         });
       }
 
-      // Click main image to open lightbox
+
       if (mainImg) {
         mainImg.addEventListener('click', () => {
           openLightbox(mainImg.src);
         });
       }
 
-      // Click zoom button to open lightbox
+
       if (zoomBtn) {
         zoomBtn.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -2006,7 +2016,7 @@
       }
     });
 
-    // Modal close listeners
+
     document.addEventListener('DOMContentLoaded', () => {
       const closeBtn = document.getElementById('project-modal-close');
       const backdrop = document.getElementById('project-modal-backdrop');
@@ -2032,13 +2042,13 @@
       });
     });
 
-    // --- EmailJS Contact Form Logic ---
-    // User can customize these variables in the code
-    const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // Replace with EmailJS Public Key
-    const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID'; // Replace with EmailJS Service ID
-    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // Replace with EmailJS Template ID
 
-    // Initialize EmailJS with Public Key
+
+    const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+    const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+
+
     if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
       emailjs.init(EMAILJS_PUBLIC_KEY);
     }
@@ -2081,7 +2091,7 @@
       }
     });
 
-    // --- Contact Feature Notification Modal ---
+
     function openContactNotificationModal() {
       const modal = document.getElementById('contact-notification-modal');
       if (!modal) return;
@@ -2106,7 +2116,7 @@
       }
     });
 
-    // --- Custom Cursor Logic ---
+
     document.addEventListener('DOMContentLoaded', () => {
       const cursorDot = document.getElementById('custom-cursor-dot');
       const cursorRing = document.getElementById('custom-cursor-ring');
@@ -2123,12 +2133,12 @@
         mouseX = e.clientX;
         mouseY = e.clientY;
 
-        // Position the dot immediately
+
         cursorDot.style.left = `${mouseX}px`;
         cursorDot.style.top = `${mouseY}px`;
       });
 
-      // Lerp animation loop for the outer ring trailing effect
+
       const tick = () => {
         ringX += (mouseX - ringX) * 0.15;
         ringY += (mouseY - ringY) * 0.15;
@@ -2140,7 +2150,7 @@
       };
       tick();
 
-      // Universal hover detection via delegation
+
       document.addEventListener('mouseover', (e) => {
         const target = e.target;
         if (target && (
@@ -2165,7 +2175,7 @@
     initPortfolioSlider();
   </script>
 
-  <!-- Project Details Modal -->
+
   <div class="project-modal" id="project-modal">
     <div class="project-modal-backdrop" id="project-modal-backdrop"></div>
     <div class="project-modal-content">
@@ -2189,7 +2199,7 @@
             </div>
           </div>
           <div class="project-modal-thumbnails" id="project-modal-thumbnails">
-            <!-- Thumbnail images loaded dynamically -->
+
           </div>
         </div>
 
@@ -2201,7 +2211,7 @@
           </div>
 
           <div class="project-modal-categories" id="project-modal-categories">
-            <!-- Categories loaded dynamically -->
+
           </div>
 
           <p class="project-modal-desc" id="project-modal-desc">Description</p>
@@ -2209,7 +2219,7 @@
           <div class="project-modal-tech-section">
             <h4>TECHNOLOGIES USED</h4>
             <div class="project-modal-tech-list" id="project-modal-tech-list">
-              <!-- Tech stack list loaded dynamically -->
+
             </div>
           </div>
 
@@ -2223,7 +2233,7 @@
     </div>
   </div>
 
-  <!-- Image Lightbox Modal (Fullscreen Zoom) -->
+
   <div class="lightbox-modal" id="lightbox-modal">
     <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
     <button class="lightbox-close" id="lightbox-close">
@@ -2232,7 +2242,7 @@
     <img class="lightbox-img" id="lightbox-img" src="" alt="Zoomed view">
   </div>
 
-  <!-- Toast Notification -->
+
   <div class="toast-notification" id="toast-notification">
     <div class="toast-icon" id="toast-icon"></div>
     <div class="toast-message" id="toast-message"></div>
