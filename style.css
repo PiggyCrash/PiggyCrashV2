@@ -3029,17 +3029,15 @@ textarea.cyber-input {
 }
 
 /* ==================================================================
-   TABLET LANDSCAPE (1024px - 1366px) - Scaled-down desktop layout
-   Same positions & styling as desktop, elements shrunk to fit
+   MID-SIZE DESKTOP (1024px - 1700px)
+   Scaled Home, Experience, and Projects layouts
    ================================================================== */
-@media (min-width: 1024px) and (max-width: 1367px) {
-  /* ---- Page card: reduce padding ---- */
-  .page-card {
+@media (min-width: 1024px) and (max-width: 1700.98px) {
+  /* ---- Requested sections: reduce card padding ---- */
+  .home-page-card,
+  .experience-page-card,
+  .portfolio-page-card {
     padding: 2.5rem;
-  }
-
-  .page-card h2.card-title {
-    font-size: 2rem;
   }
 
   /* ---- Home: narrower left column so 3D model doesn't overlap ---- */
@@ -3274,6 +3272,76 @@ textarea.cyber-input {
 
   .portfolio-card-desc {
     font-size: 0.7rem;
+  }
+}
+
+/* Restore normal 3D sizing while retaining the compact non-3D layout. */
+@media (min-width: 1367px) and (max-width: 1700.98px) {
+  .home-card-right {
+    width: 54% !important;
+  }
+
+  .experience-content-wrapper .orbit-container {
+    flex: 7;
+  }
+
+  .orbit-container {
+    height: 480px;
+  }
+
+  .orbit-center {
+    width: 720px;
+    height: 720px;
+  }
+
+  .orbit-path-svg {
+    width: 920px;
+    height: 260px;
+  }
+
+  .orbit-item {
+    width: 270px;
+    max-width: 290px;
+    height: 95px;
+    padding: 0.8rem;
+    gap: 0.8rem;
+  }
+
+  .orbit-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+  }
+
+  .orbit-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .orbit-role {
+    font-size: 0.88rem;
+    margin-bottom: 0.4rem;
+    line-height: normal;
+  }
+
+  .orbit-company {
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .orbit-date {
+    font-size: 0.72rem;
+  }
+}
+
+/* Keep the original generic and Contact adjustments at 1024px - 1367px. */
+@media (min-width: 1024px) and (max-width: 1367px) {
+  .page-card {
+    padding: 2.5rem;
+  }
+
+  .page-card h2.card-title {
+    font-size: 2rem;
   }
 
   /* ---- Contact: tighter gap ---- */
