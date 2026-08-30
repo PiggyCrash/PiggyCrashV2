@@ -1326,7 +1326,7 @@
         const w = window.innerWidth;
         if (w <= 600) return 200;
         if (w <= 1023) return 240;
-        if (w <= 1367) return 360;
+        if (w <= 1367) return 320;
         return 720;
       }
 
@@ -1412,7 +1412,7 @@
         } else if (w <= 1023) {
           return { rx: 210, rz: 90, ry: 105 };
         } else if (w <= 1367) {
-          return { rx: 280, rz: 140, ry: 95 };
+          return { rx: 240, rz: 120, ry: 80 };
         }
         return { rx: 410, rz: 200, ry: 100 };
       }

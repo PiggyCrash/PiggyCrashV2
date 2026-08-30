@@ -3117,48 +3117,102 @@ textarea.cyber-input {
 
   /* ---- Experience: smaller orbit + tighter gap ---- */
   .experience-content-wrapper {
-    gap: 2rem;
+    gap: 1rem;
+  }
+
+  .experience-content-wrapper .orbit-container {
+    flex: 1 1 auto;
   }
 
   .orbit-container {
-    height: 360px;
+    height: 320px;
   }
 
   .orbit-center {
-    width: 360px;
-    height: 360px;
+    width: 320px;
+    height: 320px;
+  }
+
+  .orbit-path-svg {
+    width: 540px;
+    height: 210px;
   }
 
   .orbit-item {
-    width: 210px;
-    max-width: 230px;
-    height: 78px;
-    padding: 0.6rem;
-    gap: 0.6rem;
+    width: 175px;
+    max-width: 185px;
+    height: 68px;
+    padding: 0.45rem;
+    gap: 0.45rem;
+  }
+
+  .orbit-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+  }
+
+  .orbit-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .orbit-role {
+    font-size: 0.66rem;
+    margin-bottom: 0.2rem;
+    line-height: 1.1;
+  }
+
+  .orbit-company {
+    font-size: 0.58rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .orbit-date {
+    font-size: 0.52rem;
+  }
+
+  .experience-right-panel {
+    flex: 0 0 180px;
+    width: 180px;
+    padding: 0.5rem;
+  }
+
+  .experience-right-panel > * {
+    white-space: nowrap;
   }
 
   .exp-stat-with-total {
-    font-size: 1rem !important;
+    font-size: 0.7rem !important;
+    margin-bottom: 2rem !important;
   }
 
   .exp-stat-number {
-    font-size: 3.5rem !important;
+    font-size: 2.6rem !important;
   }
 
   .exp-stat-years {
-    font-size: 1.4rem !important;
+    font-size: 0.78rem !important;
+    margin-bottom: 2.5rem !important;
   }
 
   .exp-stat-from {
-    font-size: 1rem !important;
+    font-size: 0.7rem !important;
   }
 
   .exp-stat-range {
-    font-size: 1rem !important;
+    font-size: 0.75rem !important;
   }
 
   /* ---- Projects: smaller dashboard and cards ---- */
+  .portfolio-page-card {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    overscroll-behavior: contain;
+  }
+
   .projects-dashboard-grid {
+    flex: 0 0 300px;
     height: 300px;
   }
 
@@ -3177,6 +3231,36 @@ textarea.cyber-input {
 
   .label-box-bottom {
     font-size: 1.6rem;
+  }
+
+  .portfolio-filter-container {
+    flex-shrink: 0;
+    margin-top: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .portfolio-segmented-control {
+    max-width: 760px;
+    padding: 3px;
+    gap: 2px;
+  }
+
+  .portfolio-segmented-desktop {
+    gap: 2px;
+  }
+
+  .portfolio-segmented-control .filter-btn {
+    height: 32px;
+    min-width: 72px;
+    padding: 0 0.65rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.25px;
+  }
+
+  .portfolio-slider-container {
+    flex: 0 0 222px;
+    min-height: 222px;
+    margin-top: 0.5rem;
   }
 
   .portfolio-card {
