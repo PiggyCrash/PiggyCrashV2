@@ -3334,6 +3334,21 @@ textarea.cyber-input {
   }
 }
 
+/* Preserve normal Projects content height so short windows can scroll it. */
+@media (min-width: 1700px) {
+  .portfolio-page-card {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    overscroll-behavior: contain;
+  }
+
+  .projects-dashboard-grid,
+  .portfolio-filter-container,
+  .portfolio-slider-container {
+    flex-shrink: 0;
+  }
+}
+
 /* Keep the original generic and Contact adjustments at 1024px - 1367px. */
 @media (min-width: 1024px) and (max-width: 1367px) {
   .page-card {
