@@ -1050,15 +1050,16 @@ html {
   max-width: 290px;
   width: 270px;
   height: 95px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(48, 48, 48, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 0.8rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.8rem;
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(18px) saturate(70%);
+  backdrop-filter: blur(18px) saturate(70%);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
@@ -1068,7 +1069,7 @@ html {
 
 .orbit-item:hover {
   border-color: rgba(255, 0, 85, 0.5);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(62, 52, 56, 0.8);
   box-shadow: 0 12px 36px rgba(255, 0, 85, 0.15);
 }
 
@@ -2598,6 +2599,13 @@ textarea.cyber-input {
   margin-top: 0.5rem;
 }
 
+/* Center the label in every responsive layout, but keep desktop unchanged. */
+@media (max-width: 1367px) {
+  .social-channels-header {
+    text-align: center;
+  }
+}
+
 .social-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -3045,19 +3053,30 @@ textarea.cyber-input {
   }
 
   .home-title-main {
-    font-size: 2rem !important;
+    font-size: clamp(1.7rem, 2.2vw, 1.9rem) !important;
   }
 
   .home-subtitle-welcome {
-    font-size: 0.85rem !important;
+    font-size: 0.72rem !important;
   }
 
   .home-subtitle-dev {
-    font-size: 0.9rem !important;
+    font-size: clamp(0.65rem, 0.8vw, 0.72rem) !important;
   }
 
   .home-subtitle-exp {
-    font-size: 0.75rem !important;
+    font-size: clamp(0.65rem, 0.8vw, 0.72rem) !important;
+  }
+
+  .know-me-further {
+    font-size: 0.68rem !important;
+  }
+
+  .home-title-block > *,
+  .know-me-further,
+  .btn-box,
+  .cv-download-btn {
+    white-space: nowrap;
   }
 
   .info-cards-row {
@@ -3081,6 +3100,9 @@ textarea.cyber-input {
   .btn-box {
     width: 105px;
     height: 38px;
+    gap: 6px;
+    font-size: 0.55rem;
+    letter-spacing: 0.4px;
   }
 
   .home-buttons {
@@ -3090,6 +3112,7 @@ textarea.cyber-input {
 
   .cv-download-btn {
     width: calc(105px * 3 + 0.5rem * 2) !important;
+    font-size: 0.62rem !important;
   }
 
   /* ---- Experience: smaller orbit + tighter gap ---- */
@@ -3221,6 +3244,12 @@ textarea.cyber-input {
   .home-card-right {
     height: 320px !important;
   }
+
+  /* Match the dotted guide to the wider tablet orbit used by JavaScript. */
+  .orbit-path-svg {
+    width: 460px;
+    height: 240px;
+  }
 }
 
 /* ==================================================================
@@ -3270,6 +3299,14 @@ textarea.cyber-input {
 
   .orbit-path-svg {
     width: 460px !important;
+    height: 240px !important;
+  }
+}
+
+/* Keep the dotted guide aligned with the full tablet orbit path. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .orbit-path-svg {
+    width: 500px !important;
     height: 240px !important;
   }
 }
